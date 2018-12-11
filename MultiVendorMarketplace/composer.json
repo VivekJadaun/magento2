@@ -1,0 +1,20 @@
+{
+  "name": "Vinsol_MultiVendorMarketplace",
+  "description": "This extension enables multi-vendor support at your e-commerce store.",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "licenese": [
+    "OSL-3.0", 
+    "AFL-3.0"
+  ],
+  "require": {
+    "php": "^5.6 || ^7.0 || ^7.2",
+    "magento/framework": "101.0.6" 
+  },
+  "autoload": {
+    "files": ["registration.php"],
+    "psr-4": {
+            "Vinsol\\MultiVendorMarketplace\\": ""
+        }
+  }
+}
