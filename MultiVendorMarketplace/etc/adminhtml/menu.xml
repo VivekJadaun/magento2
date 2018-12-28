@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+  <menu>
+    <add id="Vinsol_MultiVendorMarketplace::vendors" 
+         title="Multi Vendor Marketplace" 
+         module="Vinsol_MultiVendorMarketplace" 
+         resource="Vinsol_MultiVendorMarketplace::vendors" 
+         sortOrder="50" />
+
+    <add id="Vinsol_MultiVendorMarketplace::vendors_settings" 
+         title="Marketplace Settings" 
+         module="Vinsol_MultiVendorMarketplace" 
+         resource="Vinsol_MultiVendorMarketplace::vendors_settings" 
+         sortOrder="10"
+         action="adminhtml/system_config/edit/section/marketplace_vendor_general_settings"
+         parent="Vinsol_MultiVendorMarketplace::vendors" />
+
+    <add id="Vinsol_MultiVendorMarketplace::vendors_commission" 
+         title="Commissions Report" 
+         module="Vinsol_MultiVendorMarketplace" 
+         resource="Vinsol_MultiVendorMarketplace::vendors_commission" 
+         sortOrder="20"
+         action="marketplace/commissions"
+         parent="Vinsol_MultiVendorMarketplace::vendors" />
+
+    <add id="Vinsol_MultiVendorMarketplace::vendors_new" 
+         title="Manage Vendors" 
+         module="Vinsol_MultiVendorMarketplace" 
+         resource="Vinsol_MultiVendorMarketplace::vendors_new" 
+         sortOrder="20"
+         action="marketplace/vendors"
+         parent="Vinsol_MultiVendorMarketplace::vendors" />
+
+  </menu>
+</config>
