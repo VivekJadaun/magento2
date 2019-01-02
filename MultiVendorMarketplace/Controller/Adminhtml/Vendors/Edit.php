@@ -65,36 +65,4 @@ class Edit extends \Magento\Backend\App\Action
     return $this->resultPage;
   }
 
-
-
-  // protected function _initAction(){
-  //   $resultPage = $this->resultPage;
-  //   // $resultPage->setActiveMenu("Vinsol_MultiVendorMarketplace::vendors");
-  //     // ->addBreadcrumb(__('Marketplace'), __('Marketplace'))
-  //     // ->addBreadcrumb(__('Vendor'), __('Vendor'))
-  //     // ->addBreadcrumb(__('Edit'), __('Edit'));
-  //   return $resultPage;
-  // }
-
-  // public function execute(){
-  //   $id = $this->getRequest()->getParam('id');
-  //   $model = $this->vendor;
-  //   if ($id) {
-  //     $model->load($id);
-  //     if (!$model->getId()) {
-  //       $resultRedirect = $this->resultRedirectFactory->create();
-  //       return $resultRedirect->setPath('*/*/');
-  //     }
-  //   }
-  //   $data = $this->session->getFormData(true);
-  //   if (!empty($data)) {
-  //     $model->setData($data);
-  //   }
-  //   $this->_coreRegistry->register('vendor', $model);
-  //   $resultPage = $this->_initAction();
-  //   $resultPage->getConfig()->getTitle()->prepend(__('Marketplace'));
-  //   $resultPage->getConfig()->getTitle()->prepend(__('Vendor'));
-  //   $resultPage->getConfig()->getTitle()->prepend(__('Edit'));
-  //   return $resultPage;
-  // }
 }

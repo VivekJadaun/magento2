@@ -34,18 +34,18 @@
         $vendorEntity = \Vinsol\MultiVendorMarketplace\Model\Vendor::ENTITY;
         $vendorSetup = $this->vendorSetupFactory->create(['setup' => $setup]);
 
-        // $role = $this->roleFactory->create();
-        // $role->setName('vendor')
-        //      ->setPid(0)
-        //      ->setRoleType(RoleGroup::ROLE_TYPE)
-        //      ->setUserType(UserContextInterface::USER_TYPE_GUEST)
-        //      ->save();
+        $role = $this->roleFactory->create();
+        $role->setName('vendor')
+             ->setPid(0)
+             ->setRoleType(RoleGroup::ROLE_TYPE)
+             ->setUserType(UserContextInterface::USER_TYPE_GUEST)
+             ->save();
 
-        // $permitted_resources = ['Vinsol_MultiVendorMarketplace::dashboard'];
-        // $this->rulesFactory->create()
-        //      ->setRoleId($role->getId())
-        //      ->setResources($permitted_resources)
-        //      ->saveRel();
+        $permitted_resources = ['Vinsol_MultiVendorMarketplace::dashboard', 'Magento_Backend::dashboard'];
+        $this->rulesFactory->create()
+             ->setRoleId($role->getId())
+             ->setResources($permitted_resources)
+             ->saveRel();
 
         $vendorSetup->installEntities();
         $vendorSetup->addAttribute($vendorEntity, 'first_name', ['type' => 'varchar']);

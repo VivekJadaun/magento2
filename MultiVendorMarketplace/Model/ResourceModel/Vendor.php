@@ -4,7 +4,6 @@
 
   class Vendor extends \Magento\Eav\Model\Entity\AbstractEntity
   {
-    public function _construct()
     protected function _construct()
     {
       $this->_read = 'marketplace_vendor_read';

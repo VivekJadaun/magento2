@@ -13,7 +13,7 @@
 
 		$entities = [
 			$vendorEntity => [
-				'entity_model' => 'Vinsol\MultiVendorMarketplace\Model\ResourceModel\Employee',
+				'entity_model' => 'Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor',
 				'table' => $vendorEntity . '_entity',
 				'attributes' => [
           'first_name' => [
