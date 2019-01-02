@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+  <type name="\Vinsol\MultiVendorMarketplace\Model\Vendor">
+    <plugin name="VendorDispatchPlugin" sortOrder="10" type="\Vinsol\MultiVendorMarketplace\Block\Adminhtml\VendorDispatchPlugin" disabled="false" />
+  </type>
+
+  <preference for="Vinsol\MultiVendorMarketplace\Api\Data\CategoryInterface" type="Vinsol\MultiVendorMarketplace\Model\Vendor"/>
+
+  <virtualType name="VinsolMultiVendorMarketplaceVendorsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+    <arguments>
+      <argument name="appliers" xsi:type="array">
+        <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+        <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+      </argument>
+    </arguments>
+  </virtualType>
+
+  <virtualType name="VinsolMultiVendorMarketplaceVendorsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+    <arguments>
+      <argument name="collection" xsi:type="object" shared="false">
+        Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor</argument>
+      <argument name="filterPool" xsi:type="object" shared="false">
+        VinsolMultiVendorMarketplaceVendorsGridFilterPool</argument>
+    </arguments>
+  </virtualType>
+
+  <virtualType name="Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <arguments>
+      <argument name="mainTable" xsi:type="string">marketplace_vendor_entity</argument>
+      <argument name="resourceModel" xsi:type="string">Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor</argument>
+    </arguments>
+  </virtualType>
+
+  <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+    <arguments>
+      <argument name="collections" xsi:type="array">
+        <item name="marketplace_vendors_data_source" xsi:type="string">Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor\Grid\Collection</item>
+      </argument>
+    </arguments>
+  </type>
+</config>
