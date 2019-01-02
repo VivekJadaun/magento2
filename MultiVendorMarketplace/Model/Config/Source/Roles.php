@@ -9,11 +9,10 @@ class Roles implements \Magento\Framework\Option\ArrayInterface
 {
   protected $role;
   public function __construct(
-    \Vinsol\MultiVendorMarketplace\Model\Role $role
+    \Magento\Authorization\Model\RoleFactory $roleFactory
   )
   {
-    $this->role = $role;
-    // parent::__construct();
+    $this->role = $roleFactory->create();
   }
 
   public function toOptionArray()
@@ -27,12 +26,12 @@ class Roles implements \Magento\Framework\Option\ArrayInterface
     if ($collection->count()) {
       foreach ($collection as $key => $value) {
         $id = $value->getData('role_id');
-        $role = $value->getData('role_name');
-        $pair = [ 
+        $role = __($value->getData('role_name'));
+        $option = [ 
           'value' => $id,
           'label' => $role
         ];
-        $array[] = $pair;
+        $array[] = $option;
       }
     }
     return $array;

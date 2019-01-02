@@ -6,6 +6,7 @@
   {
     protected $mainTable = 'marketplace_vendor_entity';
     protected $rolesTable = 'authorization_role';
+    
     protected function _construct()
     {
       $this->_init(

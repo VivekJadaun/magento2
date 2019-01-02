@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:frameowrk:Acl/etc/acl.xsd">
+  <acl>
+    <resources>
+      <resource id="Magento_Backend::admin">
+        <resource id="Vinsol_MultiVendorMarketplace::vendors" title="Multi Vendor Marketplace" sortOrder="10">
+          <resource id="Vinsol_MultiVendorMarketplace::vendors_settings" title="Marketplace Settings" sortOrder="10" />
+          <resource id="Vinsol_MultiVendorMarketplace::vendors_commission" title="Commissions Report" sortOrder="10" />
+          <resource id="Vinsol_MultiVendorMarketplace::vendors_new" title="Manage Vendors" sortOrder="10" />
+        </resource>
+      </resource>
+    </resources>
+  </acl>
+</config>

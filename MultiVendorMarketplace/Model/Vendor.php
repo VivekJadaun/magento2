@@ -9,8 +9,8 @@
   {
     const ENTITY = 'marketplace_vendor';
     
-    public function __construct()
+    public function _construct()
     {
-      $this->_init('\Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor');
+      $this->_init('Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor');
     }
   }

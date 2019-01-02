@@ -32,6 +32,6 @@ class Delete extends \Magento\Backend\App\Action
 
   protected function _isAllowed()
   {
-    return $this->_authorization->isAllowed('Vinsol_MultiVendorMarketplace::vendors_new');
+    return $this->_authorization->isAllowed('Vinsol_MultiVendorMarketplace::vendors');
   }
 }

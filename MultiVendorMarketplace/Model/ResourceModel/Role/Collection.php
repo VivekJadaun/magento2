@@ -11,8 +11,8 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
   protected function _construct()
   {
     $this->_init(
-      'Vinsol\MultiVendorMarketplace\Model\Role',
-      'Vinsol\MultiVendorMarketplace\Model\ResourceModel\Role'
+      '\Vinsol\MultiVendorMarketplace\Model\Role',
+      '\Vinsol\MultiVendorMarketplace\Model\ResourceModel\Role'
     );
   }
 }

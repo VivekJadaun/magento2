@@ -22,21 +22,20 @@ class Index extends \Magento\Backend\App\Action
     return $this->getResultPage();
   }
 
-  public function _isAllowed()
+  protected function _isAllowed()
   {
-    return $this->_authorization->isAllowed('Vinsol_MultiVendorMarketplace::vendors_new');
+    return $this->_authorization->isAllowed('Vinsol_MultiVendorMarketplace::vendors');
   }
 
-  public function _setPageData()
+  protected function _setPageData()
   {
     $resultPage = $this->getResultPage();
-    $resultPage->setActiveMenu('Vinsol_MultiVendorMarketplace::vendors_new');
+    $resultPage->setActiveMenu('Vinsol_MultiVendorMarketplace::vendors');
     $resultPage->getConfig()->getTitle()->prepend(__('Vendors'));
-
     return $this;
   }
 
-  public function getResultPage()
+  protected function getResultPage()
   {
     if (is_null($this->resultPage)) {
       $this->resultPage = $this->resultPageFactory->create();
