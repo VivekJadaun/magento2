@@ -40,15 +40,13 @@
              ->setUserType(UserContextInterface::USER_TYPE_GUEST)
              ->save();
 
-        $permitted_resources = ['Vinsol_MultiVendorMarketplace::dashboard', 'Magento_Backend::dashboard'];
+        $permitted_resources = ['Magento_Backend::dashboard'];
         $this->rulesFactory->create()
              ->setRoleId($role->getId())
              ->setResources($permitted_resources)
              ->saveRel();
 
         $vendorSetup->installEntities();
-        // $vendorSetup->addAttribute($vendorEntity, 'first_name', ['type' => 'varchar']);
-        // $vendorSetup->addAttribute($vendorEntity, 'last_name', ['type' => 'varchar']);
         $vendorSetup->addAttribute($vendorEntity, 'contact_no', ['type' => 'varchar']);
         $vendorSetup->addAttribute($vendorEntity, 'address', ['type' => 'text']);
         $vendorSetup->addAttribute($vendorEntity, 'logo', ['type' => 'text']);
