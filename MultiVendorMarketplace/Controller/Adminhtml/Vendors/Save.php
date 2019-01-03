@@ -13,33 +13,33 @@ class Save extends \Magento\Backend\App\Action {
   protected $session;
   protected $vendor;
   protected $user;
+  protected $messageManager;
 
   public function __construct(
       \Magento\Backend\App\Action\Context $context, 
       \Magento\Framework\View\Result\PageFactory $resultPageFactory,
       \Vinsol\MultiVendorMarketplace\Model\VendorFactory $vendorFactory,
       \Magento\User\Model\UserFactory $userFactory,
+      \Magento\Framework\Message\Manager $messageManager,
       \Magento\Backend\Model\Session $session
     ){
     $this->resultPageFactory = $resultPageFactory;
     $this->vendor = $vendorFactory->create();
     $this->user = $userFactory->create();
     $this->session = $session;
+    $this->messageManager = $messageManager;
     parent::__construct($context);
   }
   public function execute(){
-    $data = $this->getRequest()->getPostValue();
+    $vendorData = $this->getRequest()->getPostValue();
     $resultRedirect = $this->resultRedirectFactory->create();
     $id = $this->getRequest()->getParam('id');
     if($id) {
       $this->vendor->load($id);
-      $this->user->load($id);
     }
-    $this->vendor->setData($data);
-    $this->user->setData($data);
+    $this->vendor->setData($vendorData);
     try {
       $this->vendor->save();
-      $this->user->save();
       $this->messageManager->addSuccess(__('Record Saved.'));
       if ($this->getRequest()->getParam('back')) {
         return $resultRedirect->setPath('*/*/', ['id' => $this->vendor->getId(), '_current' => true]);
@@ -49,7 +49,7 @@ class Save extends \Magento\Backend\App\Action {
     } catch (\Exception $ex) {
       $this->messageManager->addException($ex, __('Something went wrong.'));
     }
-    $this->_getSession()->setFormData($data);
+    $this->_getSession()->setFormData($vendorData);
     return $resultRedirect->setPath('*/*/', ['id' => $this->getRequest()->getParam('id')]);
   }
   protected function _isAllowed(){

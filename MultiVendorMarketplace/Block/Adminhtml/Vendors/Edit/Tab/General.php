@@ -185,10 +185,10 @@
 		}
 
 		public function getTabLabel(){
-			return __('Review');
+			return __('Vendor');
 		}
 		public function getTabTitle(){
-			return __('Review');
+			return __('Vendor');
 		}
 		public function canShowTab(){
 			return true;

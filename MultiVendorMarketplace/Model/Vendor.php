@@ -8,7 +8,7 @@
   class Vendor extends \Magento\Framework\Model\AbstractModel
   {
     const ENTITY = 'marketplace_vendor';
-
+    const ROLE_NAME = 'vendor';
     protected $encryptor;
     protected $role;
 
@@ -45,6 +45,6 @@
 
     public function setRoleId()
     {
-      $this->setData('role_id', $this->role->getCollection()->addFieldToFilter('role_name', 'vendor')->setPageSize(1)->setCurPage(1)->load()->getId());
+      $this->setData('role_id', $this->role->load(self::ROLE_NAME, 'role_name')->setPageSize(1)->setCurPage(1)->getId());
     }
   }

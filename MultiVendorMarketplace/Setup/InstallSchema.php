@@ -31,70 +31,70 @@
 					],
 					'Entity ID'
 				)
-	 //      ->addColumn(
-			// 'first_name',
-			// \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-			// 255,
-			// [
-			// 'nullable' => false
-			// ],
-			// 'First Name'
-	 //      )
-	 //      ->addColumn(
-			// 'last_name',
-			// \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-			// 255,
-			// [
-			// 'nullable' => true
-			// ],
-			// 'Last Name'
-	 //      )
-				->addColumn(
-					'display_name',
-					\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-					255,
-					[
-					'nullable' => false
-					],
-					'Display Name'
-				)
-				->addColumn(
-					'username',
-					\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-					255,
-					[
-					'nullable' => false
-					],
-					'Username'
-				)
-				->addColumn(
-					'password',
-					\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-					255,
-					[
-					'nullable' => false
-					],
-					'Password Hash'
-				)
-				->addColumn(
-					'created_at',
-					\Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
-					null,
-					[
-					'nullable' => false
-					],
-					'Vendor creation timestamp'
-				)
-				->addColumn(
-					'is_active',
-					\Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
-					null,
-					[
-					'nullable' => false, 
-					'default' => 1
-					],
-					'Is Active'
-				)
+	    //   ->addColumn(
+					// 'first_name',
+					// \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+					// 255,
+					// [
+					// 'nullable' => false
+					// ],
+					// 'First Name'
+	    //   )
+	    //   ->addColumn(
+					// 'last_name',
+					// \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+					// 255,
+					// [
+					// 'nullable' => true
+					// ],
+					// 'Last Name'
+	    //   )
+				// ->addColumn(
+				// 	'display_name',
+				// 	\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+				// 	255,
+				// 	[
+				// 	'nullable' => false
+				// 	],
+				// 	'Display Name'
+				// )
+				// ->addColumn(
+				// 	'username',
+				// 	\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+				// 	255,
+				// 	[
+				// 	'nullable' => false
+				// 	],
+				// 	'Username'
+				// )
+				// ->addColumn(
+				// 	'password',
+				// 	\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+				// 	255,
+				// 	[
+				// 	'nullable' => false
+				// 	],
+				// 	'Password Hash'
+				// )
+				// ->addColumn(
+				// 	'created_at',
+				// 	\Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
+				// 	null,
+				// 	[
+				// 	'nullable' => false
+				// 	],
+				// 	'Vendor creation timestamp'
+				// )
+				// ->addColumn(
+				// 	'is_active',
+				// 	\Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+				// 	null,
+				// 	[
+				// 	'nullable' => false, 
+				// 	'default' => 1
+				// 	],
+				// 	'Is Active'
+				// )
 				->addColumn(
 					'commission_perc',
 					\Magento\Framework\DB\Ddl\Table::TYPE_FLOAT,
@@ -105,24 +105,24 @@
 					],
 					'Commission Percentage'
 				)
-				->addColumn(
-					'contact_no',
-					\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-					20,
-					[
-					'nullable' => false,
-					],
-							'Contact Number'
-				)
-				->addColumn(
-					'email',
-					\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-					255,
-					[
-					'nullable' => false
-					],
-					'Email Address'
-				)
+				// ->addColumn(
+				// 	'contact_no',
+				// 	\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+				// 	20,
+				// 	[
+				// 	'nullable' => false,
+				// 	],
+				// 			'Contact Number'
+				// )
+				// ->addColumn(
+				// 	'email',
+				// 	\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+				// 	255,
+				// 	[
+				// 	'nullable' => false
+				// 	],
+				// 	'Email Address'
+				// )
 	 //      ->addColumn(
 			// 'address',
 			// \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
@@ -187,6 +187,12 @@
 					'role_id',
 					$setup->getTable('authorization_role'),
 					'role_id'
+				)
+				->addForeignKey(
+					$setup->getFkName($vendorEntity . '_entity', 'entity_id', $setup->getTable('admin_user'), 'user_id'),
+					'entity_id',
+					$setup->getTable('admin_user'),
+					'user_id'
 				)
 				->setComment('Marketplace Vendor Table');
 			$setup->getConnection()->createTable($vendorTable);

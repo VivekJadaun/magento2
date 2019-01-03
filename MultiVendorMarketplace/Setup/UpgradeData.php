@@ -29,26 +29,26 @@
     public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
       $setup->startSetup();
-      var_dump($this->role->addFieldToFilter('role_name', 'vendor')->setPageSize(1)->setCurPage(1)->load());
+      var_dump($this->role->load('vendor', 'role_name')->setPageSize(1)->setCurPage(1)->getId());
       if (version_compare($context->getVersion(), '1.0.0', '<=')) {
-        $vendor = $this->vendorFactory->create();
+        // $vendor = $this->vendorFactory->create();
 
-        $vendor->setData([
-          'display_name' => 'test_vendor',
-          'username' => 'test_vendor',
-          'password' => $this->encryptor->getHash('password', true),
-          'created_at' => $this->dateTimeFactory->create()->getTimestamp(),
-          'is_active' => 1,
-          'commission_perc' => 40.00,
-          'contact_no' => '9383325824',
-          'email' => 'testvendor@example.com',
-          'role_id' => $this->role->addFieldToFilter('role_name', 'vendor')->setPageSize(1)->setCurPage(1)->load()->getId(),
-          'sort_order' => 10,
-          'first_name' => 'test',
-          'last_name' => 'vendor',
-          'address' => '1/4 West Patel Nagar'
-        ]);
-        $vendor->save();
+        // $vendor->setData([
+        //   'display_name' => 'test_vendor',
+        //   'username' => 'test_vendor',
+        //   'password' => $this->encryptor->getHash('password', true),
+        //   'created_at' => $this->dateTimeFactory->create()->getTimestamp(),
+        //   'is_active' => 1,
+        //   'commission_perc' => 40.00,
+        //   'contact_no' => '9383325824',
+        //   'email' => 'testvendor@example.com',
+        //   'role_id' => $this->role->load(\Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_NAME, 'role_name')->getId(),
+        //   'sort_order' => 10,
+        //   'first_name' => 'test',
+        //   'last_name' => 'vendor',
+        //   'address' => '1/4 West Patel Nagar'
+        // ]);
+        // $vendor->save();
       }
 
       $setup->endSetup();

@@ -30,12 +30,11 @@
       $setup->startSetup();
 
       if (version_compare($context->getVersion(), '1.0.0', '<')) {
-
         $vendorEntity = \Vinsol\MultiVendorMarketplace\Model\Vendor::ENTITY;
         $vendorSetup = $this->vendorSetupFactory->create(['setup' => $setup]);
 
         $role = $this->roleFactory->create();
-        $role->setName('vendor')
+        $role->setName(\Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_NAME)
              ->setPid(0)
              ->setRoleType(RoleGroup::ROLE_TYPE)
              ->setUserType(UserContextInterface::USER_TYPE_GUEST)
@@ -48,8 +47,9 @@
              ->saveRel();
 
         $vendorSetup->installEntities();
-        $vendorSetup->addAttribute($vendorEntity, 'first_name', ['type' => 'varchar']);
-        $vendorSetup->addAttribute($vendorEntity, 'last_name', ['type' => 'varchar']);
+        // $vendorSetup->addAttribute($vendorEntity, 'first_name', ['type' => 'varchar']);
+        // $vendorSetup->addAttribute($vendorEntity, 'last_name', ['type' => 'varchar']);
+        $vendorSetup->addAttribute($vendorEntity, 'contact_no', ['type' => 'varchar']);
         $vendorSetup->addAttribute($vendorEntity, 'address', ['type' => 'text']);
         $vendorSetup->addAttribute($vendorEntity, 'logo', ['type' => 'text']);
         $vendorSetup->addAttribute($vendorEntity, 'banner', ['type' => 'text']);
