@@ -47,8 +47,6 @@
              ->saveRel();
 
         $vendorSetup->installEntities();
-        // $vendorSetup->addAttribute($vendorEntity, 'first_name', ['type' => 'varchar']);
-        // $vendorSetup->addAttribute($vendorEntity, 'last_name', ['type' => 'varchar']);
         $vendorSetup->addAttribute($vendorEntity, 'contact_no', ['type' => 'varchar']);
         $vendorSetup->addAttribute($vendorEntity, 'address', ['type' => 'text']);
         $vendorSetup->addAttribute($vendorEntity, 'logo', ['type' => 'text']);
