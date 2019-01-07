@@ -33,7 +33,6 @@ class Index extends \Magento\Backend\App\Action
   protected function _setPageData()
   {
     $resultPage = $this->getResultPage();
-    // var_dump($this->vendor->load(1)->getData());
     $resultPage->setActiveMenu('Vinsol_MultiVendorMarketplace::vendors');
     $resultPage->getConfig()->getTitle()->prepend(__('Vendors'));
     return $this;

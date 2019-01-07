@@ -89,6 +89,22 @@
         </item>
       </argument>
     </column>
+    <column name="firstname">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="filter" xsi:type="string">text</item>
+          <item name="label" xsi:type="string" translate="true">Firstname</item>
+        </item>
+      </argument>
+    </column>
+    <column name="lastname">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="filter" xsi:type="string">text</item>
+          <item name="label" xsi:type="string" translate="true">Lastname</item>
+        </item>
+      </argument>
+    </column>
     <column name="username">
       <argument name="data" xsi:type="array">
         <item name="config" xsi:type="array">
@@ -101,7 +117,7 @@
       <argument name="data" xsi:type="array">
         <item name="config" xsi:type="array">
           <item name="filter" xsi:type="string">text</item>
-          <item name="label" xsi:type="string" translate="true">Email</item>
+          <item name="label" xsi:type="string" translate="true">Email Id</item>
         </item>
       </argument>
     </column>

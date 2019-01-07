@@ -1,5 +1,4 @@
 <?php
-
 namespace Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponentFactory;
@@ -23,8 +22,6 @@ class Active extends \Magento\Ui\Component\Listing\Columns\Column
     parent::__construct($context, $uiComponentFactory, $components, $data);
   }
   public function prepareDataSource(array $dataSource) {
-    // var_dump($this->vendor->getCollection()->load(true)->getSelectSql());
-    // print_r($this->vendor->getCollection()->load()->getData());
     $dataSource['data']['items'] = $this->vendor->getCollection()->load()->getData();
     // print_r($dataSource['data']['items']);
     if(isset($dataSource['data']['items'])) {

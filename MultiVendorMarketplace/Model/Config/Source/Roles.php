@@ -13,7 +13,13 @@ class Roles implements \Magento\Framework\Option\ArrayInterface
   )
   {
     $this->role = $roleFactory->create();
+    // $this->_construct();
   }
+
+  // public function _construct()
+  // {
+    // $this->parentId = $this->role->load('role_name', 'vendor')->setPageSize(1)->setCurrPage(1)->getId();
+  // }
 
   public function toOptionArray()
   {
@@ -21,7 +27,7 @@ class Roles implements \Magento\Framework\Option\ArrayInterface
       ['value' => '0', 'label' => __('Select role')]
     ];
 
-    $collection = $this->role->getCollection();
+    $collection = $this->role->getCollection()->addFieldToFilter('role_type', 'G');
 
     if ($collection->count()) {
       foreach ($collection as $key => $value) {

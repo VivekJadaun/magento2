@@ -7,14 +7,17 @@
   class Vendor extends \Magento\Eav\Model\Entity\AbstractEntity
   {
     protected $user;
+    protected $messageManager;
 
     public function __construct(
       \Magento\Eav\Model\Entity\Context $context,
       \Magento\User\Model\UserFactory $userFactory,
+      \Magento\Framework\Message\Manager $messageManager,
       $data = []
     )
     {
       $this->user = $userFactory->create();
+      $this->messageManager = $messageManager;
       parent::__construct($context, $data);
     }
     protected function _construct()
@@ -33,10 +36,12 @@
 
     protected function _beforeSave(DataObject $object)
     {
-      // $data = ;
-      // $this->user->load($id);
-      // $this->user->setData($data);
-      // $this->user->save();
+
+      $data = $object->getData();
+      var_dump($data);
+      // $data['role_name'] = \Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_NAME;
+      $this->user->setData($data);
+      $this->user->save();
       parent::_beforeSave($object);
     }
   }

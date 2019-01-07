@@ -40,13 +40,13 @@
       $this->_init('Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor');
     }
 
-    public function setPassword($password, $salt = true)
-    {
-      $this->setData('password', $this->encryptor->getHash($password, $salt));
-    }
+    // public function setPassword($password, $salt = true)
+    // {
+    //   $this->setData('password', $this->encryptor->getHash($password, $salt));
+    // }
 
-    public function setRoleId()
-    {
-      $this->setData('role_id', $this->role->load(self::ROLE_NAME, 'role_name')->setPageSize(1)->setCurPage(1)->getId());
-    }
+    // public function setRoleId()
+    // {
+      // $this->setData('role_id', $this->role->load(self::ROLE_NAME, 'role_name')->setPageSize(1)->setCurPage(1)->getId());
+    // }
   }

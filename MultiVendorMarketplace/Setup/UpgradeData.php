@@ -29,7 +29,7 @@
     public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
       $setup->startSetup();
-      var_dump($this->role->load('vendor', 'role_name')->setPageSize(1)->setCurPage(1)->getId());
+      // var_dump($this->role->load('vendor', 'role_name')->setPageSize(1)->setCurPage(1)->getId());
       if (version_compare($context->getVersion(), '1.0.0', '<=')) {
         // $vendor = $this->vendorFactory->create();
 

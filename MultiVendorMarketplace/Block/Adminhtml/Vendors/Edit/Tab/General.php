@@ -39,6 +39,36 @@
 			}
 
 			$fieldset->addField(
+				'firstname',
+				'text',
+				[
+					'name' => 'firstname',
+					'label' => __('Firstname'),
+					'required' => true
+				]
+			);
+
+			$fieldset->addField(
+				'lastname',
+				'text',
+				[
+					'name' => 'lastname',
+					'label' => __('Lastname'),
+					'required' => true
+				]
+			);
+
+			$fieldset->addField(
+				'email',
+				'text',
+				[
+					'name' => 'email',
+					'label' => __('Email ID'),
+					'required' => true
+				]
+			);      
+
+			$fieldset->addField(
 				'username',
 				'text',
 				[
@@ -59,30 +89,10 @@
 			); 
 
 			$fieldset->addField(
-				'firstname',
-				'text',
-				[
-					'name' => 'firstname',
-					'label' => __('First Name'),
-					'required' => true
-				]
-			);
-
-			$fieldset->addField(
-				'lastname',
-				'text',
-				[
-					'name' => 'lastname',
-					'label' => __('Last Name'),
-					'required' => false
-				]
-			);
-
-			$fieldset->addField(
-				'role_name',
+				'role_id',
 				'select',
 				[
-					'name' => 'role_name',
+					'name' => 'role_id',
 					'label' => __('Role'),
 					'required' => true,
 					'values' => $this->roles
@@ -124,14 +134,15 @@
 			);
 
 			$fieldset->addField(
-				'email',
+				'sort_order',
 				'text',
 				[
-					'name' => 'email',
-					'label' => __('Email'),
-					'required' => true
+					'name' => 'sort_order',
+					'label' => __('Sort Order'),
+					'required' => false,
+					'value' => '0'
 				]
-			);      
+			);
 
 			$fieldset->addField(
 				'address',
@@ -145,36 +156,26 @@
 				]
 			);     
 
-			$fieldset->addField(
-				'sort_order',
-				'text',
-				[
-					'name' => 'sort_order',
-					'label' => __('Sort Order'),
-					'required' => false,
-					'value' => '0'
-				]
-			);
 
-			$fieldset->addField(
-				'logo',
-				'file',
-				[
-					'name' => 'logo',
-					'label' => __('Logo'),
-					'required' => false
-				]
-			); 
+			// $fieldset->addField(
+			// 	'logo',
+			// 	'file',
+			// 	[
+			// 		'name' => 'logo',
+			// 		'label' => __('Logo'),
+			// 		'required' => false
+			// 	]
+			// ); 
 
-			$fieldset->addField(
-				'banner',
-				'file',
-				[
-					'name' => 'banner',
-					'label' => __('Banner'),
-					'required' => false
-				]
-			); 
+			// $fieldset->addField(
+			// 	'banner',
+			// 	'file',
+			// 	[
+			// 		'name' => 'banner',
+			// 		'label' => __('Banner'),
+			// 		'required' => false
+			// 	]
+			// ); 
 
 			$data = $model->getData();
 			$form->setValues($data);
