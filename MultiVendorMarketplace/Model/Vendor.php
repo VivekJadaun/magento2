@@ -8,6 +8,8 @@
   class Vendor extends \Magento\Framework\Model\AbstractModel
   {
     const ENTITY = 'marketplace_vendor';
+    const ADMIN_USER = 'admin_user';
+    const ROLE_TABLE = 'authorization_role';
     const ROLE_NAME = 'vendor';
     protected $encryptor;
     protected $role;

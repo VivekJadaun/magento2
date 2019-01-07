@@ -6,7 +6,7 @@
     <plugin name="VendorDispatchPlugin" sortOrder="10" type="\Vinsol\MultiVendorMarketplace\Block\Adminhtml\VendorDispatchPlugin" disabled="false" />
   </type>
 
-  <preference for="Vinsol\MultiVendorMarketplace\Api\Data\CategoryInterface" type="Vinsol\MultiVendorMarketplace\Model\Vendor"/>
+  <preference for="Vinsol\MultiVendorMarketplace\Api\Data\VendorInterface" type="Vinsol\MultiVendorMarketplace\Model\Vendor"/>
 
   <virtualType name="VinsolMultiVendorMarketplaceVendorsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
     <arguments>

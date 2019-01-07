@@ -59,30 +59,30 @@
 			); 
 
 			$fieldset->addField(
-				'first_name',
+				'firstname',
 				'text',
 				[
-					'name' => 'first_name',
+					'name' => 'firstname',
 					'label' => __('First Name'),
 					'required' => true
 				]
 			);
 
 			$fieldset->addField(
-				'last_name',
+				'lastname',
 				'text',
 				[
-					'name' => 'last_name',
+					'name' => 'lastname',
 					'label' => __('Last Name'),
 					'required' => false
 				]
 			);
 
 			$fieldset->addField(
-				'role',
+				'role_name',
 				'select',
 				[
-					'name' => 'role',
+					'name' => 'role_name',
 					'label' => __('Role'),
 					'required' => true,
 					'values' => $this->roles
@@ -90,10 +90,10 @@
 			); 
 
 			$fieldset->addField(
-				'active',
+				'is_active',
 				'select',
 				[
-					'name' => 'active',
+					'name' => 'is_active',
 					'label' => __('Active'),
 					'required' => true,
 					'values' => [

@@ -97,15 +97,15 @@
         </item>
       </argument>
     </column>
-    <column name="is_active" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\Active">
+    <column name="email">
       <argument name="data" xsi:type="array">
         <item name="config" xsi:type="array">
           <item name="filter" xsi:type="string">text</item>
-          <item name="label" xsi:type="string" translate="true">Active</item>
+          <item name="label" xsi:type="string" translate="true">Email</item>
         </item>
       </argument>
     </column>
-    <column name="commission_perc">
+    <column name="commission">
       <argument name="data" xsi:type="array">
         <item name="config" xsi:type="array">
           <item name="filter" xsi:type="string">text</item>
@@ -121,19 +121,19 @@
         </item>
       </argument>
     </column>
-    <column name="email">
-      <argument name="data" xsi:type="array">
-        <item name="config" xsi:type="array">
-          <item name="filter" xsi:type="string">text</item>
-          <item name="label" xsi:type="string" translate="true">Email</item>
-        </item>
-      </argument>
-    </column>
-    <column name="role_id" >
+    <column name="role_name" >
       <argument name="data" xsi:type="array">
         <item name="config" xsi:type="array">
           <item name="filter" xsi:type="string">text</item>
           <item name="label" xsi:type="string" translate="true">Role</item>
+        </item>
+      </argument>
+    </column>
+    <column name="is_active" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\Active">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="filter" xsi:type="string">text</item>
+          <item name="label" xsi:type="string" translate="true">Active</item>
         </item>
       </argument>
     </column>

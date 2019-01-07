@@ -6,13 +6,16 @@ class Index extends \Magento\Backend\App\Action
 {
   protected $resultPageFactory;
   protected $resultPage;
+  protected $vendor;
 
   public function __construct(
     \Magento\Backend\App\Action\Context $context,
-    \Magento\Framework\View\Result\PageFactory $resultPageFactory
+    \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+    \Vinsol\MultiVendorMarketplace\Model\VendorFactory $vendorFactory
   )
   {
     $this->resultPageFactory = $resultPageFactory;
+    $this->vendor = $vendorFactory->create();
     parent::__construct($context);
   }
 
@@ -30,6 +33,7 @@ class Index extends \Magento\Backend\App\Action
   protected function _setPageData()
   {
     $resultPage = $this->getResultPage();
+    // var_dump($this->vendor->load(1)->getData());
     $resultPage->setActiveMenu('Vinsol_MultiVendorMarketplace::vendors');
     $resultPage->getConfig()->getTitle()->prepend(__('Vendors'));
     return $this;

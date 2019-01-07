@@ -10,104 +10,66 @@
     function getDefaultEntities()
     {
 		$vendorEntity = \Vinsol\MultiVendorMarketplace\Model\Vendor::ENTITY;
+    $adminUser = \Vinsol\MultiVendorMarketplace\Model\Vendor::ADMIN_USER;
+    $roleTable = \Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_TABLE;
 
 		$entities = [
 			$vendorEntity => [
 				'entity_model' => 'Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor',
 				'table' => $vendorEntity . '_entity',
 				'attributes' => [
-          'first_name' => [
-            'type' => 'varchar'
-            // 'input' => 'text',
-            // 'visible' => true,
-            // 'required' => true
-          ],
-          'last_name' => [
-            'type' => 'varchar'
-            // 'input' => 'varchar',
-            // 'visible' => true,
-            // 'required' => false
-          ],
-          'display_name' => [
+          'commission' => [
             'type' => 'static'
-            // 'input' => 'text',
-            // 'visible' => true,
-            // 'required' => true
           ],
-          'username' => [
-            'type' => 'static'
-            // 'input' => 'text',
-            // 'visible' => true,
-            // 'required' => true
-          ],
-          'password' => [
-            'type' => 'static'
-            // 'input' => 'text',
-            // 'visible' => true,
-            // 'required' => true
-          ],
-          'created_at' => [
-            'type' => 'static'
-            // 'input' => 'date',
-            // 'visible' => false,
-            // 'required' => true
-          ],
-          'is_active' => [
-            'type' => 'static'
-            // 'input' => 'boolean',
-            // 'visible' => true,
-            // 'required' => true
-          ],
-          'commission_perc' => [
-            'type' => 'static'
-            // 'input' => 'text',
-            // 'visible' => true,
-            // 'required' => true
-          ],
-          'contact_no' => [
-            'type' => 'static'
-            // 'input' => 'text',
-            // 'visible' => true,
-            // 'required' => true
-          ],
-          'email' => [
-            'type' => 'static',
-            // 'input' => 'text'
-            // 'visible' => true,
-            // 'required' => true
-          ],
-          'address' => [
-            'type' => 'text'
-            // 'input' => 'textarea',
-            // 'visible' => true,
-            // 'required' => false
-          ],
-          'role_id' => [
-            'type' => 'static'
-            // 'input' => 'select',
-            // 'visible' => true,
-            // 'required' => true
-          ],
-          // 'logo' => [
-          //   'type' => 'text',
-          //   'input' => 'media_image',
-          //   'visible' => true,
-          //   'required' => false
-          // ],
-          // 'banner' => [
-          //   'type' => 'text',
-          //   'input' => 'media_image',
-          //   'visible' => true,
-          //   'required' => false
-          // ],
 					'sort_order' => [
             'type' => 'static'
-            // 'input' => 'text',
-            // 'visible' => true,
-            // 'required' => false,
           ],
+          'user_id' => [
+            'type' => 'static'
+          ]
 				]
 			],
+
+      // $adminUser => [
+      //   'entity_model' => 'Magento\User\Model\ResourceModel\User',
+      //   'table' => $adminUser,
+      //   'attributes' => [
+      //     'firstname' => [
+      //       'type' => 'varchar'
+      //     ],
+      //     'lastname' => [
+      //       'type' => 'varchar'
+      //     ],
+      //     'email' => [
+      //       'type' => 'static'
+      //     ],
+      //     'username' => [
+      //       'type' => 'static'
+      //     ],
+      //     'password' => [
+      //       'type' => 'static'
+      //     ],
+      //     'created' => [
+      //       'type' => 'static'
+      //     ],
+      //     'is_active' => [
+      //       'type' => 'static'
+      //     ]          
+      //   ]
+      // ]
+
+      // $roleTable = [
+      //   'entity_model' => 'Magento\Authorization\Model\ResourceModel\Role',
+      //   'table' => $roleTable,
+      //   'attributes' => [
+      //     'role_id' => [
+      //       'type' => 'static'
+      //     ],
+      //     'role_name' => [
+      //       'type' => 'static'
+      //     ]
+      //   ]
+      // ]
 		];
 
     return $entities;

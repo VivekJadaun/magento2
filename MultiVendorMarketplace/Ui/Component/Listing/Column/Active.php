@@ -9,7 +9,9 @@ use Magento\Store\Model\StoreManagerInterface;
 class Active extends \Magento\Ui\Component\Listing\Columns\Column
 {
   protected $storeManager;
+  protected $vendor;
   public function __construct(
+    \Vinsol\MultiVendorMarketplace\Model\VendorFactory $vendorFactory,
     ContextInterface $context,
     UiComponentFactory $uiComponentFactory,
     StoreManagerInterface $storeManager,
@@ -17,9 +19,14 @@ class Active extends \Magento\Ui\Component\Listing\Columns\Column
     array $data = []
   ) {
     $this->storeManager = $storeManager;
+    $this->vendor = $vendorFactory->create();
     parent::__construct($context, $uiComponentFactory, $components, $data);
   }
   public function prepareDataSource(array $dataSource) {
+    // var_dump($this->vendor->getCollection()->load(true)->getSelectSql());
+    // print_r($this->vendor->getCollection()->load()->getData());
+    $dataSource['data']['items'] = $this->vendor->getCollection()->load()->getData();
+    // print_r($dataSource['data']['items']);
     if(isset($dataSource['data']['items'])) {
       foreach($dataSource['data']['items'] as & $item) {
         if($item) {

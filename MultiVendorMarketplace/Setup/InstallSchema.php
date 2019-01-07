@@ -24,8 +24,8 @@
 					\Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
 					null,
 					[
-					'primary' => true, 
-					'identity' => true, 
+					'primary' => true,
+					'identity' => true,
 					'unsigned' => true, 
 					'nullable' => false
 					],
@@ -51,13 +51,22 @@
 					],
 					'Sort Order'
 				)
+				->addColumn(
+					'user_id',
+					\Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+					null,
+					[
+					'unsigned' => true,
+					],
+					'User Id corresponding to admin_user table user'
+				)
 				->addIndex(
 					$setup->getIdxName($vendorEntity . '_entity', ['sort_order']),
 					['sort_order']
 				)
 				->addForeignKey(
-					$setup->getFkName($vendorEntity . '_entity', 'entity_id', $setup->getTable('admin_user'), 'user_id'),
-					'entity_id',
+					$setup->getFkName($vendorEntity . '_entity', 'user_id', $setup->getTable('admin_user'), 'user_id'),
+					'user_id',
 					$setup->getTable('admin_user'),
 					'user_id'
 				)
@@ -456,77 +465,6 @@
 				)
 				->setComment('Marketplace Vendor Varchar Values Table');
 			$setup->getConnection()->createTable($vendorVarcharTypeTable);
-
-			$setup->endSetup();
-		}
-	}
-$setup->getTable($vendorEntity . '_entity_varchar'))
-				->addColumn(
-					'value_id',
-					\Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
-					null,
-					[
-						'primary' => true,
-						'identity' => true, 
-							'unsigned' => true, 
-							'nullable' => false
-					],
-					'Value ID'
-				)
-				->addColumn(
-					'attribute_id',
-					\Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
-					null,
-					[
-						'nullable' => false,
-						'unsigned' => true,
-					],
-					'Attribute ID'
-				)
-				->addColumn(
-					'entity_id',
-					\Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
-					null,
-					[
-						'nullable' => false,
-						'unsigned' => true
-					],
-					'Entity ID'
-				)
-				->addColumn(
-					'value',
-					\Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-					255,
-					[
-						'nullable' => true
-					],
-					'Value'
-				)
-				->addIndex(
-					$setup->getIdxName(
-						$vendorEntity . '_entity_varchar', 
-						['entity_id', 'attribute_id'], 
-						\Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE
-					),
-					['entity_id', 'attribute_id'],
-			['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
-				)
-				->addIndex(
-					$setup->getIdxName($vendorEntity . '_entity_varchar', ['attribute_id']),
-					['attribute_id']
-				)
-				->addForeignKey(
-					$setup->getFkName(
-						$vendorEntity . '_entity_varchar', 'attribute_id', 
-						$setup->getTable('eav_attribute'), 'attribute_id'
-					), 
-					'attribute_id',
-			$setup->getTable('eav_attribute'),
-			'attribute_id'
-				)
-				->setComment('Marketplace Vendor Varchar Values Table');
-			$setup->getConnection()->createTable($vendorVarcharTypeTable);
-
 
 			$setup->endSetup();
 		}
