@@ -10,6 +10,10 @@
           <resource id="Vinsol_MultiVendorMarketplace::vendors_new" title="Manage Vendors" sortOrder="10" />
         </resource>
       </resource>
+
+      <!-- <resource id="Magento_Backend::custom"> -->
+        <!-- <resource id="Vinsol_MultiVendorMarketplace::new" title="Vendor Panel" sortOrder="20"/> -->
+      <!-- </resource> -->
     </resources>
   </acl>
 </config>

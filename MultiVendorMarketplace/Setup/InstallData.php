@@ -40,6 +40,7 @@
              ->setUserType(UserContextInterface::USER_TYPE_GUEST)
              ->save();
 
+        // $permitted_resources = ['Magento_Backend::dashboard', 'Magento_Catalog::products', 'Magento_Sales::sales', 'Magento_Customer::customer', 'Magento_Backend::myaccount'];
         $permitted_resources = ['Magento_Backend::dashboard'];
         $this->rulesFactory->create()
              ->setRoleId($role->getId())

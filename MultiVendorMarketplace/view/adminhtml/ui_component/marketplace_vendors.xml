@@ -137,15 +137,17 @@
         </item>
       </argument>
     </column>
-    <column name="role_name" >
+    <column name="role_name" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\RoleName">
+    <!-- <column name="role_name"> -->
       <argument name="data" xsi:type="array">
         <item name="config" xsi:type="array">
           <item name="filter" xsi:type="string">text</item>
-          <item name="label" xsi:type="string" translate="true">Role</item>
+          <item name="label" xsi:type="string" translate="true">Assigned Role</item>
         </item>
       </argument>
     </column>
     <column name="is_active" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\Active">
+    <!-- <column name="is_active" > -->
       <argument name="data" xsi:type="array">
         <item name="config" xsi:type="array">
           <item name="filter" xsi:type="string">text</item>
@@ -164,7 +166,7 @@
     <actionsColumn name="actions" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\VendorPostActions">
       <argument name="data" xsi:type="array">
         <item name="config" xsi:type="array">
-          <item name="resizeEnabled" xsi:type="boolean">false</item>
+          <item name="resizeEnabled" xsi:type="boolean">true</item>
           <item name="resizeDefaultWidth" xsi:type="string">10</item>
           <item name="indexField" xsi:type="string">entity_id</item>
         </item>

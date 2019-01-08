@@ -33,6 +33,10 @@ class Edit extends \Magento\Backend\App\Action
     $id = $this->getRequest()->getParam('id');
     if ($id) {
       $this->vendor->load($id);
+      // $this->vendor->getCollection()->addAttributeToFilter('entity_id', $id)->load();
+      // $obj = $this->vendor->getCollection()->addAttributeToFilter('entity_id', $id)->load()->getData();
+      // $Data = $this->vendor->getData();
+      // if (!$Data['entity_id']) {
       if (!$this->vendor->getEntityId()) {
         $this->_redirect('*/*/');
       }
@@ -52,7 +56,7 @@ class Edit extends \Magento\Backend\App\Action
   {
     $resultPage = $this->getResultPage();
     $resultPage->setActiveMenu('Vinsol_MultiVendorMarketplace::vendors');
-    $resultPage->getConfig()->getTitle()->prepend(__('Edit'));
+    $resultPage->getConfig()->getTitle()->prepend(__('Edit Vendor'));
     return $this;
   }
 

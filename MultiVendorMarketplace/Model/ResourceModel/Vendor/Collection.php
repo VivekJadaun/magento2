@@ -16,7 +16,9 @@
     );
     const ROLE_FIELDS = array(
       'role_id' => 'role_id', 
-      'role_name' => 'role_name'
+      'role_name' => 'role_name',
+      'parent_id' => 'parent_id',
+      'role_type' => 'role_type'
     );
 
     protected $mainTable = \Vinsol\MultiVendorMarketplace\Model\Vendor::ENTITY . '_entity';
@@ -40,9 +42,7 @@
       \Magento\Framework\DB\Adapter\AdapterInterface $connection = null
     ) 
     {
-      // $this->roleId = $roleFactory->create()->getCollection()->addFieldToFilter('role_name', 'vendor')->setPageSize(1)->setCurPage(1)->getId();
-      // $this->roleId = $roleFactory->create()->getCollection()->addFieldToFilter('role_name', 'vendor')->setCurPage(1)->setPageSize(1)->getData();
-      // print_r($this->roleId);
+      $this->roleId = $roleFactory->create()->getCollection()->addFieldToFilter('role_name', 'vendor')->getAllIds();
       parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $eavConfig, $resource, $eavEntityFactory, $resourceHelper, $universalFactory, $connection);
     }
     
@@ -53,7 +53,6 @@
         'Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor'
       );
 
-      // $this->roleId = $this->role->load('role_name', 'vendor')->setPageSize(1)->setCurrPage(1)->getId();  //ALTERNATIVELY SET UNIQUE CONSTRAINT ON 'role_name' IN 'authorization_role' 
     }
 
     // protected function _renderFiltersBefore ()
@@ -66,13 +65,20 @@
     {
       parent::_initSelect();
 
-      $where = "role_name = '$this->roleName' OR parent_id = 17";
+      $rolesId = implode(", ", $this->roleId);
+
+      $where = "role_name = '$this->roleName' OR parent_id IN ($rolesId)";
       $this->joinTable($this->adminUserTable, 'user_id=user_id', self::ADMIN_USER_VENDOR_ENTITY_FIELDS);
       $this->joinTable($this->roleTable, 'user_id=user_id', self::ROLE_FIELDS, $where, 'inner');
 
       $this->addFilterToMap('role_id', 'role_id');
-      $this->addFilterToMap('role_name', 'role_name');      //SORTING & FILTERING DON'T WORK WITHOUT IT
+      // $this->addFilterToMap('role_name', 'role_name');      //SORTING & FILTERING DON'T WORK WITHOUT IT
       return $this;
+    }
+
+    public function conditionalLoad($field = 'entity_id', $value = '0')
+    {
+      
     }
   }
 

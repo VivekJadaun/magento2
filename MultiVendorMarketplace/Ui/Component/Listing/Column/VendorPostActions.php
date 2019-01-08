@@ -7,9 +7,11 @@ class VendorPostActions extends \Magento\Ui\Component\Listing\Columns\Column
     const EDIT = 'marketplace/vendors/edit';
     const DELETE = 'marketplace/vendors/delete';
     protected $urlBuilder;
+    // protected $vendor;
     private $editUrl;
     private $deleteUrl;
     public function __construct(
+        // \Vinsol\MultiVendorMarketplace\Model\VendorFactory $vendorFactory,
         \Magento\Framework\View\Element\UiComponent\ContextInterface $context,
         \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory,
         \Magento\Framework\UrlInterface $urlBuilder,
@@ -21,9 +23,11 @@ class VendorPostActions extends \Magento\Ui\Component\Listing\Columns\Column
         $this->urlBuilder = $urlBuilder;
         $this->editUrl = $editUrl;
         $this->deleteUrl = $deleteUrl;
+        // $this->vendor = $vendorFactory->create();
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
     public function prepareDataSource(array $dataSource){
+    // $dataSource['data']['items'] = $this->vendor->getCollection()->load()->getData();
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
                 $name = $this->getData('name');

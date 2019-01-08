@@ -5,7 +5,7 @@
   <default>
     <marketplace_vendor_general_settings>
       <general_settings>
-        <vendor_default_role>1</vendor_default_role>
+        <vendor_default_role></vendor_default_role>
       </general_settings>
     </marketplace_vendor_general_settings>
   </default>
