@@ -8,13 +8,27 @@
          resource="Vinsol_MultiVendorMarketplace::vendors" 
          sortOrder="50" />
 
+    <add id="Vinsol_MultiVendorMarketplace::marketplace_label" 
+         title="Marketplace Management" 
+         module="Vinsol_MultiVendorMarketplace" 
+         sortOrder="10"
+         resource="Vinsol_MultiVendorMarketplace::marketplace_label"
+         parent="Vinsol_MultiVendorMarketplace::vendors" />
+
+    <add id="Vinsol_MultiVendorMarketplace::vendors_label" 
+         title="Vendor Management" 
+         module="Vinsol_MultiVendorMarketplace" 
+         sortOrder="10"
+         resource="Vinsol_MultiVendorMarketplace::vendors_label"
+         parent="Vinsol_MultiVendorMarketplace::vendors" />
+
     <add id="Vinsol_MultiVendorMarketplace::vendors_settings" 
-         title="Marketplace Settings" 
+         title="Marketplace Configurations" 
          module="Vinsol_MultiVendorMarketplace" 
          resource="Vinsol_MultiVendorMarketplace::vendors_settings" 
          sortOrder="10"
          action="adminhtml/system_config/edit/section/marketplace_vendor_general_settings"
-         parent="Vinsol_MultiVendorMarketplace::vendors" />
+         parent="Vinsol_MultiVendorMarketplace::marketplace_label" />
 
     <add id="Vinsol_MultiVendorMarketplace::vendors_commission" 
          title="Commissions Report" 
@@ -22,7 +36,7 @@
          resource="Vinsol_MultiVendorMarketplace::vendors_commission" 
          sortOrder="20"
          action="marketplace/commissions"
-         parent="Vinsol_MultiVendorMarketplace::vendors" />
+         parent="Vinsol_MultiVendorMarketplace::marketplace_label" />
 
     <add id="Vinsol_MultiVendorMarketplace::vendors_new" 
          title="Manage Vendors" 
@@ -30,7 +44,15 @@
          resource="Vinsol_MultiVendorMarketplace::vendors_new" 
          sortOrder="20"
          action="marketplace/vendors"
-         parent="Vinsol_MultiVendorMarketplace::vendors" />
+         parent="Vinsol_MultiVendorMarketplace::vendors_label" />
+
+    <add id="Vinsol_MultiVendorMarketplace::vendors_products" 
+         title="Manage Products" 
+         module="Vinsol_MultiVendorMarketplace" 
+         resource="Vinsol_MultiVendorMarketplace::vendors_products" 
+         sortOrder="20"
+         action="marketplace/products"
+         parent="Vinsol_MultiVendorMarketplace::vendors_label" />
 
   </menu>
 </config>

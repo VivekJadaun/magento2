@@ -24,7 +24,7 @@ class VendorNames extends \Magento\Config\Block\System\Config\Form\Field
     $value = $element->getData('value');
 
     if ($this->vendors->count() > 0) {
-      var_dump($this->vendors->count());
+      // var_dump($this->vendors->count());
       $name = "[specific_settings][vendor_name][value]";
       $id = "vendor_name";
 

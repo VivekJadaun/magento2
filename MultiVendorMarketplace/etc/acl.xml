@@ -4,16 +4,26 @@
   <acl>
     <resources>
       <resource id="Magento_Backend::admin">
+
         <resource id="Vinsol_MultiVendorMarketplace::vendors" title="Multi Vendor Marketplace" sortOrder="10">
-          <resource id="Vinsol_MultiVendorMarketplace::vendors_settings" title="Marketplace Settings" sortOrder="10" />
-          <resource id="Vinsol_MultiVendorMarketplace::vendors_commission" title="Commissions Report" sortOrder="10" />
-          <resource id="Vinsol_MultiVendorMarketplace::vendors_new" title="Manage Vendors" sortOrder="10" />
+
+          <resource id="Vinsol_MultiVendorMarketplace::marketplace_label" title="Marketplace Management" sortOrder="10">
+            <resource id="Vinsol_MultiVendorMarketplace::vendors_settings" title="Marketplace Settings" sortOrder="10" />
+            <resource id="Vinsol_MultiVendorMarketplace::vendors_commission" title="Commissions Report" sortOrder="10" />
+          </resource>
+
+          <resource id="Vinsol_MultiVendorMarketplace::vendors_label" title="Vendor Management" sortOrder="10">
+            <resource id="Vinsol_MultiVendorMarketplace::vendors_new" title="Manage Vendors" sortOrder="10" />
+            <resource id="Vinsol_MultiVendorMarketplace::vendors_products" title="Manage Products" sortOrder="10" />
+          </resource>
+
         </resource>
+
       </resource>
 
-      <!-- <resource id="Magento_Backend::custom"> -->
-        <!-- <resource id="Vinsol_MultiVendorMarketplace::new" title="Vendor Panel" sortOrder="20"/> -->
-      <!-- </resource> -->
+      <!-- <resource id="Magento_Backend::custom">
+        <resource id="Vinsol_MultiVendorMarketplace::new" title="Vendor Panel" sortOrder="20"/>
+      </resource> -->
     </resources>
   </acl>
 </config>
