@@ -31,6 +31,7 @@ class RoleName extends \Magento\Ui\Component\Listing\Columns\Column
   public function prepareDataSource(array $dataSource)
   {
     $dataSource['data']['items'] = $this->vendor->getCollection()->load()->getData();
+    // var_dump($dataSource['data']['items']);
 
     if (isset($dataSource['data']['items'])) {
       foreach ($dataSource['data']['items'] as & $item) {

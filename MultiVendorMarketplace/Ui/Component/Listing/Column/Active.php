@@ -18,6 +18,7 @@ class Active extends \Magento\Ui\Component\Listing\Columns\Column
     parent::__construct($context, $uiComponentFactory, $components, $data);
   }
   public function prepareDataSource(array $dataSource) {
+    // var_dump($dataSource['data']['items']);
     // $dataSource['data']['items'] = $this->vendor->getCollection()->load()->getData();
     if(isset($dataSource['data']['items'])) {
       foreach($dataSource['data']['items'] as & $item) {

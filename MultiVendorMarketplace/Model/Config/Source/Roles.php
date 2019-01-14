@@ -24,7 +24,7 @@ class Roles implements \Magento\Framework\Option\ArrayInterface
   public function toOptionArray()
   {
     $array = [
-      ['value' => '0', 'label' => __('Select role')]
+      // ['value' => '0', 'label' => __('Select role')]
     ];
 
     $collection = $this->role->getCollection()->addFieldToFilter('role_type', 'G');

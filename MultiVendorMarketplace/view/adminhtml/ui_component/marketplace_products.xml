@@ -44,7 +44,9 @@
             <updateUrl path="mui/index/render"/>
         </settings>
         <!-- <aclResource>Magento_Catalog::products</aclResource> -->
-        <dataProvider class="Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider" name="marketplace_products_data_source">
+        <!-- <dataProvider class="VinsolMultiVendorMarketplaceProductsGridDataProvider" name="marketplace_products_data_source"> -->
+        <!-- <dataProvider class="Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider" name="marketplace_products_data_source"> -->
+        <dataProvider class="Vinsol\MultiVendorMarketplace\Ui\DataProvider\Product\ProductDataProvider" name="marketplace_products_data_source">
             <settings>
                 <requestFieldName>id</requestFieldName>
                 <primaryFieldName>entity_id</primaryFieldName>
@@ -179,14 +181,21 @@
               <label translate="true">Status</label>
           </settings>
       </column>
-<!--         <column name="vendor_id" class="Magento\Catalog\Ui\Component\Listing\Columns\Websites" sortOrder="100">
-            <settings>
-                <addField>true</addField>
-                <options class=""/>
-                <dataType>text</dataType>
-                <label translate="true">Vendor</label>
-            </settings>
-        </column> -->
+      <column name="user_id" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\VendorName" sortOrder="100">
+      <!-- <column name="user_id"  sortOrder="100"> -->
+<!--           <settings>
+              <addField>true</addField>
+              <options  />
+              <dataType>text</dataType>
+              <label translate="true">Vendor</label>
+          </settings> -->
+        <argument name="data" xsi:type="array">
+          <item name="config" xsi:type="array">
+            <item name="filter" xsi:type="string">text</item>
+            <item name="label" xsi:type="string" translate="true">Vendor</item>
+          </item>
+        </argument>
+      </column>
         <actionsColumn name="actions" class="Magento\Catalog\Ui\Component\Listing\Columns\ProductActions" sortOrder="200">
             <settings>
                 <indexField>entity_id</indexField>

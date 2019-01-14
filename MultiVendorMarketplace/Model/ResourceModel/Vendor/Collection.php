@@ -25,6 +25,7 @@
     protected $adminUserTable = \Vinsol\MultiVendorMarketplace\Model\Vendor::ADMIN_USER;
     protected $roleTable = \Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_TABLE;
     protected $roleName = \Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_NAME;
+    protected $messageManager;
 
     protected $roleId;
 
@@ -39,9 +40,11 @@
       \Magento\Eav\Model\EntityFactory $eavEntityFactory,
       \Magento\Eav\Model\ResourceModel\Helper $resourceHelper,
       \Magento\Framework\Validator\UniversalFactory $universalFactory,
+      \Magento\Framework\Message\Manager $messageManager,
       \Magento\Framework\DB\Adapter\AdapterInterface $connection = null
     ) 
     {
+      $this->messageManager = $messageManager;
       $this->roleId = $roleFactory->create()->getCollection()->addFieldToFilter('role_name', 'vendor')->getAllIds();
       parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $eavConfig, $resource, $eavEntityFactory, $resourceHelper, $universalFactory, $connection);
     }
@@ -70,15 +73,14 @@
       $where = "role_name = '$this->roleName' OR parent_id IN ($rolesId)";
       $this->joinTable($this->adminUserTable, 'user_id=user_id', self::ADMIN_USER_VENDOR_ENTITY_FIELDS);
       $this->joinTable($this->roleTable, 'user_id=user_id', self::ROLE_FIELDS, $where, 'inner');
+      $this->addAttributeToSelect('*');
+
+      // $this->messageManager->addSuccess($this->getSelect());
 
       $this->addFilterToMap('role_id', 'role_id');
       // $this->addFilterToMap('role_name', 'role_name');      //SORTING & FILTERING DON'T WORK WITHOUT IT
       return $this;
     }
 
-    public function conditionalLoad($field = 'entity_id', $value = '0')
-    {
-      
-    }
   }
 

@@ -38,10 +38,9 @@
     {
 
       $data = $object->getData();
-      // var_dump($data);
-      // $data['role_name'] = \Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_NAME;
       $this->user->setData($data);
       $this->user->save();
+      $object->setUserId($this->user->getId());
       parent::_beforeSave($object);
     }
   }

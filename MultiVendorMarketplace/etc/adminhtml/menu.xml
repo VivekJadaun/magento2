@@ -37,6 +37,14 @@
          sortOrder="20"
          action="marketplace/commissions"
          parent="Vinsol_MultiVendorMarketplace::marketplace_label" />
+    
+    <add id="Vinsol_MultiVendorMarketplace::vendors_sales" 
+         title="Sales Report" 
+         module="Vinsol_MultiVendorMarketplace" 
+         resource="Vinsol_MultiVendorMarketplace::vendors_sales" 
+         sortOrder="20"
+         action="marketplace/sales"
+         parent="Vinsol_MultiVendorMarketplace::marketplace_label" />
 
     <add id="Vinsol_MultiVendorMarketplace::vendors_new" 
          title="Manage Vendors" 

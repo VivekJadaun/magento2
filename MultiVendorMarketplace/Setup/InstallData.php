@@ -7,54 +7,125 @@
   use \Magento\Framework\Setup\ModuleDataSetupInterface;
   use Magento\Authorization\Model\Acl\Role\Group as RoleGroup;
   use Magento\Authorization\Model\UserContextInterface;
+  use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
+
 
   class InstallData implements InstallDataInterface
   {
+    const USER_ID = 'user_id';
+    const ATTRIBUTE_SET = 'marketplace';
+    const VENDOR_ENTITY = \Vinsol\MultiVendorMarketplace\Model\Vendor::ENTITY;
     protected $vendorSetupFactory;
-    protected $roleFactory;
-    protected $rulesFactory;
+    protected $vendorSetup;
+    protected $categorySetupFactory;
+    protected $productSetup;
+    protected $attributeSet;
+    protected $rules;
+    protected $role;
 
     public function __construct(
       \Vinsol\MultiVendorMarketplace\Setup\VendorSetupFactory $vendorSetupFactory,
+      \Magento\Catalog\Setup\CategorySetupFactory $categorySetupFactory,
       \Magento\Authorization\Model\RoleFactory $roleFactory,
-      \Magento\Authorization\Model\RulesFactory $rulesFactory
+      \Magento\Authorization\Model\RulesFactory $rulesFactory,
+      AttributeSetFactory $attributeSetFactory
     )
     {
+      $this->role = $roleFactory->create();
+      $this->rules = $rulesFactory->create();  
+      $this->attributeSet = $attributeSetFactory->create();
+      $this->categorySetupFactory = $categorySetupFactory;  
       $this->vendorSetupFactory = $vendorSetupFactory;
-      $this->roleFactory =  $roleFactory;
-      $this->rulesFactory = $rulesFactory;  
     }
 
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
       $setup->startSetup();
 
-      if (version_compare($context->getVersion(), '1.0.0', '<')) {
-        $vendorEntity = \Vinsol\MultiVendorMarketplace\Model\Vendor::ENTITY;
-        $vendorSetup = $this->vendorSetupFactory->create(['setup' => $setup]);
+      $this->productSetup = $this->categorySetupFactory->create(['setup' => $setup]);
 
-        $role = $this->roleFactory->create();
-        $role->setName(\Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_NAME)
-             ->setPid(0)
-             ->setRoleType(RoleGroup::ROLE_TYPE)
-             ->setUserType(UserContextInterface::USER_TYPE_GUEST)
-             ->save();
+      $this->createNewRole()->assignRules();
 
-        // $permitted_resources = ['Magento_Backend::dashboard', 'Magento_Catalog::products', 'Magento_Sales::sales', 'Magento_Customer::customer', 'Magento_Backend::myaccount'];
-        $permitted_resources = ['Magento_Backend::dashboard'];
-        $this->rulesFactory->create()
-             ->setRoleId($role->getId())
-             ->setResources($permitted_resources)
-             ->saveRel();
+      $this->createNewAttributeSet()->createNewAttribute();
 
-        $vendorSetup->installEntities();
-        $vendorSetup->addAttribute($vendorEntity, 'contact_no', ['type' => 'varchar']);
-        $vendorSetup->addAttribute($vendorEntity, 'address', ['type' => 'text']);
-        $vendorSetup->addAttribute($vendorEntity, 'logo', ['type' => 'text']);
-        $vendorSetup->addAttribute($vendorEntity, 'banner', ['type' => 'text']);
-      
-      }
+      $vendorEntity = self::VENDOR_ENTITY;
+      $this->vendorSetup = $this->vendorSetupFactory->create(['setup' => $setup]);
+      $this->vendorSetup->installEntities()
+                        ->addAttribute($vendorEntity, 'contact_no', ['type' => 'varchar'])
+                        ->addAttribute($vendorEntity, 'address', ['type' => 'text'])
+                        ->addAttribute($vendorEntity, 'logo', ['type' => 'text'])
+                        ->addAttribute($vendorEntity, 'banner', ['type' => 'text']);
       
       $setup->endSetup();
     }
+
+
+    public function createNewRole()
+    {
+      // $role = $this->roleFactory->create();
+      $this->role->setName(\Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_NAME)
+          ->setPid(0)
+          ->setRoleType(RoleGroup::ROLE_TYPE)
+          ->setUserType(UserContextInterface::USER_TYPE_GUEST)
+          ->save();
+
+      return $this;
+
+     }
+
+     public function assignRules()
+     {
+      // $permitted_resources = ['Magento_Backend::dashboard', 'Magento_Catalog::products', 'Magento_Sales::sales', 'Magento_Customer::customer', 'Magento_Backend::myaccount'];
+      $permitted_resources = [
+        'Magento_Backend::dashboard', 
+        'Vinsol_MultiVendorMarketplace::vendors_products'
+      ];
+      $this->rules->setRoleId($this->role->getId())
+                  ->setResources($permitted_resources)
+                  ->saveRel();
+
+      return $this;
+     }
+
+     public function createNewAttributeSet()
+     {
+        $productTypeId = $this->productSetup->getEntityTypeId(\Magento\Catalog\Model\Product::ENTITY);
+        $attributeSetId = $this->productSetup->getDefaultAttributeSetId($productTypeId);
+        $data = [
+          'attribute_set_name' => self::ATTRIBUTE_SET,
+          'entity_type_id' => $productTypeId,
+          'sort_order' => 2,
+        ];
+        $this->attributeSet->setData($data)->validate();
+        $this->attributeSet->save();
+        return $this;
+     }
+
+     public function createNewAttribute()
+     {
+        $this->productSetup->addAttribute(\Magento\Catalog\Model\Product::ENTITY, self::USER_ID, 
+          [
+            'type' => 'text',
+            'backend' => '',
+            'frontend' => '',
+            'label' => 'Vendor',
+            'input' => 'select',
+            'class' => '',
+            'source' => 'Vinsol\MultiVendorMarketplace\Model\Config\Source\Vendors',
+            'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+            'visible' => true,
+            'required' => true,
+            'user_defined' => true,
+            'default' => '',
+            'searchable' => true,
+            'filterable' => true,
+            'comparable' => false,
+            'visible_on_front' => true,
+            'used_in_product_listing' => true,
+            'unique' => false,
+            'attribute_set' => self::ATTRIBUTE_SET
+          ]
+        );
+        return $this;
+     }
   }
