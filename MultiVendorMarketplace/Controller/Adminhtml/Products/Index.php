@@ -34,7 +34,7 @@ class Index extends \Magento\Backend\App\Action
   {
     $resultPage = $this->getResultPage();
     $resultPage->setActiveMenu('Vinsol_MultiVendorMarketplace::vendors');
-    $resultPage->getConfig()->getTitle()->prepend(__('Products'));
+    $resultPage->getConfig()->getTitle()->prepend(__('Marketplace Products'));
     return $this;
   }
 
