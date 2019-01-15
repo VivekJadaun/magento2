@@ -8,11 +8,13 @@ class Edit extends \Magento\Backend\App\Action
   protected $resultPage;
   protected $vendor;
   protected $session;
+  protected $messageManager;
   public function __construct(
     \Magento\Backend\App\Action\Context $context,
     \Magento\Framework\View\Result\PageFactory $resultPageFactory,
     \Vinsol\MultiVendorMarketplace\Model\VendorFactory $vendorFactory,
     \Magento\Backend\Model\Session $session,
+    \Magento\Framework\Message\Manager $messageManager,
     \Magento\Framework\Registry $registry
   )
   {
@@ -20,6 +22,7 @@ class Edit extends \Magento\Backend\App\Action
     $this->vendor = $vendorFactory->create();
     $this->_coreRegistry = $registry;
     $this->session = $session;
+    $this->messageManager = $messageManager;
     parent::__construct($context);
   }
   
@@ -31,13 +34,22 @@ class Edit extends \Magento\Backend\App\Action
   public function execute()
   {
     $id = $this->getRequest()->getParam('id');
+    $var = implode(', ', $this->getRequest()->getParams());
+    $this->messageManager->addSuccess("vendor $id , params: $var");
+
     if ($id) {
       $this->vendor->load($id);
       // $this->vendor->getCollection()->addAttributeToFilter('entity_id', $id)->load();
+      $msg = implode(', ',$this->vendor->getData());
+      $this->messageManager->addSuccess("$msg");
+      // $this->vendor->getCollection()->addAttributeToFilter('entity_id', $id)->load();
       // $obj = $this->vendor->getCollection()->addAttributeToFilter('entity_id', $id)->load()->getData();
-      // $Data = $this->vendor->getData();
+      // $Data = implode(', ', $this->vendor->getData());
       // if (!$Data['entity_id']) {
-      if (!$this->vendor->getEntityId()) {
+    // $this->messageManager->addSuccess("$Data");
+
+      // if (!$this->vendor->getData('entity_id')) {
+      if (!$this->vendor->getId()) {
         $this->_redirect('*/*/');
       }
     }
@@ -55,7 +67,7 @@ class Edit extends \Magento\Backend\App\Action
   protected function _setPageData()
   {
     $resultPage = $this->getResultPage();
-    $resultPage->setActiveMenu('Vinsol_MultiVendorMarketplace::vendors');
+    // $resultPage->setActiveMenu('Vinsol_MultiVendorMarketplace::vendors');
     $resultPage->getConfig()->getTitle()->prepend(__('Edit Vendor'));
     return $this;
   }

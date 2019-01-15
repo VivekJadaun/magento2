@@ -7,6 +7,8 @@
   use Magento\Framework\Setup\ModuleDataSetupInterface;
   use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 
+// REMOVE THIS CLASS IN LIU OF INSTALL DATA
+  
   class UpgradeData implements UpgradeDataInterface
   {
     const USER_ID = 'user_id';
@@ -15,6 +17,7 @@
     protected $encryptor;
     protected $dateTimeFactory;
     protected $role;
+    protected $rules;
 
     public function __construct(
       \Magento\Eav\Setup\EavSetupFactory $eavSetupFactory,
@@ -22,6 +25,7 @@
       \Magento\Framework\Encryption\Encryptor $encryptor,
       \Magento\Framework\Intl\DateTimeFactory $dateTimeFactory,
       \Magento\Authorization\Model\RoleFactory $roleFactory,
+      \Magento\Authorization\Model\RulesFactory $rulesFactory,
       AttributeSetFactory $attributeSetFactory
     )
     {
@@ -30,28 +34,39 @@
       $this->encryptor = $encryptor;
       $this->dateTimeFactory = $dateTimeFactory;
       $this->role = $roleFactory->create();
+      $this->rules = $rulesFactory->create();
       $this->attributeSetFactory = $attributeSetFactory;
     }
 
     public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
       $setup->startSetup();
-      if (version_compare($context->getVersion(), '1.1.1', '>')) {
+      if (version_compare($context->getVersion(), '1.1.1', '<')) {
 
-        $productSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+      $permitted_resources = [
+        'Magento_Backend::dashboard', 
+        'Vinsol_MultiVendorMarketplace::vendors_products',
+        'Magento_Catalog::products'
+      ];
+      $this->rules->setRoleId(3)
+                  ->setResources($permitted_resources)
+                  ->saveRel();        // $productSetup = $this->eavSetupFactory->create(['setup' => $setup]);
         // $attributeSet = $this->attributeSetFactory->create();
         // $productTypeId = $productSetup->getEntityTypeId(\Magento\Catalog\Model\Product::ENTITY);
         // $attributeSetId = $productSetup->getDefaultAttributeSetId($productTypeId);
         // $data = [
         //   'attribute_set_name' => \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET,
         //   'entity_type_id' => $productTypeId,
-        //   'sort_order' => 2,
+        //   'sort_order' => 0,
         // ];
         // $attributeSet->setData($data)->validate();
         // $attributeSet->save();
+        // $attributeSet->initFromSkeleton($attributeSetId);
+        // $attributeSet->save();
 
         // $productSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY, self::USER_ID, 'attribute_set', \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET); 
-        // $productSetup->updateAttributeSet(4, 17, );
+
+        // $productSetup->addAttributeToSet(\Magento\Catalog\Model\Product::ENTITY, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET, 'General', \Vinsol\MultiVendorMarketplace\Setup\InstallData::USER_ID);
 
         
         // $vendor = $this->vendorFactory->create();

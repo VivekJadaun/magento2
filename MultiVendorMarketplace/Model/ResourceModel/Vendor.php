@@ -34,13 +34,38 @@
       return parent::getEntityType();
     }
 
+    // protected function _afterLoad(DataObject $object)
+    // {
+      // parent::_afterLoad($object);
+    // }
+
     protected function _beforeSave(DataObject $object)
     {
-
       $data = $object->getData();
-      $this->user->setData($data);
-      $this->user->save();
+      $this->user->load($object->getUserId());
+      if ($this->user->getId()) {
+      // $msg = implode(', ', $this->user->getData());
+      // $msg = implode(', ', $data);
+        // var_dump($this->user->getData());
+        // $this->messageManager->addNotice("Object['data'] : $msg");
+        // $this->messageManager->addNotice("Object['data']['id'] : $this->user->getId()");
+        // $this->messageManager->addNotice(implode(', ', $this->user->getData()));
+        $this->user->setData($data);
+        try {
+          $this->user->save();
+          
+        } catch (\Exception $e) {
+          $this->messageManager->addException($e);
+        }
+      }
       $object->setUserId($this->user->getId());
       parent::_beforeSave($object);
+    }
+
+    protected function _afterDelete(DataObject $object)
+    {
+      $this->user->load($object->getUserId());
+      $this->user->delete();
+      parent::_afterDelete($object);
     }
   }

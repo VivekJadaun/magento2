@@ -33,24 +33,32 @@ class Save extends \Magento\Backend\App\Action {
   public function execute(){
     $vendorData = $this->getRequest()->getPostValue();
     $resultRedirect = $this->resultRedirectFactory->create();
+
     $id = $this->getRequest()->getParam('id');
+      // $this->messageManager->addSuccess("vendor $id before save");
     if($id) {
       $this->vendor->load($id);
+      // var_dump($this->vendor->getData());
+      // $this->messageManager->addSuccess("vendor $id saving");
+      // $this->messageManager->addSuccess(implode(', ', $this->vendor->getData()));
     }
-    $this->vendor->setData($vendorData);
+      $this->vendor->setData($vendorData);
+      // $msg = implode(', ', $this->vendor->getData());
     try {
       $this->vendor->save();
+      // $this->messageManager->addSuccess("vendor $id saved");
       $this->messageManager->addSuccess(__('Record Saved.'));
       if ($this->getRequest()->getParam('back')) {
-        return $resultRedirect->setPath('*/*/', ['id' => $this->vendor->getId(), '_current' => true]);
+        return $resultRedirect->setPath('*/*/edit', ['id' => $this->vendor->getId(), '_current' => true]);
       }
       $this->session->setFormData(false);
       return $resultRedirect->setPath('*/*/');
     } catch (\Exception $ex) {
-      $this->messageManager->addException($ex, __('Something went wrong.'));
+      // $this->messageManager->addNotice("Data: $msg");
+      $this->messageManager->addException($ex);
     }
     $this->_getSession()->setFormData($vendorData);
-    return $resultRedirect->setPath('*/*/', ['id' => $this->getRequest()->getParam('id')]);
+    return $resultRedirect->setPath('*/*/edit', ['id' => $this->getRequest()->getParam('id')]);
   }
   protected function _isAllowed(){
     return $this->_authorization->isAllowed('Vinsol_MultiVendorMarketplace::vendors');

@@ -12,7 +12,7 @@
         <item name="name" xsi:type="string">add</item>
         <item name="label" xsi:type="string" translate="true">New Product</item> 
         <item name="class" xsi:type="string">primary</item>
-        <item name="url" xsi:type="string">*/*/add</item>
+        <item name="url" xsi:type="string">catalog/product/new/set/4/type/simple</item>
       </item>
     </item>
   </argument>

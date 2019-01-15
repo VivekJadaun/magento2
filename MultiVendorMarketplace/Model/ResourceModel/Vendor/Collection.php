@@ -6,7 +6,7 @@
   {
 
     const ADMIN_USER_VENDOR_ENTITY_FIELDS = array(
-      '_user_id' => 'user_id',
+      // 'user_id' => 'user_id',
       'firstname' => 'firstname', 
       'lastname' => 'lastname', 
       'email' => 'email', 
@@ -64,6 +64,11 @@
     //   parent::_renderFiltersBefore();
     // }
 
+    // protected function _afterLoad()
+    // {
+    //   return $this;
+    // }
+
     protected function _initSelect()
     {
       parent::_initSelect();
@@ -71,7 +76,7 @@
       $rolesId = implode(", ", $this->roleId);
 
       $where = "role_name = '$this->roleName' OR parent_id IN ($rolesId)";
-      $this->joinTable($this->adminUserTable, 'user_id=user_id', self::ADMIN_USER_VENDOR_ENTITY_FIELDS);
+      $this->joinTable($this->adminUserTable, 'user_id=user_id', self::ADMIN_USER_VENDOR_ENTITY_FIELDS, null, 'inner');
       $this->joinTable($this->roleTable, 'user_id=user_id', self::ROLE_FIELDS, $where, 'inner');
       $this->addAttributeToSelect('*');
 

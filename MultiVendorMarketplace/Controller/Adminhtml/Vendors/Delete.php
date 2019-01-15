@@ -24,7 +24,8 @@ class Delete extends \Magento\Backend\App\Action
         $this->messageManager->addSuccess(__('Vendor record deleted successfully!'));
         
       } catch (\Exception $e) {
-        $this->messageManager->addError(__('Something went wrong!'));
+        // $this->messageManager->addError(__('Something went wrong!'));
+        $this->messageManager->addException($e);
       }
     }
     $this->_redirect('*/*/');

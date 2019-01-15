@@ -90,26 +90,26 @@
     </paging>
   </container>
   <columns name="marketplace_vendors_columns">
-    <!-- <column name="entity_id">
+    <column name="entity_id">
       <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
           <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
         </item>
         <item name="config" xsi:type="array">
-          <item name="indexField" xsi:type="string">entity_id</item>
+          <item name="indexField" xsi:type="string">id</item>
           <item name="filter" xsi:type="string">text</item>
-          <item name="sorting" xsi:type="string">desc</item>
+          <item name="sorting" xsi:type="string">asc</item>
           <item name="label" xsi:type="string" translate="true">ID</item>
         </item>
       </argument>
-    </column> -->
-    <column name="entity_id" sortOrder="10">
+    </column>
+    <!-- <column name="entity_id" sortOrder="10">
       <settings>
         <filter>textRange</filter>
         <label translate="true">ID</label>
         <sorting>asc</sorting>
       </settings>
-    </column>
+    </column> -->
 
     <column name="firstname">
       <argument name="data" xsi:type="array">
@@ -151,14 +151,14 @@
         </item>
       </argument>
     </column>
-    <column name="contact_no">
+    <!-- <column name="contact_no">
       <argument name="data" xsi:type="array">
         <item name="config" xsi:type="array">
           <item name="filter" xsi:type="string">text</item>
           <item name="label" xsi:type="string" translate="true">Contact No.</item>
         </item>
       </argument>
-    </column>
+    </column> -->
     <column name="role_name" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\RoleName">
     <!-- <column name="role_name"> -->
       <argument name="data" xsi:type="array">

@@ -34,8 +34,19 @@
 				['legend' => __('General')]
 			);
 
+
 			if ($model->getId()) {
-				$fieldset->addField('id', 'hidden', ['name' => 'id']);
+				$fieldset->addField(
+					'entity_id', 
+					'hidden', 
+					['name' => 'entity_id']);
+			}
+
+			if ($model->getUserId()) {
+				$fieldset->addField(
+					'user_id', 
+					'hidden', 
+					['name' => 'user_id']);
 			}
 
 			$fieldset->addField(
