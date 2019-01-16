@@ -38,7 +38,7 @@ class Vendors extends AbstractSource implements \Magento\Framework\Option\ArrayI
 
     if ($collection->count()) {
       foreach ($collection as $key => $value) {
-        $id = $value->getData('entity_id');
+        $id = $value->getData('user_id');
         $vendor = $value->getData('username');
         $pair = [ 
           'value' => $id,

@@ -80,12 +80,11 @@ class ProductDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $this->role = $this->user->getRole();
 
         if (!$this->getCollection()->isLoaded()) {
-            // if ($this->role->getRoleName() === \Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_NAME) {
-                // var_dump($this->role->getData());
-                // $this->getCollection()->addAttributeToFilter('user_id', $this->user->getId())->load(true);
-            // } else if ($this->role->getRoleName() === self::ADMIN_ROLE_GROUP) {
+            if ($this->role->getRoleName() === \Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_NAME) {
+                $this->getCollection()->addAttributeToFilter('user_id', $this->user->getId())->load();
+            } else if ($this->role->getRoleName() === self::ADMIN_ROLE_GROUP) {
                 $this->getCollection()->load();
-            // }
+            }
         }
         $items = $this->getCollection()->toArray();
 
