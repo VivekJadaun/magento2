@@ -5,6 +5,7 @@ use Vinsol\MultiVendorMarketplace\Model\ResourceModel\Product\CollectionFactory;
 
 class ProductDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
+    const ADMIN_ROLE_GROUP = 'Administrators';
     /**
      * Product collection
      *
@@ -23,8 +24,24 @@ class ProductDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     protected $addFilterStrategies;
 
     /**
+     * @var \Magento\Backend\App\Action\Context
+     */
+    protected $context;
+
+    /**
+     * @var \Magento\Backend\Model\Auth\Credential\StorageInterface
+     */
+    protected $user;
+
+    /**
+     * @var \Magento\Authorization\Model\Role
+     */    
+    protected $role;
+
+    /**
      * Construct
      *
+     * @param \Magento\Backend\App\Action\Context $context
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
@@ -35,6 +52,7 @@ class ProductDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * @param array $data
      */
     public function __construct(
+        \Magento\Backend\App\Action\Context $context,
         $name,
         $primaryFieldName,
         $requestFieldName,
@@ -48,6 +66,7 @@ class ProductDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $this->collection = $collectionFactory->create();
         $this->addFieldStrategies = $addFieldStrategies;
         $this->addFilterStrategies = $addFilterStrategies;
+        $this->context = $context;
     }
 
     /**
@@ -57,8 +76,16 @@ class ProductDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      */
     public function getData()
     {
+        $this->user = $this->context->getAuth()->getUser();
+        $this->role = $this->user->getRole();
+
         if (!$this->getCollection()->isLoaded()) {
-            $this->getCollection()->load();
+            // if ($this->role->getRoleName() === \Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_NAME) {
+                // var_dump($this->role->getData());
+                // $this->getCollection()->addAttributeToFilter('user_id', $this->user->getId())->load(true);
+            // } else if ($this->role->getRoleName() === self::ADMIN_ROLE_GROUP) {
+                $this->getCollection()->load();
+            // }
         }
         $items = $this->getCollection()->toArray();
 
@@ -84,9 +111,6 @@ class ProductDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addFilter(\Magento\Framework\Api\Filter $filter)
     {
         if (isset($this->addFilterStrategies[$filter->getField()])) {

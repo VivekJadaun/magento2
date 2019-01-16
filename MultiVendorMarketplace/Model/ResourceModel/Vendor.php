@@ -41,6 +41,7 @@
 
     protected function _beforeSave(DataObject $object)
     {
+      $object->setUserType(\Magento\Authorization\Model\UserContextInterface::USER_TYPE_GUEST);
       $data = $object->getData();
       $this->user->load($object->getUserId());
       if ($this->user->getId()) {
