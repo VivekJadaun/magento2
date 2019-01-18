@@ -7,14 +7,14 @@
       <item name="deps" xsi:type="string">marketplace_products.marketplace_products_data_source</item>
     </item>
     <item name="spinner" xsi:type="string">marketplace_products_columns</item>
-    <item name="buttons" xsi:type="array">
+    <!-- <item name="buttons" xsi:type="array">
       <item name="add" xsi:type="array">
         <item name="name" xsi:type="string">add</item>
         <item name="label" xsi:type="string" translate="true">Add New Product</item> 
         <item name="class" xsi:type="string">primary</item>
         <item name="url" xsi:type="string">catalog/product/new/set/4/type/simple</item>
       </item>
-    </item>
+    </item> -->
   </argument>
 
   <!-- <dataSource name="marketplace_products_data_source">
@@ -36,25 +36,25 @@
     </argument>
   </dataSource> -->
 
-     <dataSource name="marketplace_products_data_source" component="Magento_Ui/js/grid/provider">
-        <settings>
-            <!-- <storageConfig>
-                <param name="dataScope" xsi:type="string">filters.store_id</param>
-            </storageConfig> -->
-            <updateUrl path="mui/index/render"/>
-        </settings>
-        <!-- <aclResource>Magento_Catalog::products</aclResource> -->
-        <!-- <dataProvider class="VinsolMultiVendorMarketplaceProductsGridDataProvider" name="marketplace_products_data_source"> -->
-        <!-- <dataProvider class="Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider" name="marketplace_products_data_source"> -->
-        <dataProvider class="Vinsol\MultiVendorMarketplace\Ui\DataProvider\Product\ProductDataProvider" name="marketplace_products_data_source">
-            <settings>
-                <requestFieldName>id</requestFieldName>
-                <primaryFieldName>entity_id</primaryFieldName>
-            </settings>
-        </dataProvider>
-    </dataSource>
+   <dataSource name="marketplace_products_data_source" component="Magento_Ui/js/grid/provider">
+      <settings>
+          <!-- <storageConfig>
+              <param name="dataScope" xsi:type="string">filters.store_id</param>
+          </storageConfig> -->
+          <updateUrl path="mui/index/render"/>
+      </settings>
+      <!-- <aclResource>Magento_Catalog::products</aclResource> -->
+      <!-- <dataProvider class="VinsolMultiVendorMarketplaceProductsGridDataProvider" name="marketplace_products_data_source"> -->
+      <!-- <dataProvider class="Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider" name="marketplace_products_data_source"> -->
+      <dataProvider class="Vinsol\MultiVendorMarketplace\Ui\DataProvider\Product\ProductDataProvider" name="marketplace_products_data_source">
+          <settings>
+              <requestFieldName>id</requestFieldName>
+              <primaryFieldName>entity_id</primaryFieldName>
+          </settings>
+      </dataProvider>
+  </dataSource>
 
-  <container name="listing_top">
+  <!-- <container name="listing_top">
     <argument name="data" xsi:type="array">
       <item name="config" xsi:type="array">
         <item name="template" xsi:type="string">ui/grid/toolbar</item>
@@ -94,112 +94,179 @@
         </item>
       </argument>
     </paging>
-  </container>
+  </container> -->
 
-    <columns name="marketplace_products_columns">
+  <listingToolbar name="listing_top">
+      <settings>
+          <sticky>true</sticky>
+      </settings>
+      <bookmark name="bookmarks"/>
+      <columnsControls name="columns_controls"/>
+      <filters name="listing_filters">
+          <filterSelect name="store_id" provider="${ $.parentName }">
+              <settings>
+                  <options class="Magento\Store\Ui\Component\Listing\Column\Store\Options"/>
+                  <caption translate="true">All Store Views</caption>
+                  <label translate="true">Store View</label>
+                  <dataScope>store_id</dataScope>
+              </settings>
+          </filterSelect>
+      </filters>
+      <massaction name="listing_massaction"
+                  component="Magento_Ui/js/grid/tree-massactions"
+                  class="\Magento\Catalog\Ui\Component\Product\MassAction">
+          <action name="delete">
+              <settings>
+                  <confirm>
+                      <message translate="true">Delete selected items?</message>
+                      <title translate="true">Delete items</title>
+                  </confirm>
+                  <url path="catalog/product/massDelete"/><!-- <======== CREATE A CUSTOM CONTROLLER ACTION FOR THIS -->
+                  <type>delete</type>
+                  <label translate="true">Delete</label>
+              </settings>
+          </action>
+          <action name="status">
+              <settings>
+                  <type>status</type>
+                  <label translate="true">Change status</label>
+                  <actions>
+                      <action name="0">
+                          <type>enable</type>
+                          <label translate="true">Enable</label>
+                          <url path="catalog/product/massStatus"><!-- <======== CREATE A CUSTOM CONTROLLER ACTION FOR THIS -->
+                              <param name="status">1</param>
+                          </url>
+                      </action>
+                      <action name="1">
+                          <type>disable</type>
+                          <label translate="true">Disable</label>
+                          <url path="catalog/product/massStatus"><!-- <======== CREATE A CUSTOM CONTROLLER ACTION FOR THIS -->
+                              <param name="status">2</param>
+                          </url>
+                      </action>
+                  </actions>
+              </settings>
+          </action>
+          <action name="attributes">
+              <settings>
+                  <url path="catalog/product_action_attribute/edit"/><!-- <======== CREATE A CUSTOM CONTROLLER ACTION FOR THIS -->
+                  <type>attributes</type>
+                  <label translate="true">Update attributes</label>
+              </settings>
+          </action>
+      </massaction>
+      <paging name="listing_paging"/>
+  </listingToolbar>
+
+  <columns name="marketplace_products_columns">
 <!--       <column name="entity_id">
-        <argument name="data" xsi:type="array">
-          <item name="js_config" xsi:type="array">
-            <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
-          </item>
-          <item name="config" xsi:type="array">
-            <item name="indexField" xsi:type="string">entity_id</item>
-            <item name="filter" xsi:type="string">text</item>
-            <item name="sorting" xsi:type="string">desc</item>
-            <item name="label" xsi:type="string" translate="true">ID</item>
-          </item>
-        </argument>
-      </column> -->
-
-      <column name="entity_id" sortOrder="10">
-          <settings>
-              <filter>textRange</filter>
-              <label translate="true">ID</label>
-              <sorting>asc</sorting>
-          </settings>
-      </column>
-      <column name="thumbnail" class="Magento\Catalog\Ui\Component\Listing\Columns\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="20">
-          <settings>
-              <altField>name</altField>
-              <hasPreview>1</hasPreview>
-              <addField>true</addField>
-              <label translate="true">Thumbnail</label>
-              <sortable>false</sortable>
-          </settings>
-      </column>
-      <column name="name" sortOrder="30">
-          <settings>
-              <addField>true</addField>
-              <filter>text</filter>
-              <label translate="true">Name</label>
-          </settings>
-      </column>
-      <column name="type_id" component="Magento_Ui/js/grid/columns/select" sortOrder="40">
-          <settings>
-              <options class="Magento\Catalog\Model\Product\Type"/>
-              <filter>select</filter>
-              <dataType>select</dataType>
-              <label translate="true">Type</label>
-          </settings>
-      </column>
-      <column name="attribute_set_id" component="Magento_Ui/js/grid/columns/select" sortOrder="50">
-          <settings>
-              <options class="Magento\Catalog\Model\Product\AttributeSet\Options"/>
-              <filter>select</filter>
-              <dataType>select</dataType>
-              <label translate="true">Attribute Set</label>
-          </settings>
-      </column>
-      <column name="sku" sortOrder="60">
-          <settings>
-              <filter>text</filter>
-              <label translate="true">SKU</label>
-          </settings>
-      </column>
-      <column name="price" class="Magento\Catalog\Ui\Component\Listing\Columns\Price" sortOrder="70">
-          <settings>
-              <addField>true</addField>
-              <filter>textRange</filter>
-              <label translate="true">Price</label>
-          </settings>
-      </column>
-      <column name="visibility" component="Magento_Ui/js/grid/columns/select" sortOrder="80">
-          <settings>
-              <addField>true</addField>
-              <options class="Magento\Catalog\Model\Product\Visibility"/>
-              <filter>select</filter>
-              <dataType>select</dataType>
-              <label translate="true">Visibility</label>
-          </settings>
-      </column>
-      <column name="status" component="Magento_Ui/js/grid/columns/select" sortOrder="90">
-          <settings>
-              <addField>true</addField>
-              <options class="Magento\Catalog\Model\Product\Attribute\Source\Status"/>
-              <filter>select</filter>
-              <dataType>select</dataType>
-              <label translate="true">Status</label>
-          </settings>
-      </column>
-      <column name="user_id" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\VendorName" sortOrder="100">
-      <!-- <column name="user_id"  sortOrder="100"> -->
+      <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+          <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+        </item>
+        <item name="config" xsi:type="array">
+          <item name="indexField" xsi:type="string">entity_id</item>
+          <item name="filter" xsi:type="string">text</item>
+          <item name="sorting" xsi:type="string">desc</item>
+          <item name="label" xsi:type="string" translate="true">ID</item>
+        </item>
+      </argument>
+    </column> -->
+    <selectionsColumn name="ids" sortOrder="0">
+        <settings>
+            <indexField>entity_id</indexField>
+        </settings>
+    </selectionsColumn>
+    <column name="entity_id" sortOrder="10">
+        <settings>
+            <filter>textRange</filter>
+            <label translate="true">ID</label>
+            <sorting>asc</sorting>
+        </settings>
+    </column>
+    <column name="thumbnail" class="Magento\Catalog\Ui\Component\Listing\Columns\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="20">
+        <settings>
+            <altField>name</altField>
+            <hasPreview>1</hasPreview>
+            <addField>true</addField>
+            <label translate="true">Thumbnail</label>
+            <sortable>false</sortable>
+        </settings>
+    </column>
+    <column name="name" sortOrder="30">
+        <settings>
+            <addField>true</addField>
+            <filter>text</filter>
+            <label translate="true">Name</label>
+        </settings>
+    </column>
+    <column name="type_id" component="Magento_Ui/js/grid/columns/select" sortOrder="40">
+        <settings>
+            <options class="Magento\Catalog\Model\Product\Type"/>
+            <filter>select</filter>
+            <dataType>select</dataType>
+            <label translate="true">Type</label>
+        </settings>
+    </column>
+    <column name="attribute_set_id" component="Magento_Ui/js/grid/columns/select" sortOrder="50">
+        <settings>
+            <options class="Magento\Catalog\Model\Product\AttributeSet\Options"/>
+            <filter>select</filter>
+            <dataType>select</dataType>
+            <label translate="true">Attribute Set</label>
+        </settings>
+    </column>
+    <column name="sku" sortOrder="60">
+        <settings>
+            <filter>text</filter>
+            <label translate="true">SKU</label>
+        </settings>
+    </column>
+    <column name="price" class="Magento\Catalog\Ui\Component\Listing\Columns\Price" sortOrder="70">
+        <settings>
+            <addField>true</addField>
+            <filter>textRange</filter>
+            <label translate="true">Price</label>
+        </settings>
+    </column>
+    <column name="visibility" component="Magento_Ui/js/grid/columns/select" sortOrder="80">
+        <settings>
+            <addField>true</addField>
+            <options class="Magento\Catalog\Model\Product\Visibility"/>
+            <filter>select</filter>
+            <dataType>select</dataType>
+            <label translate="true">Visibility</label>
+        </settings>
+    </column>
+    <column name="status" component="Magento_Ui/js/grid/columns/select" sortOrder="90">
+        <settings>
+            <addField>true</addField>
+            <options class="Magento\Catalog\Model\Product\Attribute\Source\Status"/>
+            <filter>select</filter>
+            <dataType>select</dataType>
+            <label translate="true">Status</label>
+        </settings>
+    </column>
+    <column name="user_id" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\VendorName" sortOrder="100">
+    <!-- <column name="user_id"  sortOrder="100"> -->
 <!--           <settings>
-              <addField>true</addField>
-              <options  />
-              <dataType>text</dataType>
-              <label translate="true">Vendor</label>
-          </settings> -->
-        <argument name="data" xsi:type="array">
-          <item name="config" xsi:type="array">
-            <item name="filter" xsi:type="string">text</item>
-            <item name="label" xsi:type="string" translate="true">Vendor</item>
-          </item>
-        </argument>
-      </column>
-        <actionsColumn name="actions" class="Magento\Catalog\Ui\Component\Listing\Columns\ProductActions" sortOrder="200">
-            <settings>
-                <indexField>entity_id</indexField>
-            </settings>
-        </actionsColumn>
-    </columns>
+            <addField>true</addField>
+            <options  />
+            <dataType>text</dataType>
+            <label translate="true">Vendor</label>
+        </settings> -->
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="filter" xsi:type="string">text</item>
+          <item name="label" xsi:type="string" translate="true">Vendor</item>
+        </item>
+      </argument>
+    </column>
+    <actionsColumn name="actions" class="Magento\Catalog\Ui\Component\Listing\Columns\ProductActions" sortOrder="200">
+        <settings>
+            <indexField>entity_id</indexField>
+        </settings>
+    </actionsColumn>
+  </columns>
 </listing>

@@ -47,7 +47,7 @@
         'Magento_Backend::dashboard', 
         'Vinsol_MultiVendorMarketplace::vendors',
         'Vinsol_MultiVendorMarketplace::vendors_products',
-        'Magento_Catalog::products'
+        // 'Magento_Catalog::products'
       ];
       $this->rules->setRoleId(3)
                   ->setResources($permitted_resources)

@@ -13,7 +13,7 @@
   class InstallData implements InstallDataInterface
   {
     const USER_ID = 'user_id';
-    const ATTRIBUTE_SET = 'Vendor';
+    const ATTRIBUTE_SET = 'Marketplace';
     const VENDOR_ENTITY = \Vinsol\MultiVendorMarketplace\Model\Vendor::ENTITY;
     protected $vendorSetupFactory;
     protected $vendorSetup;
@@ -78,6 +78,8 @@
       // $permitted_resources = ['Magento_Backend::dashboard', 'Magento_Catalog::products', 'Magento_Sales::sales', 'Magento_Customer::customer', 'Magento_Backend::myaccount'];
       $permitted_resources = [
         'Magento_Backend::dashboard', 
+        'Vinsol_MultiVendorMarketplace::vendors',
+        'Vinsol_MultiVendorMarketplace::vendors_label',
         'Vinsol_MultiVendorMarketplace::vendors_products',
         'Magento_Catalog::products'
       ];

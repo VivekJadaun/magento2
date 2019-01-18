@@ -1,0 +1,37 @@
+<?php 
+    $role_name = \Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_NAME;
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $adminSession = $objectManager->get('Magento\Backend\Model\Auth\Session');
+    $current_adminuser = $adminSession->getUser()->getRole()->getRoleName();
+    if($role_name == $current_adminuser): 
+?>
+    <style>
+    /*data-index is unique for each field and does not changes with each refresh*/
+    [data-index = 'attribute_set_id'] {
+        display: none;
+    }
+    [data-index = 'user_id'] {
+        display: none;
+    }
+    </style>
+<?php endif; ?>
+    <script>
+        require(["jquery"], function($) {
+            var $form = jQuery('[data-index=product-details]');
+            // console.log(jQuery('[data-index="attribute_set_id"]'));
+            // $form.data('typeSwitcher', TypeSwitcher.init());
+            
+            $form.find('[data-index="attribute_set_id"]').attr('name', 'set').val(18);
+            // console.log('done!');
+
+            // setTimeout(function() {
+            // console.log(jQuery('[data-index="attribute_set_id"]'));
+            // console.log($('[data-index="attribute_set_id"]').find("[data-role='selected-option']").innerHTML);
+            // console.log('done');
+            // }, 5000);
+            // setInterval(function() {
+                // $('[name="product[user_id]"]').val(2);
+                // console.log('!');
+            // }, 200);
+        });
+    </script>
