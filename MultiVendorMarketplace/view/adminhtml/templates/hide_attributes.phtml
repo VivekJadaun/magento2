@@ -1,0 +1,30 @@
+<?php 
+    $vendorRole = \Vinsol\MultiVendorMarketplace\Model\Vendor::ROLE_NAME;
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $currentUser = $objectManager->get('Magento\Backend\Model\Auth\Session')->getUser();
+    $currentRole = $currentUser->getRole()->getRoleName();
+    $currentUserId = $currentUser->getId();
+    if($vendorRole == $currentRole): 
+?>
+    <style>
+    /*data-index is unique for each field and does not changes with each refresh*/
+    [data-index = 'attribute_set_id'] {
+        display: none;
+    }
+    [data-index = 'user_id'] {
+        display: none;
+    }
+    </style>
+
+    <script defer="true">
+        require(["jquery"], function($) {
+            $(document).ready(function() {
+                setTimeout(function() {
+                    var $form = $('[data-index=product-details]');
+                    var $vendor = $form.find('[name="product[user_id]"]');
+                    $vendor.val(<?php echo $currentUserId ?>);
+                }, 5000);
+            })
+        });
+    </script>
+<?php endif; ?>

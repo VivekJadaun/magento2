@@ -41,17 +41,21 @@
     public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
       $setup->startSetup();
-      if (version_compare($context->getVersion(), '1.1.1', '<')) {
+      if (version_compare($context->getVersion(), '1.1.1', '>')) {
 
-      $permitted_resources = [
-        'Magento_Backend::dashboard', 
-        'Vinsol_MultiVendorMarketplace::vendors',
-        'Vinsol_MultiVendorMarketplace::vendors_products',
+        echo ' upgrade data ';
+
+      // $permitted_resources = [
+        // 'Magento_Backend::dashboard', 
+        // 'Vinsol_MultiVendorMarketplace::vendors',
+        // 'Vinsol_MultiVendorMarketplace::vendors_products',
         // 'Magento_Catalog::products'
-      ];
-      $this->rules->setRoleId(3)
-                  ->setResources($permitted_resources)
-                  ->saveRel();        // $productSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+      // ];
+      // $this->rules->setRoleId(3)
+      //             ->setResources($permitted_resources)
+      //             ->saveRel();        
+        // $productSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+        // $productSetup->setDefaultSetToEntityType(\Magento\Catalog\Model\Product::ENTITY, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET);
         // $attributeSet = $this->attributeSetFactory->create();
         // $productTypeId = $productSetup->getEntityTypeId(\Magento\Catalog\Model\Product::ENTITY);
         // $attributeSetId = $productSetup->getDefaultAttributeSetId($productTypeId);
@@ -69,7 +73,16 @@
 
         // $productSetup->addAttributeToSet(\Magento\Catalog\Model\Product::ENTITY, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET, 'General', \Vinsol\MultiVendorMarketplace\Setup\InstallData::USER_ID);
 
-        
+        // $vendorSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+        // $vendorSetup->updateAttribute(\Vinsol\MultiVendorMarketplace\Setup\InstallData::VENDOR_ENTITY, 'logo', 'frontend_label', 'Logo');
+        // echo 'logo label done';
+        // $vendorSetup->updateAttribute(\Vinsol\MultiVendorMarketplace\Setup\InstallData::VENDOR_ENTITY, 'logo', 'frontend_input', 'media_image');
+        // echo 'logo input done';
+        // $vendorSetup->updateAttribute(\Vinsol\MultiVendorMarketplace\Setup\InstallData::VENDOR_ENTITY, 'banner', 'frontend_label', 'Banner');
+        // echo 'banner label done';
+        // $vendorSetup->updateAttribute(\Vinsol\MultiVendorMarketplace\Setup\InstallData::VENDOR_ENTITY, 'banner', 'frontend_input', 'media_image');
+        // echo 'banner input done';
+          
         // $vendor = $this->vendorFactory->create();
 
         // $vendor->setData([

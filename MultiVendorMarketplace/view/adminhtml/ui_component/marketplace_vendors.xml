@@ -40,7 +40,8 @@
     <settings>
         <updateUrl path="mui/index/render"/>
     </settings>
-    <dataProvider class="VinsolMultiVendorMarketplaceVendorsGridDataProvider" name="marketplace_vendors_data_source">
+    <!-- <dataProvider class="VinsolMultiVendorMarketplaceVendorsGridDataProvider" name="marketplace_vendors_data_source"> -->
+    <dataProvider class="Vinsol\MultiVendorMarketplace\Ui\DataProvider\Vendor\VendorDataProvider" name="marketplace_vendors_data_source">
         <settings>
             <requestFieldName>id_field_name</requestFieldName>
             <primaryFieldName>entity_id</primaryFieldName>
@@ -180,6 +181,16 @@
       </settings>
     </column> -->
 
+    <!-- <column name="logo" class="Magento\Catalog\Ui\Component\Listing\Columns\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="0"> -->
+    <column name="logo" sortOrder="0">
+        <settings>
+            <altField>logo</altField>
+            <hasPreview>1</hasPreview>
+            <addField>true</addField>
+            <label translate="true">Logo</label>
+            <sortable>true</sortable>
+        </settings>
+    </column>
     <column name="firstname">
       <argument name="data" xsi:type="array">
         <item name="config" xsi:type="array">
@@ -220,14 +231,14 @@
         </item>
       </argument>
     </column>
-    <!-- <column name="contact_no">
+    <column name="contact_no">
       <argument name="data" xsi:type="array">
         <item name="config" xsi:type="array">
           <item name="filter" xsi:type="string">text</item>
           <item name="label" xsi:type="string" translate="true">Contact No.</item>
         </item>
       </argument>
-    </column> -->
+    </column>
     <column name="role_name" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\RoleName">
     <!-- <column name="role_name"> -->
       <argument name="data" xsi:type="array">
@@ -251,6 +262,14 @@
         <item name="config" xsi:type="array">
           <item name="filter" xsi:type="string">text</item>
           <item name="label" xsi:type="string" translate="true">Sort</item>
+        </item>
+      </argument>
+    </column>
+    <column name="address">
+      <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+          <item name="filter" xsi:type="string">text</item>
+          <item name="label" xsi:type="string" translate="true">Address</item>
         </item>
       </argument>
     </column>

@@ -43,22 +43,25 @@
     {
       $object->setUserType(\Magento\Authorization\Model\UserContextInterface::USER_TYPE_GUEST);
       $data = $object->getData();
-      $this->user->load($object->getUserId());
-      if ($this->user->getId()) {
-      // $msg = implode(', ', $this->user->getData());
+      // var_dump($data);
       // $msg = implode(', ', $data);
-        // var_dump($this->user->getData());
-        // $this->messageManager->addNotice("Object['data'] : $msg");
+      // $msg = http_build_query($data);
+      // $this->messageManager->addNotice("Object['data'] : $msg");
+      $this->user->load($object->getUserId());
+      // if ($this->user->getId()) {
+      // $msg = implode(', ', $this->user->getData());
+      //   var_dump("<script>console.log('_beforeSave');</script>");
+      //   var_dump($this->user->getData());
         // $this->messageManager->addNotice("Object['data']['id'] : $this->user->getId()");
         // $this->messageManager->addNotice(implode(', ', $this->user->getData()));
         $this->user->setData($data);
         try {
           $this->user->save();
-          
+          $this->messageManager->addSuccess(__('User Saved.'));
         } catch (\Exception $e) {
           $this->messageManager->addException($e);
         }
-      }
+      // } 
       $object->setUserId($this->user->getId());
       parent::_beforeSave($object);
     }

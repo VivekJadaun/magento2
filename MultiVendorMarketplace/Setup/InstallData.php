@@ -13,7 +13,7 @@
   class InstallData implements InstallDataInterface
   {
     const USER_ID = 'user_id';
-    const ATTRIBUTE_SET = 'Marketplace';
+    const ATTRIBUTE_SET = 'Vendor';
     const VENDOR_ENTITY = \Vinsol\MultiVendorMarketplace\Model\Vendor::ENTITY;
     protected $vendorSetupFactory;
     protected $vendorSetup;
@@ -44,17 +44,97 @@
 
       $this->productSetup = $this->categorySetupFactory->create(['setup' => $setup]);
 
-      $this->createNewRole()->assignRules();
+      // $this->createNewRole()->assignRules();  //ADD CONDITION TO CHECK PREVIOUS EXISTENCE
 
-      $this->createNewAttributeSet()->createNewAttribute();
+      // $this->createNewAttributeSet()->createNewAttribute();  //ADD CONDITION TO CHECK PREVIOUS EXISTENCE
 
       $vendorEntity = self::VENDOR_ENTITY;
       $this->vendorSetup = $this->vendorSetupFactory->create(['setup' => $setup]);
       $this->vendorSetup->installEntities()
-                        ->addAttribute($vendorEntity, 'contact_no', ['type' => 'varchar'])
-                        ->addAttribute($vendorEntity, 'address', ['type' => 'text'])
-                        ->addAttribute($vendorEntity, 'logo', ['type' => 'text'])
-                        ->addAttribute($vendorEntity, 'banner', ['type' => 'text']);
+                        ->addAttribute($vendorEntity, 'contact_no', [
+                          'type' => 'varchar',
+                          'backend' => '',
+                          'frontend' => '',
+                          'label' => 'Contact No',
+                          'input' => 'text',
+                          'class' => '',
+                          'source' => '',
+                          'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                          'visible' => true,
+                          'required' => true,
+                          'user_defined' => true,
+                          // 'group' => '',
+                          'default' => '',
+                          'searchable' => true,
+                          'filterable' => true,
+                          'comparable' => false,
+                          'visible_on_front' => true,
+                          'used_in_product_listing' => true,
+                          'unique' => false
+                        ])
+                        ->addAttribute($vendorEntity, 'address', [
+                          'type' => 'text',
+                          'backend' => '',
+                          'frontend' => '',
+                          'label' => 'Address',
+                          'input' => 'text',
+                          'class' => '',
+                          'source' => '',
+                          'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                          'visible' => true,
+                          'required' => true,
+                          'user_defined' => true,
+                          // 'group' => '',
+                          'default' => '',
+                          'searchable' => true,
+                          'filterable' => true,
+                          'comparable' => false,
+                          'visible_on_front' => true,
+                          'used_in_product_listing' => true,
+                          'unique' => false
+                        ])
+                        ->addAttribute($vendorEntity, 'logo', [
+                          'type' => 'text',
+                          'backend' => '',
+                          'frontend' => '',
+                          'label' => 'Logo',
+                          'input' => 'media_image',
+                          'class' => '',
+                          'source' => '',
+                          'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                          'visible' => true,
+                          'required' => true,
+                          'user_defined' => true,
+                          // 'group' => '',
+                          'default' => '',
+                          'searchable' => true,
+                          'filterable' => true,
+                          'comparable' => false,
+                          'visible_on_front' => true,
+                          'used_in_product_listing' => true,
+                          'unique' => false
+                        ])
+                        ->addAttribute($vendorEntity, 'banner', [
+                          'type' => 'text',
+                          'backend' => '',
+                          'frontend' => '',
+                          'label' => 'Banner',
+                          'input' => 'media_image',
+                          'class' => '',
+                          'source' => '',
+                          'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_GLOBAL,
+                          'visible' => true,
+                          'required' => true,
+                          'user_defined' => true,
+                          // 'group' => '',
+                          'default' => '',
+                          'searchable' => true,
+                          'filterable' => true,
+                          'comparable' => false,
+                          'visible_on_front' => true,
+                          'used_in_product_listing' => false,
+                          'unique' => false
+                        ]);
       
       $setup->endSetup();
     }
@@ -119,7 +199,7 @@
             'visible' => true,
             'required' => true,
             'user_defined' => true,
-            'group' => '',
+            // 'group' => '',
             'default' => '',
             'searchable' => true,
             'filterable' => true,

@@ -65,7 +65,7 @@
 				[
 					'name' => 'lastname',
 					'label' => __('Lastname'),
-					'required' => true
+					'required' => false
 				]
 			);
 
@@ -168,25 +168,25 @@
 			);     
 
 
-			// $fieldset->addField(
-			// 	'logo',
-			// 	'file',
-			// 	[
-			// 		'name' => 'logo',
-			// 		'label' => __('Logo'),
-			// 		'required' => false
-			// 	]
-			// ); 
+			$fieldset->addField(
+				'logo',
+				'file',
+				[
+					'name' => 'logo',
+					'label' => __('Logo'),
+					'required' => false
+				]
+			); 
 
-			// $fieldset->addField(
-			// 	'banner',
-			// 	'file',
-			// 	[
-			// 		'name' => 'banner',
-			// 		'label' => __('Banner'),
-			// 		'required' => false
-			// 	]
-			// ); 
+			$fieldset->addField(
+				'banner',
+				'file',
+				[
+					'name' => 'banner',
+					'label' => __('Banner'),
+					'required' => false
+				]
+			); 
 
 			$data = $model->getData();
 			$form->setValues($data);

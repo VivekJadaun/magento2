@@ -6,7 +6,7 @@
   {
 
     const ADMIN_USER_VENDOR_ENTITY_FIELDS = array(
-      // 'user_id' => 'user_id',
+      // '_user_id' => 'user_id',
       'firstname' => 'firstname', 
       'lastname' => 'lastname', 
       'email' => 'email', 
@@ -82,7 +82,7 @@
 
       // $this->messageManager->addSuccess($this->getSelect());
 
-      $this->addFilterToMap('role_id', 'role_id');
+      // $this->addFilterToMap('role_id', 'role_id');
       // $this->addFilterToMap('role_name', 'role_name');      //SORTING & FILTERING DON'T WORK WITHOUT IT
       return $this;
     }

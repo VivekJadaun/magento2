@@ -35,13 +35,13 @@ class Edit extends \Magento\Backend\App\Action
   {
     $id = $this->getRequest()->getParam('id');
     $var = implode(', ', $this->getRequest()->getParams());
-    $this->messageManager->addSuccess("vendor $id , params: $var");
+    // $this->messageManager->addSuccess("vendor $id , params: $var");
 
     if ($id) {
       $this->vendor->load($id);
       // $this->vendor->getCollection()->addAttributeToFilter('entity_id', $id)->load();
       $msg = implode(', ',$this->vendor->getData());
-      $this->messageManager->addSuccess("$msg");
+      // $this->messageManager->addSuccess("$msg");
       // $this->vendor->getCollection()->addAttributeToFilter('entity_id', $id)->load();
       // $obj = $this->vendor->getCollection()->addAttributeToFilter('entity_id', $id)->load()->getData();
       // $Data = implode(', ', $this->vendor->getData());

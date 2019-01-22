@@ -36,7 +36,7 @@
       $currentUserRole = $this->context->getAuth()->getUser()->getRole()->getRoleName();
       $currentUserId = $this->context->getAuth()->getUser()->getId();
 
-      var_dump($productOwnerId, $currentUserId, $currentUserRole, self::ADMIN_ROLE_NAME, $productAttributeSet);
+      // var_dump($productOwnerId, $currentUserId, $currentUserRole, self::ADMIN_ROLE_NAME, $productAttributeSet);
       if (($currentUserRole != self::ADMIN_ROLE_NAME) && ($productAttributeSet != 'Vendor')) {
         if (($productOwnerId !=  $currentUserId) && ($currentUserRole != self::ADMIN_ROLE_NAME)) {
           throw new \Exception("Error Saving Product. Invalid Vendor Id");

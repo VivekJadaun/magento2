@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <head>
+    <!-- <title>Custom Vendor Landing Page</title> -->
+  </head>
+  <body>
+    <referenceContainer name="columns.top">
+      <container name="vendor_banner" htmlTag="div" htmlClass="vendor-banner">
+        <block class="Vinsol\MultiVendorMarketplace\Block\Vendor\Banner" template="Vinsol_MultiVendorMarketplace::banner.phtml" name="vinsol_vendors_banner" cacheable="false"/>
+        <!-- <block class="Magento\Framework\View\Element\Text" name="bar">
+          <action method="setText">
+            <argument name="text" xsi:type="string"><![CDATA[<p>The Vendor</p>]]></argument>
+          </action>
+        </block> -->
+      </container>
+    </referenceContainer>
+    <referenceContainer name="sidebar.main">
+      <container name="vendor_logo" htmlTag="div" htmlClass="vendor-logo">
+        <block class="Vinsol\MultiVendorMarketplace\Block\Vendor\Logo" template="Vinsol_MultiVendorMarketplace::logo.phtml" name="vinsol_vendors_logo" cacheable="false"/>
+      </container>
+    </referenceContainer>
+  </body>
+</page>

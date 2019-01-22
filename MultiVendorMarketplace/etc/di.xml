@@ -8,7 +8,7 @@
 
   <preference for="Vinsol\MultiVendorMarketplace\Api\Data\CategoryInterface" type="Vinsol\MultiVendorMarketplace\Model\Vendor"/>
 
-  <virtualType name="VinsolMultiVendorMarketplaceVendorsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+  <!-- <virtualType name="VinsolMultiVendorMarketplaceVendorsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
     <arguments>
       <argument name="appliers" xsi:type="array">
         <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
@@ -24,7 +24,7 @@
       <argument name="filterPool" xsi:type="object" shared="false">
         VinsolMultiVendorMarketplaceVendorsGridFilterPool</argument>
     </arguments>
-  </virtualType>
+  </virtualType> -->
 
 <!--   <virtualType name="VinsolMultiVendorMarketplaceProductsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
     <arguments>

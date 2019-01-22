@@ -1,0 +1,36 @@
+div.vendor-banner {
+  width: 100% !important;
+  height: 175px !important;
+  margin-bottom: 20px;
+  border: 2px solid black;
+  /*box-shadow: 0px 30px 40px rgba(0,0,0,.1);*/
+}
+
+.main {
+  background-color: azure;
+}
+
+img.banner {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+div.vendor-logo {
+  height: 85px !important;
+  width: 85px !important;
+}
+
+img.logo {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.vendor-name {
+  font-weight: bold;
+  font-size: 18px;
+  justify-content: center;
+  align-self: center;
+  display: flex;
+  margin: 0;
+}
+

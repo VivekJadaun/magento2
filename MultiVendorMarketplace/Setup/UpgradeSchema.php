@@ -11,8 +11,8 @@
     {
       $setup->startSetup();
 
-      if (version_compare($context->getVersion(), '1.1.1', '<')) {
-
+      if (version_compare($context->getVersion(), '1.1.1', '>')) {
+        echo ' upgrade schema ';
       //   $vendorEntity = \Vinsol\MultiVendorMarketplace\Model\Vendor::ENTITY;
 
       //   $setup->getTable($vendorEntity . '_entity')

@@ -3,6 +3,6 @@
 <layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
     <referenceContainer name="before.body.end">
         <!-- <uiComponent name="product_form"/> -->
-        <block class="Magento\Framework\View\Element\Template" template="Vinsol_MultiVendorMarketplace::hideAttributes.phtml" name="after" />
+        <block class="Magento\Framework\View\Element\Template" template="Vinsol_MultiVendorMarketplace::hide_attributes.phtml" name="after" />
     </referenceContainer>
 </layout>
