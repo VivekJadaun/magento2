@@ -181,8 +181,8 @@
       </settings>
     </column> -->
 
-    <!-- <column name="logo" class="Magento\Catalog\Ui\Component\Listing\Columns\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="0"> -->
-    <column name="logo" sortOrder="0">
+    <!-- <column name="logo" class="Magento\Catalog\Ui\Component\Listing\Columns\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="1"> -->
+    <column name="logo" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\Logo" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="1">
         <settings>
             <altField>logo</altField>
             <hasPreview>1</hasPreview>

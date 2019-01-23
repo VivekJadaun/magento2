@@ -51,6 +51,25 @@
     </arguments>
   </virtualType>
   
+
+<!--   <type name="Vinsol\MultiVendorMarketplace\Controller\Adminhtml\Vendors\Image\Upload">
+    <arguments>
+        <argument name="imageUploader" xsi:type="object">Vinsol\MultiVendorMarketplace\VendorImageUpload</argument>
+    </arguments>
+  </type>
+  <virtualType name="Vinsol\MultiVendorMarketplace\VendorImageUpload" type="Magento\Catalog\Model\ImageUploader">
+    <arguments>
+      <argument name="baseTmpPath" xsi:type="string">marketplace/tmp/vendor</argument>
+      <argument name="basePath" xsi:type="string">marketplace/vendor</argument>
+      <argument name="allowedExtensions" xsi:type="array">
+        <item name="jpg" xsi:type="string">jpg</item>
+        <item name="jpeg" xsi:type="string">jpeg</item>
+        <item name="gif" xsi:type="string">gif</item>
+        <item name="png" xsi:type="string">png</item>
+      </argument>
+    </arguments>
+  </virtualType> -->
+
 <!--   <virtualType name="Magento\Catalog\Model\ResourceModel\Product\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
     <arguments>
       <argument name="mainTable" xsi:type="string">catalog_product_entity</argument>

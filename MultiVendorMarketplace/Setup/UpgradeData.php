@@ -41,7 +41,7 @@
     public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
       $setup->startSetup();
-      if (version_compare($context->getVersion(), '1.1.1', '>')) {
+      if (version_compare($context->getVersion(), '1.1.1', '<')) {
 
         echo ' upgrade data ';
 
@@ -73,12 +73,12 @@
 
         // $productSetup->addAttributeToSet(\Magento\Catalog\Model\Product::ENTITY, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET, 'General', \Vinsol\MultiVendorMarketplace\Setup\InstallData::USER_ID);
 
-        // $vendorSetup = $this->eavSetupFactory->create(['setup' => $setup]);
-        // $vendorSetup->updateAttribute(\Vinsol\MultiVendorMarketplace\Setup\InstallData::VENDOR_ENTITY, 'logo', 'frontend_label', 'Logo');
+        $vendorSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+        $vendorSetup->updateAttribute(\Vinsol\MultiVendorMarketplace\Setup\InstallData::VENDOR_ENTITY, 'logo', 'backend_type', 'varchar');
         // echo 'logo label done';
         // $vendorSetup->updateAttribute(\Vinsol\MultiVendorMarketplace\Setup\InstallData::VENDOR_ENTITY, 'logo', 'frontend_input', 'media_image');
         // echo 'logo input done';
-        // $vendorSetup->updateAttribute(\Vinsol\MultiVendorMarketplace\Setup\InstallData::VENDOR_ENTITY, 'banner', 'frontend_label', 'Banner');
+        $vendorSetup->updateAttribute(\Vinsol\MultiVendorMarketplace\Setup\InstallData::VENDOR_ENTITY, 'banner', 'backend_type', 'varchar');
         // echo 'banner label done';
         // $vendorSetup->updateAttribute(\Vinsol\MultiVendorMarketplace\Setup\InstallData::VENDOR_ENTITY, 'banner', 'frontend_input', 'media_image');
         // echo 'banner input done';

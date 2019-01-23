@@ -65,7 +65,7 @@
 				[
 					'name' => 'lastname',
 					'label' => __('Lastname'),
-					'required' => false
+					'required' => true
 				]
 			);
 
@@ -165,8 +165,7 @@
 					'style' => 'height: 10em; width: 100%;',
 					'config' => $this->wysiwygConfig->getConfig()
 				]
-			);     
-
+			);
 
 			$fieldset->addField(
 				'logo',
@@ -175,6 +174,7 @@
 					'name' => 'logo',
 					'label' => __('Logo'),
 					'required' => false
+					// 'renderer' => 'Vinsol\MultiVendorMarketplace\Block\Adminhtml\Vendors\Grid\Renderer\Image'
 				]
 			); 
 

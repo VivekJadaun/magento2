@@ -76,9 +76,10 @@
       $rolesId = implode(", ", $this->roleId);
 
       $where = "role_name = '$this->roleName' OR parent_id IN ($rolesId)";
+      $this->addAttributeToSelect('*');
+      // $this->addAttributeToSelect(['logo', 'banner']);
       $this->joinTable($this->adminUserTable, 'user_id=user_id', self::ADMIN_USER_VENDOR_ENTITY_FIELDS, null, 'inner');
       $this->joinTable($this->roleTable, 'user_id=user_id', self::ROLE_FIELDS, $where, 'inner');
-      $this->addAttributeToSelect('*');
 
       // $this->messageManager->addSuccess($this->getSelect());
 

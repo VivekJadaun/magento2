@@ -44,9 +44,9 @@
 
       $this->productSetup = $this->categorySetupFactory->create(['setup' => $setup]);
 
-      // $this->createNewRole()->assignRules();  //ADD CONDITION TO CHECK PREVIOUS EXISTENCE
+      $this->createNewRole()->assignRules();  //ADD CONDITION TO CHECK PREVIOUS EXISTENCE
 
-      // $this->createNewAttributeSet()->createNewAttribute();  //ADD CONDITION TO CHECK PREVIOUS EXISTENCE
+      $this->createNewAttributeSet()->createNewAttribute();  //ADD CONDITION TO CHECK PREVIOUS EXISTENCE
 
       $vendorEntity = self::VENDOR_ENTITY;
       $this->vendorSetup = $this->vendorSetupFactory->create(['setup' => $setup]);

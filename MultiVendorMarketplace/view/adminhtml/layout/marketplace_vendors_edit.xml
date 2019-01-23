@@ -1,10 +1,20 @@
 <?xml version="1.0"?>
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="admin-2columns-left">
+<!--   <head>
+    <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+    <link src="Magento_Catalog::js/edit-tree.js"/>
+  </head> -->
   <referenceContainer name="left">
     <block class="Vinsol\MultiVendorMarketplace\Block\Adminhtml\Vendors\Edit\Tabs" name="vendors_edit_tabs"/>
   </referenceContainer>
   <referenceContainer name="content">
     <block class="Vinsol\MultiVendorMarketplace\Block\Adminhtml\Vendors\Edit" name="vendors_edit"/>
   </referenceContainer>
+
+
+ <!--  <update handle="styles"/>
+  <referenceContainer name="content">
+    <uiComponent name="vendor_form"/>
+  </referenceContainer> -->
 </page>
