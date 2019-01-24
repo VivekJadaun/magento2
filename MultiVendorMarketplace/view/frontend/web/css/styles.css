@@ -1,9 +1,11 @@
-div.vendor-banner {
+.vendor-banner {
   width: 100% !important;
   height: 175px !important;
   margin-bottom: 20px;
   border: 2px solid black;
+  /*background-position: center;*/
   /*box-shadow: 0px 30px 40px rgba(0,0,0,.1);*/
+  overflow: hidden;
 }
 
 .main {
@@ -13,24 +15,47 @@ div.vendor-banner {
 img.banner {
   width: 100% !important;
   height: 100% !important;
+  /*display: flex;*/
+  /*object-fit: cover;*/
+  /*background-size: cover;*/
+  /*background-position: center;*/
+  /*justify-content: center;*/
+  /*align-self: center;*/
+  /*display: flex;*/
+  /*align-items: center;*/
 }
 
-div.vendor-logo {
+.logo-username-container {
+ margin: 0;
+ padding: 0; 
+}
+
+.vendor-logo {
   height: 85px !important;
   width: 85px !important;
+  margin: 0;
+  padding: 0;
+  /*border: 2px solid blue;*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
 }
 
 img.logo {
   height: 100% !important;
   width: 100% !important;
+  margin: 0;
+  padding: 0;
+  /*display: inline-flex;*/
+  /*border: 2px solid red;*/
 }
 
-.vendor-name {
+.username {
   font-weight: bold;
   font-size: 18px;
-  justify-content: center;
-  align-self: center;
-  display: flex;
+  /*justify-content: center;*/
+  /*align-self: center;*/
+  /*display: flex;*/
   margin: 0;
+  padding: 2px;
 }
 

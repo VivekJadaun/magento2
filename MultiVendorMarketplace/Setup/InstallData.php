@@ -13,7 +13,7 @@
   class InstallData implements InstallDataInterface
   {
     const USER_ID = 'user_id';
-    const ATTRIBUTE_SET = 'Vendor';
+    const ATTRIBUTE_SET = 'Marketplace';
     const VENDOR_ENTITY = \Vinsol\MultiVendorMarketplace\Model\Vendor::ENTITY;
     protected $vendorSetupFactory;
     protected $vendorSetup;
@@ -181,6 +181,12 @@
         ];
         $this->attributeSet->setData($data)->validate();
         $this->attributeSet->save();
+        $this->attributeSet->initFromSkeleton($attributeSetId);
+        $this->attributeSet->save();
+
+        $this->productSetup->setDefaultSetToEntityType($productTypeId, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET);
+        // $this->productSetup->setDefaultSetToEntityType(\Magento\Catalog\Model\Product::ENTITY, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET);
+
         return $this;
      }
 
@@ -188,7 +194,7 @@
      {
         $this->productSetup->addAttribute(\Magento\Catalog\Model\Product::ENTITY, self::USER_ID, 
           [
-            'type' => 'text',
+            'type' => 'static',
             'backend' => '',
             'frontend' => '',
             'label' => 'Vendor',
@@ -209,8 +215,7 @@
             'unique' => false
             // 'attribute_set' => self::ATTRIBUTE_SET
           ]
-        )
-        ->addAttributeToSet(\Magento\Catalog\Model\Product::ENTITY, self::ATTRIBUTE_SET, 'General', self::USER_ID);
+        )->addAttributeToSet(\Magento\Catalog\Model\Product::ENTITY, self::ATTRIBUTE_SET, 'General', self::USER_ID);
         return $this;
      }
   }

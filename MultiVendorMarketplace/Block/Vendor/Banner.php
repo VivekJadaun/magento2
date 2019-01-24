@@ -5,11 +5,12 @@ class Banner extends \Magento\Framework\View\Element\Template
 {
   public $_template = 'Vinsol_MultiVendorMarketplace::banner.phtml';
   public $banner = '';
-  public $username;
+  public $username = '' ;
   protected $adminActionContext;
   protected $session;
   protected $vendor;
   protected $response;
+  protected $vendorId;
 
   public function __construct(
     \Magento\Framework\View\Element\Template\Context $context,
@@ -25,12 +26,18 @@ class Banner extends \Magento\Framework\View\Element\Template
     parent::__construct($context, $data);
   }
 
+  public function getImageUrl()
+  {
+    // return $this->getMediaDirectory()->getAbsolutePath("marketplace/$this->vendorId/$this->banner");
+    return $this->getUrl("pub/media/marketplace/") . $this->vendorId . '/' . $this->banner;
+  }
+
   public function _prepareLayout()
   {
     parent::_prepareLayout();
-    $vendorId = $this->adminActionContext->getRequest()->getParam('id');
-    if ($vendorId) {
-      $this->vendor->load($vendorId);
+    $this->vendorId = $this->adminActionContext->getRequest()->getParam('id');
+    if ($this->vendorId) {
+      $this->vendor->load($this->vendorId);
       
       if ($this->vendor->getId()) {
         $this->username = $this->vendor->getUsername();
@@ -40,8 +47,13 @@ class Banner extends \Magento\Framework\View\Element\Template
         }
 
       }
-      
+
     }
 
+  }
+
+  public function getLocation()
+  {
+    return $this->getMediaDirectory();
   }
 }

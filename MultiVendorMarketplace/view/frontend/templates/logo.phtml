@@ -1,6 +1,12 @@
-<!-- <div class="vendor-logo"> -->
-  <span>
-      <img clas="logo" src="<?php echo $this->getViewFileUrl('Vinsol_MultiVendorMarketplace::images/' . $this->logo . ''); ?>" alt="vendor-logo"/>
-      <span class="vendor-name"><?php $this->username ?></span>
-  </span>
-<!-- </div> -->
+<div class="logo-username-container">
+  <!-- <div class=""> -->
+<!--       <img class="logo" src="<?php //echo $this->getViewFileUrl('images/' . $this->logo . ''); ?>" alt="vendor-logo"/> -->
+<!--       <img class="logo" src="<?php //echo $this->getLocation() . '/marketplace/images/' . $this->logo; ?>" alt="vendor-logo"/> -->
+      <div class="vendor-logo">
+<!--         <img class="logo" src="<?php //echo $block->getLocation() . '/mage2/pub/media/marketplace/images/' . $block->logo; ?>" alt="vendor-logo"/>
+ -->
+         <img class="logo" src="<?php echo $block->getImageUrl(); ?>" alt="vendor-logo"/>      
+      </div>
+      <div class="username"><?php echo $block->username; ?></div>
+  <!-- </div> -->
+</div>

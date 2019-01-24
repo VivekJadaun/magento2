@@ -44,16 +44,17 @@ class Save extends \Magento\Backend\App\Action {
     $resultRedirect = $this->resultRedirectFactory->create();
 
     // $this->messageManager->addSuccess(http_build_query($this->getRequest()->getParams()));
-    // $this->messageManager->addNotice(http_build_query($_FILES));
-    // $this->messageManager->addSuccess($this->getRequest()->getParam('logo'));
 
-    $id = $this->getRequest()->getParam('id');
-    if($id) {
-      $this->vendor->load($id);
-    }
+    $id = $this->getRequest()->getParam('entity_id');
+    // if($id) {
+    //   $this->vendor->load($id);
+    // }
     $this->vendor->setData($vendorData);
     
-    $target = $this->mediaDirectory->getAbsolutePath('images/');
+    // if (!$id) {
+    //   $id = $this->vendor->getId();
+    // }
+    $target = $this->mediaDirectory->getAbsolutePath("marketplace/$id");
     // $path = $this->_filesystem->getDirectoryWrite(DirectoryList::MEDIA)->getAbsolutePath('images/');
 
     try {
@@ -62,6 +63,7 @@ class Save extends \Magento\Backend\App\Action {
         $logo->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png']);        
         $logo->setAllowRenameFiles(false);
         $logo->save($target);
+        //ADD CODE TO DELETE PREVIOUS LOGO FILE BEFORE SAVING NEW UPLOAD
       }
 
       if (isset($_FILES['banner']) && ($_FILES['banner']['error'] === 0)) {
@@ -69,6 +71,7 @@ class Save extends \Magento\Backend\App\Action {
         $banner->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png']);        
         $banner->setAllowRenameFiles(false);        
         $banner->save($target);
+        //ADD CODE TO DELETE PREVIOUS BANNER FILE BEFORE SAVING NEW UPLOAD
       }
 
       $this->vendor->save();
