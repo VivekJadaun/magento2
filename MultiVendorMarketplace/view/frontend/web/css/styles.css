@@ -2,7 +2,7 @@
   width: 100% !important;
   height: 175px !important;
   margin-bottom: 20px;
-  border: 2px solid black;
+  /*border: 2px solid black;*/
   /*background-position: center;*/
   /*box-shadow: 0px 30px 40px rgba(0,0,0,.1);*/
   overflow: hidden;
@@ -18,7 +18,7 @@ img.banner {
   /*display: flex;*/
   /*object-fit: cover;*/
   /*background-size: cover;*/
-  /*background-position: center;*/
+  background-position: center;
   /*justify-content: center;*/
   /*align-self: center;*/
   /*display: flex;*/

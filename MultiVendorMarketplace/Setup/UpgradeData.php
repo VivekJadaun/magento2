@@ -43,21 +43,28 @@
       $setup->startSetup();
       if (version_compare($context->getVersion(), '1.1.1', '<')) {
     
-        $productSetup = $this->eavSetupFactory->create(['setup' => $setup]);
+        //THIS FILE IS NOT NEEDED IN THE END;
+
+        // $productSetup = $this->eavSetupFactory->create(['setup' => $setup]);
         // $attributeSet = $this->attributeSetFactory->create();
+        // $productTypeId = $productSetup->getEntityTypeId(\Magento\Catalog\Model\Product::ENTITY);
+        // $attributeSetId = $productSetup->getDefaultAttributeSetId($productTypeId);
         // $data = [
         //   'attribute_set_name' => \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET,
-        //   'entity_type_id' => 4,
-        //   'sort_order' => 0,
+        //   'entity_type_id' => $productTypeId,
+        //   'sort_order' => 2,
         // ];
         // $attributeSet->setData($data)->validate();
         // $attributeSet->save();
-        // $attributeSet->initFromSkeleton('Default');
+        // $attributeSet->initFromSkeleton($attributeSetId);
         // $attributeSet->save();
         // $productSetup->setDefaultSetToEntityType(\Magento\Catalog\Model\Product::ENTITY, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET); 
 
-        $productSetup->addAttributeToSet(\Magento\Catalog\Model\Product::ENTITY, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET, 90, \Vinsol\MultiVendorMarketplace\Setup\InstallData::USER_ID);
+        // $productSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY, self::USER_ID, 'attribute_set', \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET); 
 
+        // $productSetup->addAttributeToSet(\Magento\Catalog\Model\Product::ENTITY, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET, 'general', \Vinsol\MultiVendorMarketplace\Setup\InstallData::USER_ID, 8);
+
+        echo 'upgraded';
 
       }
 

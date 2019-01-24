@@ -1,0 +1,36 @@
+
+<?php $_width = $block->getImageWidth(); ?>
+<div class="product-image-popup" style="width:<?= $_width ?>px;">
+    <div class="buttons-set"><a href="#" class="button" role="close-window"><span><?=  __('Close Window') ?></span></a></div>
+    <?php if ($block->getPreviousImageUrl() || $block->getNextImageUrl()): ?>
+        <div class="nav">
+          <?php if ($_prevUrl = $block->getPreviousImageUrl()): ?>
+              <a href="<?= $_prevUrl ?>" class="prev">&laquo; <?= __('Prev') ?></a>
+          <?php endif; ?>
+          <?php if ($_nextUrl = $block->getNextImageUrl()): ?>
+              <a href="<?= $_nextUrl ?>" class="next"><?= __('Next') ?> &raquo;</a>
+          <?php endif; ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($_imageTitle = $block->escapeHtml($block->getCurrentImage()->getLabel())): ?>
+        <h1 class="image-label"><?= $_imageTitle ?></h1>
+    <?php endif; ?>
+    <?php
+        $imageUrl = $this->helper('Magento\Catalog\Helper\Image')
+            ->init($block->getProduct(), 'product_page_image_large')
+            ->setImageFile($block->getImageFile())
+            ->getUrl();
+    ?>
+    <img src="<?= $imageUrl ?>"<?php if ($_width): ?> width="<?= $_width ?>"<?php endif; ?> alt="<?= $block->escapeHtml($block->getCurrentImage()->getLabel()) ?>" title="<?= $block->escapeHtml($block->getCurrentImage()->getLabel()) ?>" id="product-gallery-image" class="image" data-mage-init='{"catalogGallery":{}}'/>
+    <div class="buttons-set"><a href="#" class="button" role="close-window"><span><?= __('Close Window') ?></span></a></div>
+    <?php if ($block->getPreviousImageUrl() || $block->getNextImageUrl()): ?>
+        <div class="nav">
+          <?php if ($_prevUrl = $block->getPreviousImageUrl()): ?>
+              <a href="<?= $_prevUrl ?>" class="prev">&laquo; <?= __('Prev') ?></a>
+          <?php endif; ?>
+          <?php if ($_nextUrl = $block->getNextImageUrl()): ?>
+              <a href="<?= $_nextUrl ?>" class="next"><?= __('Next') ?> &raquo;</a>
+          <?php endif; ?>
+        </div>
+    <?php endif; ?>
+</div>

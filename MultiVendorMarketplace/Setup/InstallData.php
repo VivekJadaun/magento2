@@ -184,8 +184,7 @@
         $this->attributeSet->initFromSkeleton($attributeSetId);
         $this->attributeSet->save();
 
-        $this->productSetup->setDefaultSetToEntityType($productTypeId, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET);
-        // $this->productSetup->setDefaultSetToEntityType(\Magento\Catalog\Model\Product::ENTITY, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET);
+        $this->productSetup->setDefaultSetToEntityType(\Magento\Catalog\Model\Product::ENTITY, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET);
 
         return $this;
      }
@@ -212,10 +211,10 @@
             'comparable' => false,
             'visible_on_front' => true,
             'used_in_product_listing' => true,
-            'unique' => false
-            // 'attribute_set' => self::ATTRIBUTE_SET
+            'unique' => false,
+            'attribute_set' => self::ATTRIBUTE_SET
           ]
-        )->addAttributeToSet(\Magento\Catalog\Model\Product::ENTITY, self::ATTRIBUTE_SET, 'General', self::USER_ID);
+        )->addAttributeToSet(\Magento\Catalog\Model\Product::ENTITY, self::ATTRIBUTE_SET, 'general', self::USER_ID, 8);
         return $this;
      }
   }

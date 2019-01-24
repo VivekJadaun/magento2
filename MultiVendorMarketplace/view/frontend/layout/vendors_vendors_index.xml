@@ -20,5 +20,8 @@
         <block class="Vinsol\MultiVendorMarketplace\Block\Vendor\Logo" template="Vinsol_MultiVendorMarketplace::logo.phtml" name="vinsol_vendors_logo" cacheable="false"/>
       </container>
     </referenceContainer>
+    <referenceContainer name="content">
+      <block class="Vinsol\MultiVendorMarketplace\Block\Product\Gallery" name="vendor_product_gallery" template="Vinsol_MultiVendorMarketplace::gallery.phtml"/>
+    </referenceContainer>
   </body>
 </page>
