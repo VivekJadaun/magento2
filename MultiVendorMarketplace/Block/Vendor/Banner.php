@@ -1,6 +1,8 @@
 <?php
 namespace Vinsol\MultiVendorMarketplace\Block\Vendor;
 
+use Vinsol\MultiVendorMarketplace\Model\ResourceModel\Product\CollectionFactory;
+
 class Banner extends \Magento\Framework\View\Element\Template
 {
   public $_template = 'Vinsol_MultiVendorMarketplace::banner.phtml';
@@ -56,4 +58,5 @@ class Banner extends \Magento\Framework\View\Element\Template
   {
     return $this->getMediaDirectory();
   }
+
 }

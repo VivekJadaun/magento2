@@ -13,6 +13,7 @@
     const ROLE_NAME = 'vendor';
     protected $encryptor;
     protected $role;
+    protected $user;
 
     public function __construct(
       \Magento\Framework\Encryption\Encryptor $encryptor,
@@ -20,19 +21,18 @@
       \Magento\Framework\Model\Context $context,
       \Magento\Framework\Registry $registry,
       \Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor $resource,
-      \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+      // \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+      \Magento\User\Model\UserFactory $userFactory,
+      // \Magento\User\Model\User $user,
       array $data = []
     )
     {
       $this->encryptor = $encryptor;
+      $this->user = $userFactory->create();
+      // $this->user = $user;
       $this->role = $roleFactory->create();
-      parent::__construct(
-        $context,
-        $registry,
-        $resource,
-        $resourceCollection,
-        $data
-      );
+      // parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+      parent::__construct($context, $registry, $resource, null, $data);
     }
 
     protected function _construct()
@@ -49,4 +49,11 @@
     // {
       // $this->setData('role_id', $this->role->load(self::ROLE_NAME, 'role_name')->setPageSize(1)->setCurPage(1)->getId());
     // }
+
+    public function getStatus($id)
+    {
+      $this->user->load($id);
+      $status = $this->user->getIsActive();
+      return $status;
+    }
   }

@@ -193,7 +193,7 @@
      {
         $this->productSetup->addAttribute(\Magento\Catalog\Model\Product::ENTITY, self::USER_ID, 
           [
-            'type' => 'static',
+            'type' => 'int',
             'backend' => '',
             'frontend' => '',
             'label' => 'Vendor',

@@ -2,11 +2,13 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-  <!-- <type name="\Vinsol\MultiVendorMarketplace\Model\Vendor">
-    <plugin name="VendorDispatchPlugin" sortOrder="10" type="\Vinsol\MultiVendorMarketplace\Block\Adminhtml\VendorDispatchPlugin" disabled="false" />
+<!--   <type name="Magento\Catalog\Model\Layer">
+    <plugin name="vendor_product_layer_plugin" sortOrder="10" type="Vinsol\MultiVendorMarketplace\Plugin\Layer" disabled="false" />
   </type> -->
 
   <preference for="Vinsol\MultiVendorMarketplace\Api\Data\CategoryInterface" type="Vinsol\MultiVendorMarketplace\Model\Vendor"/>
+
+  <preference for="Magento\Catalog\Block\Product\View\Attributes" type="Vinsol\MultiVendorMarketplace\Block\Product\Attributes"/>
 
   <!-- <virtualType name="VinsolMultiVendorMarketplaceVendorsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
     <arguments>

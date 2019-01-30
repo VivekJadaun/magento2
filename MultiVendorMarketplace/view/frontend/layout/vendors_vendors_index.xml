@@ -8,11 +8,6 @@
     <referenceContainer name="columns.top">
       <container name="vendor_banner" htmlTag="div" htmlClass="vendor-banner">
         <block class="Vinsol\MultiVendorMarketplace\Block\Vendor\Banner" template="Vinsol_MultiVendorMarketplace::banner.phtml" name="vinsol_vendors_banner" cacheable="false"/>
-        <!-- <block class="Magento\Framework\View\Element\Text" name="bar">
-          <action method="setText">
-            <argument name="text" xsi:type="string"><![CDATA[<p>The Vendor</p>]]></argument>
-          </action>
-        </block> -->
       </container>
     </referenceContainer>
     <referenceContainer name="sidebar.main">
@@ -21,7 +16,7 @@
       </container>
     </referenceContainer>
     <referenceContainer name="content">
-      <block class="Vinsol\MultiVendorMarketplace\Block\Product\Gallery" name="vendor_product_gallery" template="Vinsol_MultiVendorMarketplace::gallery.phtml"/>
+      <block class="Vinsol\MultiVendorMarketplace\Block\Products" name="vendor_products" template="Magento_Catalog::product/list.phtml"/>
     </referenceContainer>
   </body>
 </page>

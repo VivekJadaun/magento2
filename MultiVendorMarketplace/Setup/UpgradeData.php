@@ -1,5 +1,9 @@
 <?php
 
+  /*
+  ** REMOVE THIS CLASS IN LIU OF INSTALL DATA
+  */
+
   namespace Vinsol\MultiVendorMarketplace\Setup;
 
   use Magento\Framework\Setup\UpgradeDataInterface;
@@ -7,7 +11,6 @@
   use Magento\Framework\Setup\ModuleDataSetupInterface;
   use Magento\Eav\Model\Entity\Attribute\SetFactory as AttributeSetFactory;
 
-// REMOVE THIS CLASS IN LIU OF INSTALL DATA
   
   class UpgradeData implements UpgradeDataInterface
   {
@@ -61,10 +64,10 @@
         // $productSetup->setDefaultSetToEntityType(\Magento\Catalog\Model\Product::ENTITY, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET); 
 
         // $productSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY, self::USER_ID, 'attribute_set', \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET); 
+        // $productSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY, self::USER_ID, 'default', null); 
 
         // $productSetup->addAttributeToSet(\Magento\Catalog\Model\Product::ENTITY, \Vinsol\MultiVendorMarketplace\Setup\InstallData::ATTRIBUTE_SET, 'general', \Vinsol\MultiVendorMarketplace\Setup\InstallData::USER_ID, 8);
 
-        echo 'upgraded';
 
       }
 

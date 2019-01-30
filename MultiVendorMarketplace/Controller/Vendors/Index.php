@@ -16,6 +16,7 @@ class Index extends \Magento\Framework\App\Action\Action
   {
     $this->resultPageFactory = $resultPageFactory;
     $this->vendor = $vendorFactory->create();
+    // $this->vendor = $vendorFactory;
     parent::__construct($context);
   }
 
@@ -24,6 +25,12 @@ class Index extends \Magento\Framework\App\Action\Action
     $id = $this->getRequest()->getParam('id');
     if (!isset($id)) {
       $this->_forward('cms', 'noroute', 'index');
+    } else {
+      $this->vendor->load($id);
+      $userId = $this->vendor->getUserId();
+      if (!$this->vendor->getStatus($userId)) {
+        $this->_forward('cms', 'noroute', 'index');
+      }
     }
 
     // $resultPage = $this->resultPageFactory->create(false, ['template' => 'Vinsol_MultiVendorMarketplace::vendor.phtml']);

@@ -107,17 +107,15 @@
             </settings>
         </filterSelect>
     </filters>
-    <massaction name="listing_massaction"
-                component="Magento_Ui/js/grid/tree-massactions"
-                class="\Magento\Catalog\Ui\Component\Product\MassAction">
+   <!--  <massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions" class="\Magento\Catalog\Ui\Component\Product\MassAction">
         <action name="delete">
             <settings>
                 <confirm>
                     <message translate="true">Delete selected items?</message>
                     <title translate="true">Delete items</title>
                 </confirm>
-<!--                 <url path="catalog/product/massDelete"/><======== CREATE A CUSTOM CONTROLLER ACTION FOR THIS
- -->                <type>delete</type>
+                <url path="catalog/product/massDelete"/><======== CREATE A CUSTOM CONTROLLER ACTION FOR THIS
+                <type>delete</type>
                 <label translate="true">Delete</label>
             </settings>
         </action>
@@ -129,28 +127,28 @@
                     <action name="0">
                         <type>enable</type>
                         <label translate="true">Enable</label>
-<!--                         <url path="catalog/product/massStatus"><======== CREATE A CUSTOM CONTROLLER ACTION FOR THIS
+                        <url path="catalog/product/massStatus"><======== CREATE A CUSTOM CONTROLLER ACTION FOR THIS
                             <param name="status">1</param>
-                        </url> -->
+                        </url>
                     </action>
                     <action name="1">
                         <type>disable</type>
                         <label translate="true">Disable</label>
-<!--                         <url path="catalog/product/massStatus"><======== CREATE A CUSTOM CONTROLLER ACTION FOR THIS
+                        <url path="catalog/product/massStatus"><======== CREATE A CUSTOM CONTROLLER ACTION FOR THIS
                             <param name="status">2</param>
-                        </url> -->
+                        </url>
                     </action>
                 </actions>
             </settings>
         </action>
         <action name="attributes">
             <settings>
-                <url path="catalog/product_action_attribute/edit"/><!-- <======== CREATE A CUSTOM CONTROLLER ACTION FOR THIS -->
+                <url path="catalog/product_action_attribute/edit"/><======== CREATE A CUSTOM CONTROLLER ACTION FOR THIS
                 <type>attributes</type>
                 <label translate="true">Update attributes</label>
             </settings>
         </action>
-    </massaction>
+    </massaction> -->
     <paging name="listing_paging"/>
 </listingToolbar>
 
