@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Events/etc/events.xsd">
+  <event name="checkout_submit_all_after">
+    <observer name="vendor_product_order_placed_observer" instance="Vinsol\MultiVendorMarketplace\Observer\ProductOrderPlaced" />
+  </event>
+
+
+<!--   <event name="checkout_onepage_controller_success_action">
+    <observer name="vendor_product_order_placed_observer" instance="Vinsol\MultiVendorMarketplace\Observer\ProductOrderPlaced" />
+  </event> -->
+  
+<!--   <event name="sales_order_load_after">
+    <observer name="vendor_product_order_placed_observer" instance="Vinsol\MultiVendorMarketplace\Observer\ProductOrderPlaced" />
+  </event> -->
+</config>

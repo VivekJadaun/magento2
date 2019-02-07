@@ -10,6 +10,8 @@
 
   <preference for="Magento\Catalog\Block\Product\View\Attributes" type="Vinsol\MultiVendorMarketplace\Block\Product\Attributes"/>
 
+  <!-- <preference for="Magento\Sales\Model\Order" type="Vinsol\MultiVendorMarketplace\Model\Sales\Order"/> -->
+
   <!-- <virtualType name="VinsolMultiVendorMarketplaceVendorsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
     <arguments>
       <argument name="appliers" xsi:type="array">

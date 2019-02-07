@@ -5,7 +5,7 @@
  * IF THE CURRENT PRODUCT BELONGS TO AN ACTIVE VENDOR (i.e. product has additional attribute `user_id` ), 
  * THE VENDOR'S USERNAME IS A LINK TO VENDOR'S PRODUCT LISTING PAGE.
  *
- * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ * @var $block \Vinsol\MultiVendorMarketplace\Block\Product\Attributes
  */
 ?>
 <?php
@@ -26,7 +26,8 @@
                             if($_data['code'] === 'user_id') {
                                 $_vendor->addAttributeToFilter('username', $_data['value'])->addAttributeToFilter('is_active', '1')->load();
                                 if (count($_vendor->getLoadedIds())): ?>
-                                    <a href="<?= $block->getUrl('vendors/vendors/index/', ['id' => $_vendor->getData()[0]['entity_id']]) ?>">
+                                    <!-- <a href="<?= $block->getUrl('vendors/vendors/index/', ['id' => $_vendor->getData()[0]['entity_id']]) ?>"> -->
+                                    <a href="<?= $block->getUrl('vendors/'.$_data['value']) ?>">
                                         <?= $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?>
                                     </a>
                                 <?php else: ?>

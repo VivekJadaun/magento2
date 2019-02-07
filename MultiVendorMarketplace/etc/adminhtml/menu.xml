@@ -27,7 +27,7 @@
          module="Vinsol_MultiVendorMarketplace" 
          resource="Vinsol_MultiVendorMarketplace::vendors_settings" 
          sortOrder="10"
-         action="adminhtml/system_config/edit/section/marketplace_vendor_general_settings"
+         action="adminhtml/system_config/edit/section/marketplace"
          parent="Vinsol_MultiVendorMarketplace::marketplace_label" />
 
     <add id="Vinsol_MultiVendorMarketplace::vendors_commission" 

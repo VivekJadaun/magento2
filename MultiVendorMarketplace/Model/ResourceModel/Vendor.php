@@ -3,9 +3,19 @@
   namespace Vinsol\MultiVendorMarketplace\Model\ResourceModel;
 
   use Magento\Framework\DataObject;
+  use Magento\UrlRewrite\Service\V1\Data\UrlRewrite as UrlRewriteService;
 
   class Vendor extends \Magento\Eav\Model\Entity\AbstractEntity
   {
+    const REQUEST_PATH_PREFIX = 'vendors/';
+    const TARGET_PATH_PREFIX = 'vendors/vendors/index/id/';
+    const ENTITY_TYPE = \Vinsol\MultiVendorMarketplace\Model\Vendor::ENTITY;
+    const REDIRECT_TYPE = 0;
+    const STORE_ID = 1;
+
+    private $_usernameChanged = false;
+    private $_productStatusChanged = false;
+    
     protected $user;
     protected $productCollection;
     protected $productAction;
@@ -13,8 +23,9 @@
     // protected $productVisibilty;
     protected $messageManager;
     protected $storeManager;
+    protected $urlRewrite;
+    protected $urlRewriteCollection;
 
-    private $productStatusChanged = false;
 
     public function __construct(
       \Magento\Eav\Model\Entity\Context $context,
@@ -25,6 +36,8 @@
       \Magento\Catalog\Api\ProductRepositoryInterface $productRepositoryInterface,
       \Magento\Catalog\Model\ResourceModel\Product\ActionFactory $productActionFactory,
       \Magento\Store\Model\StoreManagerInterface $storeManager,
+      \Magento\UrlRewrite\Model\UrlRewriteFactory $urlRewriteFactory,
+      \Magento\UrlRewrite\Model\ResourceModel\UrlRewriteCollectionFactory $urlRewriteCollectionFactory,
       $data = []
     )
     {
@@ -35,6 +48,8 @@
       // $this->productVisibilty = $productVisibilty;
       $this->messageManager = $messageManager;
       $this->storeManager = $storeManager;
+      $this->urlRewrite = $urlRewriteFactory->create();
+      $this->urlRewriteCollection = $urlRewriteCollectionFactory->create();
       parent::__construct($context, $data);
     }
 
@@ -61,69 +76,38 @@
       parent::_beforeSave($object);
     }
 
-    // protected function _afterSave(DataObject $object)
-    // {
-    //   parent::_afterSave($object);
+    protected function _afterSave(DataObject $object)
+    {
+      $this->updateUrlRewrite($object);
+      
+      parent::_afterSave($object);
 
-    //   $data = $object->getData();
-    //   $userId = $object->getUserId();
-    //   $username = $object->getUsername();
-    //   // $this->user->load
-    //   if ($object->getIsActive() != 1) {
-
-    //     $storesIds = array_keys($this->storeManager->getStores()); 
-
-    //     $this->productCollection
-    //       ->addAttributeToFilter('user_id', $userId)
-    //       // ->addAttributeToFilter('status', [])  <============================================================
-    //       ->load();
-
-    //     // THIS IS HELPFUL WHEN TO RESTORE PRODUCTS TO THEIR PREVIOUS STATUS ON VENDOR RE-ENABLE
-    //     $collectionIds = $this->productCollection->getAllIds();  
-
-    //     try {
-    //       // $this->productCollection->setVisibility(\Magento\Catalog\Model\Product\Visibility::VISIBILITY_NOT_VISIBLE);
-    //       // $this->productCollection->save(); 
-    //       $this->productAction->updateAttributes($collectionIds, ['status' => \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_DISABLED], $storeId);   
-    //     } catch (\Exception $e) {
-    //       $this->messageManager->addException($e);
-    //     }
-
-    //     $this->messageManager->addSuccess(__("$username Products Visibility Set To : Not visible (1)"));
-
-    //   } else {
-    //     $this->productCollection->addAttributeToFilter('user_id', $userId)->load();
-
-    //     try {
-    //       $this->productCollection->setVisibility(\Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH);
-    //       $this->productCollection->save();    
-    //     } catch (\Exception $e) {
-    //       $this->messageManager->addException($e);
-    //     }
-
-    //     $this->messageManager->addSuccess(__("$username Products Visibility Set To : Catalog + Search (4)"));
-    //   }
-
-    // }
+    }
 
     private function updateUser(DataObject & $object)
     {
+      if ($object->getUserId()) {
         $this->user->load($object->getUserId());
-        $data = $object->getData();
-        $active = $object->getIsActive();
-        $this->productStatusChanged = ($this->user->getIsActive() != $object->getIsActive());
+      }
+      $data = $object->getData();
+      $active = $object->getIsActive();
 
-        // if ($this->user->getId()) {        //REMAIN COMMENTED
-        $this->user->setData($data);
-        try {
-            // $this->messageManager->addSuccess(__("vendor updated!"));
-            $this->user->save();
-        } catch (\Exception $e) {
-            $this->messageManager->addException($e);
-        }
-        // } 
-        $object->setUserId($this->user->getId());
-        return $this;
+      if (!$this->user->isObjectNew()) {
+        $this->_productStatusChanged = ($this->user->getIsActive() != $object->getIsActive());
+        $this->_usernameChanged = ($this->user->getUsername() != $object->getUsername());
+      }
+
+      // if ($this->user->getId()) {        //REMAIN COMMENTED
+      $this->user->setData($data);
+      try {
+          // $this->messageManager->addSuccess(__("vendor updated!"));
+          $this->user->save();
+      } catch (\Exception $e) {
+          $this->messageManager->addException($e);
+      }
+      // } 
+      $object->setUserId($this->user->getId());
+      return $this;
     }
 
     private function updateLogo(DataObject & $object)
@@ -144,62 +128,115 @@
 
     private function updateProductStatus(DataObject & $object)
     {
-        if ($this->productStatusChanged) {
+      if ($this->_productStatusChanged) {
 
-            $storesIds = array_keys($this->storeManager->getStores()); 
-            $userId = $object->getUserId();
-            $username = $object->getUsername();
+        $storesIds = array_keys($this->storeManager->getStores()); 
+        $userId = $object->getUserId();
+        $username = $object->getUsername();
 
-            $this->productCollection
-              ->addAttributeToFilter('user_id', $userId)
-              // ->addAttributeToFilter('status', [])  <============================================================
-              ->load();
+        $this->productCollection
+          ->addAttributeToFilter('user_id', $userId)
+          // ->addAttributeToFilter('status', [])  <============================================================
+          ->load();
 
-            // THIS IS HELPFUL WHEN TO RESTORE PRODUCTS TO THEIR PREVIOUS STATUS ON VENDOR RE-ENABLE (set this in registry)
-            $collectionIds = $this->productCollection->getAllIds();  
+        // THIS IS HELPFUL WHEN TO RESTORE PRODUCTS TO THEIR PREVIOUS STATUS ON VENDOR RE-ENABLE (set this in registry)
+        $collectionIds = $this->productCollection->getAllIds();  
 
-            if ($object->getIsActive()) {
-                try {
-                    foreach ($collectionIds as $productId) {
-                        $productDataObject = $this->productRepository->getbyId($productId);
-                        $productDataObject
-                        ->setData('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH);
-                        // ->setData('status', \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
-                        $this->productRepository->save($productDataObject);
-                    }
-                    
-                    $this->messageManager->addSuccess(__("$username`s all products have been enabled!"));
-                } catch (\Exception $e) {
-                    $this->messageManager->addException($e);
+        if ($object->getIsActive()) {
+            try {
+                foreach ($collectionIds as $productId) {
+                    $productDataObject = $this->productRepository->getbyId($productId);
+                    $productDataObject
+                    ->setData('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH);
+                    // ->setData('status', \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
+                    $this->productRepository->save($productDataObject);
                 }
-            } else {
-                try {
-                    foreach ($collectionIds as $productId) {
-                        $productDataObject = $this->productRepository->getbyId($productId);
-                        $productDataObject
-                        ->setData('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_NOT_VISIBLE);
-                        // ->setData('status', \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_DISABLED);
-                        $this->productRepository->save($productDataObject);
-                    }
-
-                    $this->messageManager->addSuccess(__("$username`s products have been disabled!"));
-                } catch (\Exception $e) {
-                    $this->messageManager->addException($e);
-                }
+                
+                $this->messageManager->addSuccess(__("$username`s all products have been enabled!"));
+            } catch (\Exception $e) {
+                $this->messageManager->addException($e);
             }
+        } else {
+          try {
+            foreach ($collectionIds as $productId) {
+                $productDataObject = $this->productRepository->getbyId($productId);
+                $productDataObject
+                ->setData('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_NOT_VISIBLE);
+                // ->setData('status', \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_DISABLED);
+                $this->productRepository->save($productDataObject);
+            }
+
+            $this->messageManager->addSuccess(__("$username`s products have been disabled!"));
+          } catch (\Exception $e) {
+              $this->messageManager->addException($e);
+          }
+        }
       }
 
       return $this;
     }
 
+    private function updateUrlRewrite(DataObject & $object)
+    {
+      $vendorId = $object->getEntityId();
+  
+      if ($this->user->isObjectNew()) {
+        $this->urlRewrite->setData([
+          UrlRewriteService::ENTITY_ID => $vendorId,
+          UrlRewriteService::ENTITY_TYPE => self::ENTITY_TYPE,
+          UrlRewriteService::IS_AUTOGENERATED => 0,
+          UrlRewriteService::REQUEST_PATH => self::REQUEST_PATH_PREFIX . $object->getUsername(),
+          UrlRewriteService::TARGET_PATH => self::TARGET_PATH_PREFIX . $vendorId,
+          UrlRewriteService::STORE_ID => self::STORE_ID,
+          UrlRewriteService::REDIRECT_TYPE => self::REDIRECT_TYPE,
+          UrlRewriteService::DESCRIPTION => null,
+          UrlRewriteService::METADATA => null
+        ]);
+        
+        $this->urlRewrite->save();
+      }
+
+      else if ($this->_usernameChanged) {
+        $urlRewrite = $this->urlRewriteCollection
+          ->addFieldToFilter(UrlRewriteService::ENTITY_TYPE, self::ENTITY_TYPE)
+          ->addFieldToFilter(UrlRewriteService::ENTITY_ID, $vendorId)
+          ->load()->fetchItem();
+
+        $urlRewrite->delete();
+      }
+      
+      return $this;
+    }
+
+    // private function createNewUrlRewrite()
+    // {
+    //   $this->urlRewrite->setData([
+    //     UrlRewriteService::ENTITY_ID => $vendorId,
+    //     UrlRewriteService::ENTITY_TYPE => self::ENTITY_TYPE,
+    //     UrlRewriteService::IS_AUTOGENERATED => 0,
+    //     UrlRewriteService::REQUEST_PATH => self::REQUEST_PATH_PREFIX . $object->getUsername(),
+    //     UrlRewriteService::TARGET_PATH => self::TARGET_PATH_PREFIX . $vendorId,
+    //     UrlRewriteService::STORE_ID => self::STORE_ID,
+    //     UrlRewriteService::REDIRECT_TYPE => self::REDIRECT_TYPE,
+    //     UrlRewriteService::DESCRIPTION => null,
+    //     UrlRewriteService::METADATA => null
+    //   ]);        
+      
+    //   return $this->urlRewrite;
+    // }
+
     protected function _afterDelete(DataObject $object)
     {
       $userId = $object->getUserId();
+      $vendorId = $object->getEntityId();
 
       $this->productCollection->addAttributeToFilter('user_id', $userId)->load()->delete();
 
       $this->user->load($userId);
       $this->user->delete();
+
+      $this->urlRewrite->load($vendorId);
+      $this->urlRewrite->delete();
 
       parent::_afterDelete($object);
     }

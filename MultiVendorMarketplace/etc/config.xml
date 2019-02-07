@@ -3,10 +3,14 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
   <default>
-    <marketplace_vendor_general_settings>
-      <general_settings>
+    <marketplace>
+      <general>
         <vendor_default_role>vendor</vendor_default_role>
-      </general_settings>
-    </marketplace_vendor_general_settings>
+      </general>
+      <email>
+        <notifications>1</notifications>
+        <template>marketplace_email_template</template>
+      </email>
+    </marketplace>
   </default>
 </config>

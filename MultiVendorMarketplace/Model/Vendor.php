@@ -2,9 +2,6 @@
 
   namespace Vinsol\MultiVendorMarketplace\Model;
 
-  /**
-   * 
-   */
   class Vendor extends \Magento\Framework\Model\AbstractModel
   {
     const ENTITY = 'marketplace_vendor';
@@ -14,6 +11,7 @@
     protected $encryptor;
     protected $role;
     protected $user;
+    protected $urlRewrite;
 
     public function __construct(
       \Magento\Framework\Encryption\Encryptor $encryptor,
@@ -24,6 +22,7 @@
       // \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
       \Magento\User\Model\UserFactory $userFactory,
       // \Magento\User\Model\User $user,
+      \Magento\UrlRewrite\Model\UrlRewriteFactory $urlRewriteFactory,
       array $data = []
     )
     {
@@ -31,6 +30,7 @@
       $this->user = $userFactory->create();
       // $this->user = $user;
       $this->role = $roleFactory->create();
+      $this->urlRewrite = $urlRewriteFactory->create();
       // parent::__construct($context, $registry, $resource, $resourceCollection, $data);
       parent::__construct($context, $registry, $resource, null, $data);
     }
@@ -55,5 +55,10 @@
       $this->user->load($id);
       $status = $this->user->getIsActive();
       return $status;
+    }
+
+    public function getVendorUrl($vendorId)
+    {
+      // $this->urlRewrite->load($vendorId);
     }
   }

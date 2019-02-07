@@ -5,24 +5,27 @@
 	<tab id="marketplace" translate="label" sortOrder="401">
 	  <label>Marketplace</label>
 	</tab>
-	<section id="marketplace_vendor_general_settings" translate="label" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1">
+	<section id="marketplace" translate="label" sortOrder="10" showInDefault="1" showInStore="1" showInWebsite="1">
 	  <label>General Settings</label>
 	  <tab>marketplace</tab>
 	  <resource>Vinsol_MultiVendorMarketplace::vendors</resource>
-	  <group id="general_settings" translate="label" type="select" showInDefault="1" showInStore="1" showInWebsite="1">
+	  <group id="general" translate="label" type="select" showInDefault="1" showInStore="1" showInWebsite="1">
 		<label>General Settings</label>
 		<field id="vendor_default_role" translate="label" showInDefault="1" showInStore="1" showInWebsite="1" type="select">
 		  <label>Default Role</label>
 		  <source_model>Vinsol\MultiVendorMarketplace\Model\Config\Source\Roles</source_model>
 		</field>
-		<field id="vendor_email_notifications" showInWebsite="1" showInStore="1" showInDefault="1" type="select">
-		  <label>Product purchase email notification</label>
+	  </group>
+	  <group id="email" translate="label" type="select" showInDefault="1" showInStore="1" showInWebsite="1">
+		<label>Emails</label>
+		<field id="notifications" showInWebsite="1" showInStore="1" showInDefault="1" type="select">
+		  <label>Recieve product purchase emails</label>
 		  <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
 		</field>
-		<!-- <field id="vendor_email_template" translate="label" showInWebsite="1" showInStore="1" showInDefault="1" type="select"> -->
-		  <!-- <label>Email Template</label> -->
-		  <!-- <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model> -->   <!--Not showing -->
-		<!-- </field> -->
+		<field id="template" translate="label" showInWebsite="1" showInStore="1" showInDefault="1" type="select">
+		  <label>Email Template</label>
+		  <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+		</field>
 	  </group>
 	</section>
 
