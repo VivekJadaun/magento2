@@ -68,7 +68,11 @@ class Edit extends \Magento\Backend\App\Action
   {
     $resultPage = $this->getResultPage();
     // $resultPage->setActiveMenu('Vinsol_MultiVendorMarketplace::vendors');
-    $resultPage->getConfig()->getTitle()->prepend(__('Edit Vendor'));
+    if ($this->getRequest()->getParam('id')) {
+      $resultPage->getConfig()->getTitle()->prepend(__('Edit Vendor'));
+    } else {
+      $resultPage->getConfig()->getTitle()->prepend(__('Add Vendor'));
+    }
     return $this;
   }
 

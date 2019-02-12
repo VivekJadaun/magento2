@@ -4,6 +4,10 @@ namespace Vinsol\MultiVendorMarketplace\Observer;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Model\OrderFactory;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+// use Vinsol\MultiVendorMarketplace\Model\VendorOrderFactory;
+use Magento\Framework\App\ResourceConnection;
+// use Vinsol\MultiVendorMarketplace\Model\ResourceModel\VendorOrder\CollectionFactory as VendorOrderCollectionFactory;
 
 class ProductOrderPlaced implements ObserverInterface
 {
@@ -16,7 +20,9 @@ class ProductOrderPlaced implements ObserverInterface
 	protected $url;
 	protected $emailHelper;
 	protected $order;
+	// protected $vendorOrder;
 	protected $productRepository;
+	protected $resourceConnection;
   
 	function __construct(
 		\Magento\Backend\App\Action\Context $context,
@@ -25,8 +31,10 @@ class ProductOrderPlaced implements ObserverInterface
 		\Magento\Framework\Message\ManagerInterface $messageManager,
 		\Magento\Framework\UrlInterface $url,
 		\Vinsol\MultiVendorMarketplace\Helper\Email $emailHelper,
-    		\Magento\Catalog\Api\ProductRepositoryInterface $productRepositoryInterface,
-		OrderFactory $orderFactory
+		ProductRepositoryInterface $productRepositoryInterface,
+		OrderFactory $orderFactory,
+		// VendorOrderFactory $vendorOrderFactory,
+		ResourceConnection $resourceConnection
 	)
 	{
 		$this->context = $context;
@@ -37,6 +45,9 @@ class ProductOrderPlaced implements ObserverInterface
 		$this->emailHelper = $emailHelper;
 		$this->order = $orderFactory->create();
     	$this->productRepository = $productRepositoryInterface;
+		// $this->vendorOrder = $vendorOrderFactory->create();
+    	$this->resourceConnection = $resourceConnection;
+
   }
 
 	public function execute(Observer $observer)
@@ -50,31 +61,59 @@ class ProductOrderPlaced implements ObserverInterface
 		$itemsCollection = $order->getItemsCollection();
 
 		// var_dump($this->groupItemsByVendors($itemsCollection));
-		$vendorsArray = $this->groupItemsByVendors($itemsCollection);
+		$vendorItemsGroup = $this->groupItemsByVendors($itemsCollection);
 
-		foreach ($vendorsArray as $userId => $items) {
+		$vendorOrders = array();
+
+		foreach ($vendorItemsGroup as $userId => $items) {
 			// $this->emailHelper->sendOrderPlacedEmail($userId, $order->getId(), $productNames, $order->getCustomerName(), $order->getCustomerEmail());
+			array_push($vendorOrders, ['order_id' => $order->getId(), 'vendor_id' => null, 'user_id' => $userId]);
 			$this->emailHelper->sendOrderPlacedEmail($userId, $items);
+			// $this->createNewVendorOrder($order->getId(), $userId);
 		}	
 
+		$this->insertMultiple(\Vinsol\MultiVendorMarketplace\Model\VendorOrder::VENDOR_ORDER_TABLE, $vendorOrders);
+		// $this->vendorOrder->getConnection()->insertMultiple(\Vinsol\MultiVendorMarketplace\Model\VendorOrder::VENDOR_ORDER_TABLE, $vendorOrders);
 	}
 
 	public function groupItemsByVendors($itemsCollection)
 	{
-		$vendorsArray = array();
+		$vendorItemsGroup = array();
 
 		foreach ($itemsCollection as $item) {
 			$product = $this->productRepository->getById($item->getProductId());
 			if ($product->hasData(self::USER_ID)) {
-				if (array_key_exists($product->getUserId(), $vendorsArray)) {
-					array_push($vendorsArray[$product->getUserId()], $item);
+				if (array_key_exists($product->getUserId(), $vendorItemsGroup)) {
+					array_push($vendorItemsGroup[$product->getUserId()], $item);
 				} else {
-					$vendorsArray[$product->getUserId()] = [$item];
+					$vendorItemsGroup[$product->getUserId()] = [$item];
 				}
 			}
 		}
 
-		return $vendorsArray;
+		return $vendorItemsGroup;
 	}
 
+	// public function createNewVendorOrder($orderId, $userId, $vendorId = null)
+	// {
+	// 	$this->vendorOrder->setData([
+	// 		'order_id' => $orderId,
+	// 		'vendor_id' => $vendorId,
+	// 		'user_id' => $userId
+	// 	]);
+
+	// 	$this->vendorOrder->save();
+	// }
+
+	public function insertMultiple($tableName, array $rows)
+	{
+		try {
+			$tableName = $this->resourceConnection->getTableName($tableName);
+			$this->resourceConnection->getConnection()->insertMultiple($tableName, $rows);
+		} catch (\Exception $e) {
+			$this->messageManager->addException($e);
+		}
+		
+		return $this;
+	}
 }

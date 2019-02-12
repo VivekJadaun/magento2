@@ -17,6 +17,8 @@
 
 			// VENDOR_ENTITY TABLE SETUP -------------------------------------------
 
+        		echo "CREATING TABLE " . $vendorEntity . "_entity ... ";
+
 			$vendorTable = $setup->getConnection()
 				->newTable($setup->getTable($vendorEntity . '_entity'))
 				->addColumn(
@@ -74,10 +76,13 @@
 				->setComment('Marketplace Vendor Table');
 			$setup->getConnection()->createTable($vendorTable);
 
-			
+			echo "DONE";
 			// VENDOR_ENTITY_TYPE TABLES SETUP -------------------------------------------
 
 			//TYPE INT
+
+        		echo "CREATING TABLE " . $vendorEntity . "_entity_int ... ";
+
 			$vendorIntegerTypeTable = $setup->getConnection()
 				->newTable($setup->getTable($vendorEntity . '_entity_int'))
 				->addColumn(
@@ -155,9 +160,14 @@
 					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
 				)
 				->setComment('Marketplace Vendor Integer Values Table');
+
+			echo "DONE";
 			$setup->getConnection()->createTable($vendorIntegerTypeTable);
 
 			//TYPE DECIMAL
+
+        		echo "CREATING TABLE " . $vendorEntity . "_entity_decimal ... ";
+			
 			$vendorDecimalTypeTable = $setup->getConnection()
 				->newTable($setup->getTable($vendorEntity . '_entity_decimal'))
 				->addColumn(
@@ -235,9 +245,15 @@
 					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
 				)
 				->setComment('Marketplace Vendor Decimal Values Table');
+			
+			echo "DONE";
+
 			$setup->getConnection()->createTable($vendorDecimalTypeTable);
 
 			//TYPE TEXT
+				
+        		echo "CREATING TABLE " . $vendorEntity . "_entity_text ... ";
+
 			$vendorTextTypeTable = $setup->getConnection()
 				->newTable($setup->getTable($vendorEntity . '_entity_text'))
 				->addColumn(
@@ -315,9 +331,15 @@
 					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
 				)
 				->setComment('Marketplace Vendor Text Values Table');
-			$setup->getConnection()->createTable($vendorTextTypeTable);
 			
+			echo "DONE";
+			
+			$setup->getConnection()->createTable($vendorTextTypeTable);
+
 			//TYPE DATETIME
+			
+        		echo "CREATING TABLE " . $vendorEntity . "_entity_datetime ... ";
+
 			$vendorDatetimeTypeTable = $setup->getConnection()
 				->newTable($setup->getTable($vendorEntity . '_entity_datetime'))
 				->addColumn(
@@ -395,9 +417,15 @@
 					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
 				)
 				->setComment('Marketplace Vendor Datetime Values Table');
+
+			echo "DONE";
+
 			$setup->getConnection()->createTable($vendorDatetimeTypeTable);
 
 			//TYPE VARCHAR
+        		
+        		echo "CREATING TABLE " . $vendorEntity . "_entity_varchar ... ";
+
 			$vendorVarcharTypeTable = $setup->getConnection()
 				->newTable($setup->getTable($vendorEntity . '_entity_varchar'))
 				->addColumn(
@@ -475,6 +503,9 @@
 					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
 				)
 				->setComment('Marketplace Vendor Varchar Values Table');
+
+			echo "DONE";
+			
 			$setup->getConnection()->createTable($vendorVarcharTypeTable);
 
 			$setup->endSetup();

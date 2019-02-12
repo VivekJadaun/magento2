@@ -57,8 +57,8 @@
       return $status;
     }
 
-    public function getVendorUrl($vendorId)
-    {
+    // public function getVendorUrl($vendorId)
+    // {
       // $this->urlRewrite->load($vendorId);
-    }
+    // }
   }

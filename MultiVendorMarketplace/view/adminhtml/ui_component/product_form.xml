@@ -2,8 +2,8 @@
 
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
 
-<!--   <fieldset name="marketplace"> 
-    <argument name="data" xsi:type="array">
+  <!-- <fieldset name="user_id">  -->
+    <!-- <argument name="data" xsi:type="array">
       <item name="config" xsi:type="array">
         <item name="label" xsi:type="string" translate="true">More Product Links</item>
         <item name="collapsible" xsi:type="boolean">true</item>
@@ -12,23 +12,24 @@
         <item name="canShow" xsi:type="boolean">true</item>
         <item name="componentType" xsi:type="string">fieldset</item>
       </item>
-    </argument>
-    <field name="product_vendor_id">
+    </argument> -->
+    <!-- <field name="vendor_id"> -->
+      <!-- <argument name="data" xsi:type="array"> -->
+        <!-- <item name="config" xsi:type="array"> -->
+          <!-- <item name="formElement" xsi:type="string">select</item> -->
+          <!-- <item name="visible" xsi:type="boolean">true</item> -->
+          <!-- <item name="dataScope" xsi:type="string">product[user_id]</item> -->
+          <!-- <item name="value" xsi:type="number">4</item> -->
+        <!-- </item> -->
+      <!-- </argument> -->
+    <!-- </field> -->
+  <!-- </fieldset>   -->
+
+
+
+  <!-- <fieldset name="user_id">
       <argument name="data" xsi:type="array">
-        <item name="config" xsi:type="array">
-          <item name="formElement" xsi:type="string">select</item>
-          <item name="visible" xsi:type="boolean">true</item>
-          <item name="dataScope" xsi:type="string">product[user_id]</item>
-        </item>
-      </argument>
-    </field>
-  </fieldset>  --> 
-
-
-
-<!--   <fieldset name="product-details">
-      <argument name="data" xsi:type="array">
-          <item name="disabled" xsi:type="boolean">true</item>
+          <item name="value" xsi:type="string">rajneesh</item>
       </argument>  
   </fieldset> -->
 </form>

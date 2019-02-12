@@ -45,7 +45,7 @@ class Logo extends \Magento\Framework\View\Element\Template
     if ($this->vendorId) {
       $this->vendor->load($this->vendorId);
       // $this->vendorCollection->addAttributeToFilter('entity_id', $this->vendorId)->load();
-      // var_dump($this->vendorCollection->getData());
+      // var_dump($this->vendor->getData());
 
       // $userId = $this->vendor->getUserId();
       // $this->user->load($userId);

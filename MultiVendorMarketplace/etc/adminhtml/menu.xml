@@ -30,7 +30,7 @@
          action="adminhtml/system_config/edit/section/marketplace"
          parent="Vinsol_MultiVendorMarketplace::marketplace_label" />
 
-    <add id="Vinsol_MultiVendorMarketplace::vendors_commission" 
+<!--     <add id="Vinsol_MultiVendorMarketplace::vendors_commission" 
          title="Commissions Report" 
          module="Vinsol_MultiVendorMarketplace" 
          resource="Vinsol_MultiVendorMarketplace::vendors_commission" 
@@ -44,7 +44,7 @@
          resource="Vinsol_MultiVendorMarketplace::vendors_sales" 
          sortOrder="20"
          action="marketplace/sales"
-         parent="Vinsol_MultiVendorMarketplace::marketplace_label" />
+         parent="Vinsol_MultiVendorMarketplace::marketplace_label" /> -->
 
     <add id="Vinsol_MultiVendorMarketplace::vendors_new" 
          title="Manage Vendors" 

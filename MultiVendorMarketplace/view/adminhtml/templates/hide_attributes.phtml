@@ -16,17 +16,13 @@
     }
     </style>
 
-    <script defer="true">
+    <script defer>
         require(["jquery"], function($) {
             $(document).ready(function() {
                 setTimeout(function() {
-                    console.log('started');
                     var $form = $('[data-index=product-details]');
                     var $vendor = $form.find('[name="product[user_id]"]');
-                    $vendor.val("<?php echo $currentUserId ?>");
-                    console.log('loaded');
-                    var value = <?php echo $currentUserId;?>;
-                    console.log(`-> ${value} <-`);
+                    $vendor.val(<?= $currentUserId ?>).change();
                 }, 8000);
             })
         });
