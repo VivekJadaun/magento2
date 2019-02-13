@@ -40,7 +40,7 @@ class User
   
   public function aroundSave($subject, \Closure $proceed, \Magento\Framework\Model\AbstractModel $object)
   {
-    var_dump($object->getData());
+    // var_dump($object->getData());
     if (!$object->isObjectNew()) {
       $this->updateUrlRewrite($object);
     }
