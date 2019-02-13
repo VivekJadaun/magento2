@@ -54,7 +54,7 @@ class Save extends \Magento\Backend\App\Action {
     // if (!$id) {
     //   $id = $this->vendor->getId();
     // }
-    $target = $this->mediaDirectory->getAbsolutePath("marketplace/$id");
+    $target = $this->mediaDirectory->getAbsolutePath("marketplace/$id/");
     // $path = $this->_filesystem->getDirectoryWrite(DirectoryList::MEDIA)->getAbsolutePath('images/');
 
     try {

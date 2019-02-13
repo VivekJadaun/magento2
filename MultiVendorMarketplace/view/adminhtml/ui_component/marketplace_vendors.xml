@@ -180,7 +180,7 @@
     </column> -->
 
     <!-- <column name="logo" class="Magento\Catalog\Ui\Component\Listing\Columns\Thumbnail" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="1"> -->
-    <column name="logo" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\Logo" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="1">
+    <!-- <column name="logo" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\Logo" component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="1">
         <settings>
             <altField>logo</altField>
             <hasPreview>1</hasPreview>
@@ -188,7 +188,7 @@
             <label translate="true">Logo</label>
             <sortable>true</sortable>
         </settings>
-    </column>
+    </column> -->
     <column name="firstname">
       <argument name="data" xsi:type="array">
         <item name="config" xsi:type="array">

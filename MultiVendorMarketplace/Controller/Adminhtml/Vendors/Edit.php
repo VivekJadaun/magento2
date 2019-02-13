@@ -9,19 +9,27 @@ class Edit extends \Magento\Backend\App\Action
   protected $vendor;
   protected $session;
   protected $messageManager;
+  protected $user;
+  protected $role;
+
   public function __construct(
     \Magento\Backend\App\Action\Context $context,
     \Magento\Framework\View\Result\PageFactory $resultPageFactory,
     \Vinsol\MultiVendorMarketplace\Model\VendorFactory $vendorFactory,
     \Magento\Backend\Model\Session $session,
     \Magento\Framework\Message\Manager $messageManager,
+    \Magento\User\Model\UserFactory $userFactory,
+    \Magento\Authorization\Model\RoleFactory $roleFactory,
     \Magento\Framework\Registry $registry
   )
   {
     $this->resultPageFactory = $resultPageFactory;
     $this->vendor = $vendorFactory->create();
+    $this->user = $userFactory->create();
+    $this->role = $roleFactory->create();
     $this->_coreRegistry = $registry;
     $this->session = $session;
+    $this->messageManager = $messageManager;
     $this->messageManager = $messageManager;
     parent::__construct($context);
   }
@@ -35,28 +43,23 @@ class Edit extends \Magento\Backend\App\Action
   {
     $id = $this->getRequest()->getParam('id');
     $var = implode(', ', $this->getRequest()->getParams());
-    // $this->messageManager->addSuccess("vendor $id , params: $var");
 
     if ($id) {
       $this->vendor->load($id);
-      // $this->vendor->getCollection()->addAttributeToFilter('entity_id', $id)->load();
+      $this->user->load($this->vendor->getUserId());
+      $this->role->load($this->user->getId(), 'user_id');
       $msg = implode(', ',$this->vendor->getData());
-      // $this->messageManager->addSuccess("$msg");
-      // $this->vendor->getCollection()->addAttributeToFilter('entity_id', $id)->load();
-      // $obj = $this->vendor->getCollection()->addAttributeToFilter('entity_id', $id)->load()->getData();
-      // $Data = implode(', ', $this->vendor->getData());
-      // if (!$Data['entity_id']) {
-    // $this->messageManager->addSuccess("$Data");
-
-      // if (!$this->vendor->getData('entity_id')) {
       if (!$this->vendor->getId()) {
         $this->_redirect('*/*/');
       }
     }
-    
-    $data = $this->session->getFormData(true);
 
-    if (!empty($data)) {
+    $data = $this->session->getFormData();
+
+    if (empty($data)) {
+      $data = array_merge($this->vendor->getData(), $this->user->getData());
+      $data['password'] = '';
+      $data['role_id'] = $this->role->getParentId();
       $this->vendor->setData($data);
     }
     $this->_coreRegistry->register('vendor', $this->vendor);
@@ -67,7 +70,6 @@ class Edit extends \Magento\Backend\App\Action
   protected function _setPageData()
   {
     $resultPage = $this->getResultPage();
-    // $resultPage->setActiveMenu('Vinsol_MultiVendorMarketplace::vendors');
     if ($this->getRequest()->getParam('id')) {
       $resultPage->getConfig()->getTitle()->prepend(__('Edit Vendor'));
     } else {

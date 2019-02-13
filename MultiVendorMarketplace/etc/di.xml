@@ -13,7 +13,7 @@
   <preference for="Vinsol\MultiVendorMarketplace\Api\Data\CategoryInterface" type="Vinsol\MultiVendorMarketplace\Model\Vendor"/>
 
   <preference for="Magento\Catalog\Block\Product\View\Attributes" type="Vinsol\MultiVendorMarketplace\Block\Product\Attributes"/>
-
+  
   <!-- TO LIST ONLY ORDERS CONTAINING VENDOR PRODUCTS -->
   <preference for="Magento\Sales\Model\ResourceModel\Order\Grid\Collection" type="Vinsol\MultiVendorMarketplace\Model\ResourceModel\Order\Grid\Collection"/>
 

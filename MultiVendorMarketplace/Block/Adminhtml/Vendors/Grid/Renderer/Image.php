@@ -26,7 +26,7 @@ class Image extends \Magento\Backend\Block\Widget\Grid\Column\Renderer\AbstractR
             $img = "<img src = $imageUrl width='100' height='100'/>";
             // $img = '<img src="'.$imageUrl.'" width="100" height="100"/>';
         else:
-            $img = "<img src = '$mediaDirectory/watami-logo.png' width='100' height='100'/>";
+            $img = "<img src = '$mediaDirectory/' width='100' height='100'/>";
             // $img = '<img src="'.$mediaDirectory.'/'.'" width="100" height="100"/>';
         endif;
         return $img;
