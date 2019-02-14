@@ -38,13 +38,15 @@ class User
       $this->vendorCollection = $vendorCollectionFactory->create();
   }
   
-  public function aroundSave($subject, \Closure $proceed, \Magento\Framework\Model\AbstractModel $object)
+  public function beforeSave($subject, $object)
   {
     // var_dump($object->getData());
+
+    // $result = $proceed($object);
     if (!$object->isObjectNew()) {
       $this->updateUrlRewrite($object);
     }
-    return $proceed($object);
+    return $result;
   }
 
   private function updateUrlRewrite($object)
