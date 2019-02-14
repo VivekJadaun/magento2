@@ -24,15 +24,15 @@ class User extends \Magento\User\Model\ResourceModel\User
         $connectionName = null,
         CacheInterface $aclDataCache = null,
         ObserverConfig $observerConfig = null,
-        \Magento\UrlRewrite\Model\UrlRewriteFactory $urlRewriteFactory,
-        \Magento\UrlRewrite\Model\ResourceModel\UrlRewriteCollectionFactory $urlRewriteCollectionFactory,
-        \Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor\CollectionFactory $vendorCollectionFactory,
+        \Magento\UrlRewrite\Model\UrlRewrite $urlRewrite,
+        \Magento\UrlRewrite\Model\ResourceModel\UrlRewriteCollectionFactory $urlRewriteCollection,
+        \Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor\CollectionFactory $vendorCollection,
         \Magento\Framework\Message\Manager $messageManager
     )
     {
-        $this->urlRewrite = $urlRewriteFactory->create();        
-        $this->urlRewriteCollection = $urlRewriteCollectionFactory->create();
-        $this->vendorCollection = $vendorCollectionFactory->create();
+        $this->urlRewrite = $urlRewrite;        
+        $this->urlRewriteCollection = $urlRewriteCollection;
+        $this->vendorCollection = $vendorCollection;
         $this->messageManager = $messageManager;
         parent::__construct($context, $roleFactory, $dateTime, $connectionName, $aclDataCache, $observerConfig);     
     }
