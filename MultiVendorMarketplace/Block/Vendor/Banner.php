@@ -19,11 +19,13 @@ class Banner extends \Magento\Framework\View\Element\Template
     \Magento\Framework\App\ResponseInterface $response,
     \Magento\Backend\App\Action\Context $adminActionContext,
     \Vinsol\MultiVendorMarketplace\Model\VendorFactory $vendorFactory,
+    \Magento\User\Model\UserFactory $userFactory,
     array $data = []
   )
   {
     $this->adminActionContext = $adminActionContext;
     $this->vendor = $vendorFactory->create();
+    $this->user = $userFactory->create();
     $this->response = $response;
     parent::__construct($context, $data);
   }
@@ -31,7 +33,7 @@ class Banner extends \Magento\Framework\View\Element\Template
   public function getImageUrl()
   {
     // return $this->getMediaDirectory()->getAbsolutePath("marketplace/$this->vendorId/$this->banner");
-    return $this->getUrl("pub/media/marketplace/") . $this->vendorId . '/' . $this->banner;
+    return $this->getUrl("pub/media/marketplace/") . $this->username . '/' . $this->banner;
   }
 
   public function _prepareLayout()
@@ -40,10 +42,9 @@ class Banner extends \Magento\Framework\View\Element\Template
     $this->vendorId = $this->adminActionContext->getRequest()->getParam('id');
     if ($this->vendorId) {
       $this->vendor->load($this->vendorId);
-      
       if ($this->vendor->getId()) {
-        $this->username = $this->vendor->getUsername();
-
+        $this->user->load($this->vendor->getUserId());
+        $this->username = $this->user->getUsername();
         if ($this->vendor->getBanner()) {
           $this->banner = $this->vendor->getBanner(); 
         }

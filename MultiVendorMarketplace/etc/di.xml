@@ -37,8 +37,8 @@
   <preference for="Magento\Sales\Model\ResourceModel\Order\Shipment\Grid\Collection" type="Vinsol\MultiVendorMarketplace\Model\ResourceModel\Order\Shipment\Grid\Collection" />
 
   <!-- TO OVERRIDE USER RESOURCE MODEL (PLUGINS CREATED ERRORS ON ROLE PERMISSIONS CHANGE) -->
+  <!-- DO NOT UNCOMMENT RESULTS IN SERIOUS CLI ISSUES -->
   <!-- <preference for="Magento\User\Model\ResourceModel\User" type="Vinsol\MultiVendorMarketplace\Model\ResourceModel\User"/> -->
-
 
 
 

@@ -2,7 +2,7 @@
   width: 100% !important;
   height: 175px !important;
   margin-bottom: 20px;
-  object-fit: fill;
+  /*object-fit: fill;*/
   overflow: hidden;
 }
 
@@ -10,12 +10,12 @@
 }
 
 img.banner {
-  width: 100% !important;
-  height: 100% !important;
+/*  width: 100% !important;
+  height: 100% !important;*/
   /*background-position: center;*/
   /*display: inline-block;*/
-  object-fit: fill;
-  vertical-align: middle;
+/*  object-fit: fill;
+  vertical-align: middle;*/
 }
 
 .logo-username-container {
@@ -30,7 +30,7 @@ img.banner {
   margin: 0;
   padding: 0;
   /*border: 1px solid blue;*/
-  object-fit: fill;
+  /*object-fit: fill;*/
   /*-webkit-background-size: cover;*/
   /*-moz-background-size: cover;*/
   /*-o-background-size: cover;*/
@@ -43,12 +43,12 @@ img.banner {
 }
 
 img.logo {
-  height: 100% !important;
+/*  height: 100% !important;
   width: 100% !important;
   margin: 0;
   padding: 0;
   display: block;
-  object-fit: cover;
+  object-fit: cover;*/
   /*display: inline-flex;*/
   /*border: 1px solid red;*/
 }

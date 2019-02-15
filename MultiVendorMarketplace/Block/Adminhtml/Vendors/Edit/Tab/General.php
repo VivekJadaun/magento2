@@ -130,7 +130,8 @@
 				[
 					'name' => 'commission',
 					'label' => __('Commission (in %)'),
-					'required' => true
+					'required' => true,
+					'class' => 'required-entry validate-digits-range digits-range-0-100'
 				]
 			);
 

@@ -13,7 +13,6 @@ class Roles implements \Magento\Framework\Option\ArrayInterface
   )
   {
     $this->role = $roleFactory->create();
-    // $this->_construct();
   }
 
   // public function _construct()

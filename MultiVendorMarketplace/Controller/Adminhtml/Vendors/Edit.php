@@ -54,14 +54,14 @@ class Edit extends \Magento\Backend\App\Action
       }
     }
 
-    $data = $this->session->getFormData();
+    $data = $this->session->getFormData(true);
 
-    if (empty($data)) {
+    // if (empty($data)) {
       $data = array_merge($this->vendor->getData(), $this->user->getData());
       $data['password'] = '';
       $data['role_id'] = $this->role->getParentId();
       $this->vendor->setData($data);
-    }
+    // }
     $this->_coreRegistry->register('vendor', $this->vendor);
     $this->_setPageData();
     return $this->resultPage;

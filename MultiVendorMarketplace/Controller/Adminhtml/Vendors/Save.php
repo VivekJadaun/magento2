@@ -45,16 +45,18 @@ class Save extends \Magento\Backend\App\Action {
 
     // $this->messageManager->addSuccess(http_build_query($this->getRequest()->getParams()));
 
-    $id = $this->getRequest()->getParam('entity_id');
+    $username = $this->getRequest()->getParam('username');
     // if($id) {
     //   $this->vendor->load($id);
     // }
+    // $vendorData['logo'] = $username . '/' . $vendorData['logo'];
+    // $vendorData['banner'] = $username . '/' . $vendorData['banner'];
     $this->vendor->setData($vendorData);
     
     // if (!$id) {
     //   $id = $this->vendor->getId();
     // }
-    $target = $this->mediaDirectory->getAbsolutePath("marketplace/$id/");
+    $target = $this->mediaDirectory->getAbsolutePath("marketplace/$username/");
     // $path = $this->_filesystem->getDirectoryWrite(DirectoryList::MEDIA)->getAbsolutePath('images/');
 
     try {

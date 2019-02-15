@@ -35,7 +35,7 @@ class Logo extends \Magento\Framework\View\Element\Template
   public function getImageUrl()
   {
     // return $this->getMediaDirectory()->getAbsolutePath("marketplace/$this->vendorId/$this->logo");
-    return $this->getUrl("pub/media/marketplace/") . $this->vendorId . '/' . $this->logo;
+    return $this->getUrl("pub/media/marketplace/") . $this->username . '/' . $this->logo;
   }
 
   public function _prepareLayout()
