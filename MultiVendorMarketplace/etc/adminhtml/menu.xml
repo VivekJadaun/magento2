@@ -1,66 +1,77 @@
 <?xml version="1.0"?>
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-  <menu>
-    <add id="Vinsol_MultiVendorMarketplace::vendors" 
-         title="Multi Vendor Marketplace" 
-         module="Vinsol_MultiVendorMarketplace" 
-         resource="Vinsol_MultiVendorMarketplace::vendors" 
-         sortOrder="50" />
+    <menu>
+        <add id="Vinsol_MultiVendorMarketplace::vendors" 
+             title="Multi Vendor Marketplace" 
+             module="Vinsol_MultiVendorMarketplace" 
+             resource="Vinsol_MultiVendorMarketplace::vendors" 
+             sortOrder="50" />
 
-    <add id="Vinsol_MultiVendorMarketplace::marketplace_label" 
-         title="Marketplace Management" 
-         module="Vinsol_MultiVendorMarketplace" 
-         sortOrder="10"
-         resource="Vinsol_MultiVendorMarketplace::marketplace_label"
-         parent="Vinsol_MultiVendorMarketplace::vendors" />
+        <add id="Vinsol_MultiVendorMarketplace::marketplace_label" 
+             title="Marketplace Management" 
+             module="Vinsol_MultiVendorMarketplace" 
+             sortOrder="10"
+             resource="Vinsol_MultiVendorMarketplace::marketplace_label"
+             parent="Vinsol_MultiVendorMarketplace::vendors" />
 
-    <add id="Vinsol_MultiVendorMarketplace::vendors_label" 
-         title="Vendor Management" 
-         module="Vinsol_MultiVendorMarketplace" 
-         sortOrder="10"
-         resource="Vinsol_MultiVendorMarketplace::vendors_label"
-         parent="Vinsol_MultiVendorMarketplace::vendors" />
+        <add id="Vinsol_MultiVendorMarketplace::vendors_label" 
+             title="Vendor Management" 
+             module="Vinsol_MultiVendorMarketplace" 
+             sortOrder="10"
+             resource="Vinsol_MultiVendorMarketplace::vendors_label"
+             parent="Vinsol_MultiVendorMarketplace::vendors" />
 
-    <add id="Vinsol_MultiVendorMarketplace::vendors_settings" 
-         title="Marketplace Configurations" 
-         module="Vinsol_MultiVendorMarketplace" 
-         resource="Vinsol_MultiVendorMarketplace::vendors_settings" 
-         sortOrder="10"
-         action="adminhtml/system_config/edit/section/marketplace"
-         parent="Vinsol_MultiVendorMarketplace::marketplace_label" />
+        <add id="Vinsol_MultiVendorMarketplace::vendors_settings" 
+             title="Configurations" 
+             module="Vinsol_MultiVendorMarketplace" 
+             resource="Vinsol_MultiVendorMarketplace::vendors_settings" 
+             sortOrder="10"
+             action="adminhtml/system_config/edit/section/marketplace"
+             parent="Vinsol_MultiVendorMarketplace::marketplace_label" />
 
-<!--     <add id="Vinsol_MultiVendorMarketplace::vendors_commission" 
-         title="Commissions Report" 
-         module="Vinsol_MultiVendorMarketplace" 
-         resource="Vinsol_MultiVendorMarketplace::vendors_commission" 
-         sortOrder="20"
-         action="marketplace/commissions"
-         parent="Vinsol_MultiVendorMarketplace::marketplace_label" />
-    
-    <add id="Vinsol_MultiVendorMarketplace::vendors_sales" 
-         title="Sales Report" 
-         module="Vinsol_MultiVendorMarketplace" 
-         resource="Vinsol_MultiVendorMarketplace::vendors_sales" 
-         sortOrder="20"
-         action="marketplace/sales"
-         parent="Vinsol_MultiVendorMarketplace::marketplace_label" /> -->
+        <add id="Vinsol_MultiVendorMarketplace::vendors_commission" 
+             title="Commissions Report" 
+             module="Vinsol_MultiVendorMarketplace" 
+             resource="Vinsol_MultiVendorMarketplace::vendors_commission" 
+             sortOrder="20"
+             action="marketplace/commissions"
+             parent="Vinsol_MultiVendorMarketplace::marketplace_label" />
+        
+    <!--     <add id="Vinsol_MultiVendorMarketplace::vendors_sales" 
+             title="Sales Report" 
+             module="Vinsol_MultiVendorMarketplace" 
+             resource="Vinsol_MultiVendorMarketplace::vendors_sales" 
+             sortOrder="20"
+             action="marketplace/sales"
+             parent="Vinsol_MultiVendorMarketplace::marketplace_label" /> -->
 
-    <add id="Vinsol_MultiVendorMarketplace::vendors_new" 
-         title="Manage Vendors" 
-         module="Vinsol_MultiVendorMarketplace" 
-         resource="Vinsol_MultiVendorMarketplace::vendors_new" 
-         sortOrder="20"
-         action="marketplace/vendors"
-         parent="Vinsol_MultiVendorMarketplace::vendors_label" />
+        <add id="Vinsol_MultiVendorMarketplace::vendors_new" 
+             title="Manage Vendors" 
+             module="Vinsol_MultiVendorMarketplace" 
+             resource="Vinsol_MultiVendorMarketplace::vendors_new" 
+             sortOrder="20"
+             action="marketplace/vendors"
+             parent="Vinsol_MultiVendorMarketplace::vendors_label" />
 
-    <add id="Vinsol_MultiVendorMarketplace::vendors_products" 
-         title="Manage Products" 
-         module="Vinsol_MultiVendorMarketplace" 
-         resource="Vinsol_MultiVendorMarketplace::vendors_products" 
-         sortOrder="20"
-         action="marketplace/products"
-         parent="Vinsol_MultiVendorMarketplace::vendors_label" />
+        <add id="Vinsol_MultiVendorMarketplace::vendors_products" 
+             title="Manage Products" 
+             module="Vinsol_MultiVendorMarketplace" 
+             resource="Vinsol_MultiVendorMarketplace::vendors_products" 
+             sortOrder="20"
+             action="marketplace/products"
+             parent="Vinsol_MultiVendorMarketplace::vendors_label" />
 
-  </menu>
+    </menu>
+
+    <menu>
+        <add id="Vinsol_MultiVendorMarketplace::commissions_report"
+            title="Commissions"
+            module="Vinsol_MultiVendorMarketplace"
+            resource="Vinsol_MultiVendorMarketplace::commissions_report"
+            sortOrder="100"
+            action="marketplace/commissions"
+            parent="Magento_Reports::report_salesroot" />
+    </menu>
+
 </config>
