@@ -12,40 +12,29 @@ class Collection extends CommissionCollection implements SearchResultInterface
 {
 
     public function __construct(
-        \Magento\Framework\Data\Collection\EntityFactory $entityFactory,
+        \Magento\Framework\Data\Collection\EntityFactoryInterface $entityFactory,
         \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy,
         \Magento\Framework\Event\ManagerInterface $eventManager,
-        \Magento\Eav\Model\Config $eavConfig,
-        \Magento\Framework\App\ResourceConnection $resource,
-        \Magento\Eav\Model\EntityFactory $eavEntityFactory,
-        \Magento\Eav\Model\ResourceModel\Helper $resourceHelper,
-        \Magento\Framework\Validator\UniversalFactory $universalFactory,
+        // \Magento\Framework\Model\ResourceModel\Db\VersionControl\Snapshot $entitySnapshot,
         $connection = null,
-        \Magento\Framework\Message\Manager $messageManager,
-        \Magento\Authorization\Model\RoleFactory $roleFactory,
+        $resource = null,
         Attribute $productAttribute,
         $mainTable,
         $resourceModel,
-        $model = 'Magento\Framework\View\Element\UiComponent\DataProvider\Document'
+        $model = \Magento\Framework\View\Element\UiComponent\DataProvider\Document::class
     ) {
         parent::__construct(
             $entityFactory, 
             $logger, 
-            $fetchStrategy,
+            $fetchStrategy, 
             $eventManager, 
-            $eavConfig, 
-            $resource, 
-            $eavEntityFactory, 
-            $resourceHelper, 
-            $universalFactory,
             $connection, 
-            $messageManager, 
-            $roleFactory,
+            $resource, 
             $productAttribute
         );
         $this->_init($model, $resourceModel);
-        // $this->setMainTable($mainTable);
+        $this->setMainTable($mainTable);
     }
 
     public function getAggregations()

@@ -149,9 +149,9 @@
   <type name="Vinsol\MultiVendorMarketplace\Model\ResourceModel\Commission\Grid\Collection">
   <!-- <virtualType name="Vinsol\MultiVendorMarketplace\Model\ResourceModel\Commission\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult"> -->
     <arguments>
-        <!-- <argument name="mainTable" xsi:type="string">marketplace_vendor_entity</argument> -->
+        <argument name="mainTable" xsi:type="string">admin_user</argument>
         <!-- <argument name="model" xsi:type="string">Vinsol\MultiVendorMarketplace\Model\Vendor</argument> -->
-        <argument name="resourceModel" xsi:type="string">Vinsol\MultiVendorMarketplace\Model\ResourceModel\Vendor</argument>
+        <argument name="resourceModel" xsi:type="string">Magento\User\Model\ResourceModel\User</argument>
     </arguments>
   <!-- </virtualType>   -->
   </type>

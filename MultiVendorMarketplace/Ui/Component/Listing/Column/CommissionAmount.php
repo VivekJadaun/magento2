@@ -33,7 +33,7 @@ class CommissionAmount extends \Magento\Ui\Component\Listing\Columns\Column
     //   }
     // }
 
-    // var_dump($dataSource);
+    // var_dump($dataSource['data']['items']);
     return $dataSource;
   }
 }

@@ -39,7 +39,7 @@
       \Magento\Eav\Model\EntityFactory $eavEntityFactory,
       \Magento\Eav\Model\ResourceModel\Helper $resourceHelper,
       \Magento\Framework\Validator\UniversalFactory $universalFactory,
-      \Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
+      $connection = null,
       \Magento\Framework\Message\Manager $messageManager,
       \Magento\Authorization\Model\RoleFactory $roleFactory
       // $mainTable

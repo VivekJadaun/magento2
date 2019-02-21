@@ -18,18 +18,17 @@
   </argument>
   <dataSource name="commissions_report_listing_data_source">
       <argument name="dataProvider" xsi:type="configurableObject">
-          <!-- <argument name="class" xsi:type="string">Vinsol\MultiVendorMarketplace\Ui\DataProvider\Commission\ReportDataProvider</argument> -->
-          <!-- <argument name="class" xsi:type="string">Vinsol\MultiVendorMarketplace\Ui\DataProvider\Product\ReportDataProvider</argument> -->
-          <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+          <argument name="class" xsi:type="string">Vinsol\MultiVendorMarketplace\Ui\DataProvider\Commission\ReportDataProvider</argument>
+          <!-- <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument> -->
           <argument name="name" xsi:type="string">commissions_report_listing_data_source</argument>
-          <argument name="primaryFieldName" xsi:type="string">item_id</argument>
-          <argument name="requestFieldName" xsi:type="string">id</argument>
+          <!-- <argument name="primaryFieldName" xsi:type="string">entity_id</argument> -->
+          <!-- <argument name="requestFieldName" xsi:type="string">id</argument> -->
           <argument name="data" xsi:type="array">
               <item name="config" xsi:type="array">
                   <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
                   <item name="update_url" xsi:type="url" path="mui/index/render"/>
                   <item name="storageConfig" xsi:type="array">
-                      <item name="indexField" xsi:type="string">item_id</item>
+                      <item name="indexField" xsi:type="string">entity_id</item>
                   </item>
               </item>
           </argument>
@@ -68,7 +67,7 @@
           </item>
         </argument>
       </column> -->
-      <column name="item_id">
+      <column name="user_id">
           <argument name="data" xsi:type="array">
               <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
@@ -76,11 +75,24 @@
               <item name="config" xsi:type="array">
                   <item name="filter" xsi:type="string">text</item>
                   <item name="sorting" xsi:type="string">asc</item>
-                  <item name="label" xsi:type="string" translate="true">ID</item>
+                  <item name="label" xsi:type="string" translate="true">User Id</item>
               </item>
           </argument>
       </column>
-      <column name="user_id" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\VendorName">
+      <column name="entity_id">
+          <argument name="data" xsi:type="array">
+              <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
+              </item>
+              <item name="config" xsi:type="array">
+                  <item name="filter" xsi:type="string">text</item>
+                  <item name="sorting" xsi:type="string">asc</item>
+                  <item name="label" xsi:type="string" translate="true">Vendor Id</item>
+              </item>
+          </argument>
+      </column>
+      <!-- <column name="user_id" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\VendorName"> -->
+      <column name="username">
           <argument name="data" xsi:type="array">
               <item name="config" xsi:type="array">
                   <item name="filter" xsi:type="string">text</item>
@@ -94,7 +106,8 @@
               </item>
           </argument>
       </column>
-      <column name="items_sold" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\ItemsSold">
+      <!-- <column name="items_sold" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\ItemsSold"> -->
+      <column name="items_sold">
         <argument name="data" xsi:type="array">
           <item name="config" xsi:type="array">
             <item name="filter" xsi:type="string">text</item>
@@ -103,7 +116,8 @@
           </item>
         </argument>
       </column>
-      <column name="total_sale" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\TotalSale">
+      <!-- <column name="total_sale" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\TotalSale"> -->
+      <column name="total_sales">
         <argument name="data" xsi:type="array">
           <item name="config" xsi:type="array">
             <item name="filter" xsi:type="string">text</item>
@@ -121,7 +135,7 @@
           </item>
         </argument>
       </column>
-      <column name="commission_amt" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\CommissionAmount">
+      <column name="commission_amount">
         <argument name="data" xsi:type="array">
           <item name="config" xsi:type="array">
             <item name="filter" xsi:type="string">text</item>
