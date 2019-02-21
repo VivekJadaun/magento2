@@ -102,6 +102,7 @@
       </settings>
       <bookmark name="bookmarks"/>
       <columnsControls name="columns_controls"/>
+      <filterSearch name="fulltext"/>
       <filters name="listing_filters">
           <filterSelect name="store_id" provider="${ $.parentName }">
               <settings>

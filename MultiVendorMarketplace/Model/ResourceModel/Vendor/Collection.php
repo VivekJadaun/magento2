@@ -30,7 +30,6 @@
     protected $roleId;
 
     public function __construct(
-      \Magento\Authorization\Model\RoleFactory $roleFactory,
       \Magento\Framework\Data\Collection\EntityFactory $entityFactory,
       \Psr\Log\LoggerInterface $logger,
       \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy,
@@ -40,13 +39,16 @@
       \Magento\Eav\Model\EntityFactory $eavEntityFactory,
       \Magento\Eav\Model\ResourceModel\Helper $resourceHelper,
       \Magento\Framework\Validator\UniversalFactory $universalFactory,
+      \Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
       \Magento\Framework\Message\Manager $messageManager,
-      \Magento\Framework\DB\Adapter\AdapterInterface $connection = null
+      \Magento\Authorization\Model\RoleFactory $roleFactory
+      // $mainTable
     ) 
     {
       $this->messageManager = $messageManager;
       $this->roleId = $roleFactory->create()->getCollection()->addFieldToFilter('role_name', 'vendor')->getAllIds();
       parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $eavConfig, $resource, $eavEntityFactory, $resourceHelper, $universalFactory, $connection);
+      // var_dump($mainTable);
     }
     
     protected function _construct()
@@ -78,10 +80,20 @@
       $where = "role_name = '$this->roleName' OR parent_id IN ($rolesId)";
       $this->addAttributeToSelect('*');
       // $this->addAttributeToSelect(['logo', 'banner']);
-      $this->joinTable($this->adminUserTable, 'user_id=user_id', self::ADMIN_USER_VENDOR_ENTITY_FIELDS, null, 'inner');
-      $this->joinTable($this->roleTable, 'user_id=user_id', self::ROLE_FIELDS, $where, 'inner');
+      // $this->joinTable($this->adminUserTable, 'user_id=user_id', self::ADMIN_USER_VENDOR_ENTITY_FIELDS, null, 'inner');
+      // $this->joinTable($this->roleTable, 'user_id=user_id', self::ROLE_FIELDS, $where, 'inner');
+      $this->getSelect()
+        ->joinInner(
+          ['user_table' => $this->getTable($this->adminUserTable)],
+          'e.user_id = user_table.user_id',
+          self::ADMIN_USER_VENDOR_ENTITY_FIELDS
+        )->joinInner(
+          ['role_table' => $this->getTable($this->roleTable)],
+          'e.user_id = role_table.user_id',
+          self::ROLE_FIELDS
+        )->where($where);
 
-      // $this->messageManager->addSuccess($this->getSelect());
+      // $this->messageManager->addSuccess($this->getSelect()->__toString());
 
       // $this->addFilterToMap('role_id', 'role_id');
       // $this->addFilterToMap('role_name', 'role_name');      //SORTING & FILTERING DON'T WORK WITHOUT IT

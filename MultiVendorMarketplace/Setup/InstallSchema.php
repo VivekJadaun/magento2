@@ -66,13 +66,13 @@
 					$setup->getIdxName($vendorEntity . '_entity', ['sort_order']),
 					['sort_order']
 				)
-				->addForeignKey(
-					$setup->getFkName($vendorEntity . '_entity', 'user_id', $setup->getTable('admin_user'), 'user_id'),
-					'user_id',
-					$setup->getTable('admin_user'),
-					'user_id',
-					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-				)
+				// ->addForeignKey(
+				// 	$setup->getFkName($vendorEntity . '_entity', 'user_id', $setup->getTable('admin_user'), 'user_id'),
+				// 	'user_id',
+				// 	$setup->getTable('admin_user'),
+				// 	'user_id',
+				// 	\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+				// )
 				->setComment('Marketplace Vendor Table');
 			$setup->getConnection()->createTable($vendorTable);
 
@@ -139,26 +139,26 @@
 					$setup->getIdxName($vendorEntity . '_entity_int', ['attribute_id']),
 					['attribute_id']
 				)
-				->addForeignKey(
-					$setup->getFkName(
-						$vendorEntity . '_entity_int', 'attribute_id', 
-						$setup->getTable('eav_attribute'), 'attribute_id'
-					), 
-					'attribute_id',
-					$setup->getTable('eav_attribute'),
-					'attribute_id',
-					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-				)
-				->addForeignKey(
-					$setup->getFkName(
-						$vendorEntity . '_entity_int', 'entity_id', 
-						$setup->getTable($vendorEntity . '_entity'), 'entity_id'
-					), 
-					'entity_id',
-					$setup->getTable($vendorEntity . '_entity'),
-					'entity_id',
-					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-				)
+				// ->addForeignKey(
+				// 	$setup->getFkName(
+				// 		$vendorEntity . '_entity_int', 'attribute_id', 
+				// 		$setup->getTable('eav_attribute'), 'attribute_id'
+				// 	), 
+				// 	'attribute_id',
+				// 	$setup->getTable('eav_attribute'),
+				// 	'attribute_id',
+				// 	\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+				// )
+				// ->addForeignKey(
+				// 	$setup->getFkName(
+				// 		$vendorEntity . '_entity_int', 'entity_id', 
+				// 		$setup->getTable($vendorEntity . '_entity'), 'entity_id'
+				// 	), 
+				// 	'entity_id',
+				// 	$setup->getTable($vendorEntity . '_entity'),
+				// 	'entity_id',
+				// 	\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+				// )
 				->setComment('Marketplace Vendor Integer Values Table');
 
 			echo "DONE";
@@ -224,26 +224,26 @@
 					$setup->getIdxName($vendorEntity . '_entity_decimal', ['attribute_id']),
 					['attribute_id']
 				)
-				->addForeignKey(
-					$setup->getFkName(
-						$vendorEntity . '_entity_decimal', 'attribute_id', 
-						$setup->getTable('eav_attribute'), 'attribute_id'
-					), 
-					'attribute_id',
-					$setup->getTable('eav_attribute'),
-					'attribute_id',
-					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-				)
-				->addForeignKey(
-					$setup->getFkName(
-						$vendorEntity . '_entity_decimal', 'entity_id', 
-						$setup->getTable($vendorEntity . '_entity'), 'entity_id'
-					), 
-					'entity_id',
-					$setup->getTable($vendorEntity . '_entity'),
-					'entity_id',
-					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-				)
+				// ->addForeignKey(
+				// 	$setup->getFkName(
+				// 		$vendorEntity . '_entity_decimal', 'attribute_id', 
+				// 		$setup->getTable('eav_attribute'), 'attribute_id'
+				// 	), 
+				// 	'attribute_id',
+				// 	$setup->getTable('eav_attribute'),
+				// 	'attribute_id',
+				// 	\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+				// )
+				// ->addForeignKey(
+				// 	$setup->getFkName(
+				// 		$vendorEntity . '_entity_decimal', 'entity_id', 
+				// 		$setup->getTable($vendorEntity . '_entity'), 'entity_id'
+				// 	), 
+				// 	'entity_id',
+				// 	$setup->getTable($vendorEntity . '_entity'),
+				// 	'entity_id',
+				// 	\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+				// )
 				->setComment('Marketplace Vendor Decimal Values Table');
 			
 			echo "DONE";
@@ -310,26 +310,26 @@
 					$setup->getIdxName($vendorEntity . '_entity_text', ['attribute_id']),
 					['attribute_id']
 				)
-				->addForeignKey(
-					$setup->getFkName(
-						$vendorEntity . '_entity_text', 'attribute_id', 
-						$setup->getTable('eav_attribute'), 'attribute_id'
-					), 
-					'attribute_id',
-					$setup->getTable('eav_attribute'),
-					'attribute_id',
-					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-				)
-				->addForeignKey(
-					$setup->getFkName(
-						$vendorEntity . '_entity_text', 'entity_id', 
-						$setup->getTable($vendorEntity . '_entity'), 'entity_id'
-					), 
-					'entity_id',
-					$setup->getTable($vendorEntity . '_entity'),
-					'entity_id',
-					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-				)
+				// ->addForeignKey(
+				// 	$setup->getFkName(
+				// 		$vendorEntity . '_entity_text', 'attribute_id', 
+				// 		$setup->getTable('eav_attribute'), 'attribute_id'
+				// 	), 
+				// 	'attribute_id',
+				// 	$setup->getTable('eav_attribute'),
+				// 	'attribute_id',
+				// 	\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+				// )
+				// ->addForeignKey(
+				// 	$setup->getFkName(
+				// 		$vendorEntity . '_entity_text', 'entity_id', 
+				// 		$setup->getTable($vendorEntity . '_entity'), 'entity_id'
+				// 	), 
+				// 	'entity_id',
+				// 	$setup->getTable($vendorEntity . '_entity'),
+				// 	'entity_id',
+				// 	\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+				// )
 				->setComment('Marketplace Vendor Text Values Table');
 			
 			echo "DONE";
@@ -396,26 +396,26 @@
 					$setup->getIdxName($vendorEntity . '_entity_datetime', ['attribute_id']),
 					['attribute_id']
 				)
-				->addForeignKey(
-					$setup->getFkName(
-						$vendorEntity . '_entity_datetime', 'attribute_id', 
-						$setup->getTable('eav_attribute'), 'attribute_id'
-					), 
-					'attribute_id',
-					$setup->getTable('eav_attribute'),
-					'attribute_id',
-					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-				)
-				->addForeignKey(
-					$setup->getFkName(
-						$vendorEntity . '_entity_datetime', 'entity_id', 
-						$setup->getTable($vendorEntity . '_entity'), 'entity_id'
-					), 
-					'entity_id',
-					$setup->getTable($vendorEntity . '_entity'),
-					'entity_id',
-					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-				)
+				// ->addForeignKey(
+				// 	$setup->getFkName(
+				// 		$vendorEntity . '_entity_datetime', 'attribute_id', 
+				// 		$setup->getTable('eav_attribute'), 'attribute_id'
+				// 	), 
+				// 	'attribute_id',
+				// 	$setup->getTable('eav_attribute'),
+				// 	'attribute_id',
+				// 	\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+				// )
+				// ->addForeignKey(
+				// 	$setup->getFkName(
+				// 		$vendorEntity . '_entity_datetime', 'entity_id', 
+				// 		$setup->getTable($vendorEntity . '_entity'), 'entity_id'
+				// 	), 
+				// 	'entity_id',
+				// 	$setup->getTable($vendorEntity . '_entity'),
+				// 	'entity_id',
+				// 	\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+				// )
 				->setComment('Marketplace Vendor Datetime Values Table');
 
 			echo "DONE";
@@ -482,26 +482,26 @@
 					$setup->getIdxName($vendorEntity . '_entity_varchar', ['attribute_id']),
 					['attribute_id']
 				)
-				->addForeignKey(
-					$setup->getFkName(
-						$vendorEntity . '_entity_varchar', 'attribute_id', 
-						$setup->getTable('eav_attribute'), 'attribute_id'
-					), 
-					'attribute_id',
-					$setup->getTable('eav_attribute'),
-					'attribute_id',
-					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-				)
-				->addForeignKey(
-					$setup->getFkName(
-						$vendorEntity . '_entity_varchar', 'entity_id', 
-						$setup->getTable($vendorEntity . '_entity'), 'entity_id'
-					), 
-					'entity_id',
-					$setup->getTable($vendorEntity . '_entity'),
-					'entity_id',
-					\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-				)
+				// ->addForeignKey(
+				// 	$setup->getFkName(
+				// 		$vendorEntity . '_entity_varchar', 'attribute_id', 
+				// 		$setup->getTable('eav_attribute'), 'attribute_id'
+				// 	), 
+				// 	'attribute_id',
+				// 	$setup->getTable('eav_attribute'),
+				// 	'attribute_id',
+				// 	\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+				// )
+				// ->addForeignKey(
+				// 	$setup->getFkName(
+				// 		$vendorEntity . '_entity_varchar', 'entity_id', 
+				// 		$setup->getTable($vendorEntity . '_entity'), 'entity_id'
+				// 	), 
+				// 	'entity_id',
+				// 	$setup->getTable($vendorEntity . '_entity'),
+				// 	'entity_id',
+				// 	\Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+				// )
 				->setComment('Marketplace Vendor Varchar Values Table');
 
 			echo "DONE";

@@ -72,13 +72,13 @@
             ['order_id', 'user_id'],
             ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
           )
-          ->addForeignKey(
-            $setup->getFkName(self::VENDOR_ORDER_TABLE, 'order_id', self::VENDOR_ORDER_TABLE, 'entity_id'),
-            'order_id',
-            self::SALES_ORDER_TABLE,
-            'entity_id',
-            \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-          )
+          // ->addForeignKey(
+          //   $setup->getFkName(self::VENDOR_ORDER_TABLE, 'order_id', self::VENDOR_ORDER_TABLE, 'entity_id'),
+          //   'order_id',
+          //   self::SALES_ORDER_TABLE,
+          //   'entity_id',
+          //   \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+          // )
           // ->addForeignKey(
           //   $setup->getFkName(self::VENDOR_ORDER_TABLE, 'vendor_id', self::VENDOR_TABLE, 'entity_id'),
           //   'vendor_id',
@@ -86,13 +86,13 @@
           //   'entity_id',
           //   \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
           // )
-          ->addForeignKey(
-            $setup->getFkName(self::VENDOR_ORDER_TABLE, 'user_id', self::USER_TABLE, 'user_id'),
-            'user_id',
-            self::USER_TABLE,
-            'user_id',
-            \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-          )
+          // ->addForeignKey(
+          //   $setup->getFkName(self::VENDOR_ORDER_TABLE, 'user_id', self::USER_TABLE, 'user_id'),
+          //   'user_id',
+          //   self::USER_TABLE,
+          //   'user_id',
+          //   \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+          // )
           ->setComment('Marketplace Vendor Order Table');
 
         $setup->getConnection()->createTable($vendorOrderTable);
@@ -141,20 +141,20 @@
             ['invoice_id', 'user_id'],
             ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
           )
-          ->addForeignKey(
-            $setup->getFkName(self::VENDOR_INVOICE_TABLE, 'invoice_id', self::VENDOR_INVOICE_TABLE, 'entity_id'),
-            'invoice_id',
-            self::SALES_ORDER_TABLE,
-            'entity_id',
-            \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-          )
-          ->addForeignKey(
-            $setup->getFkName(self::VENDOR_INVOICE_TABLE, 'user_id', self::USER_TABLE, 'user_id'),
-            'user_id',
-            self::USER_TABLE,
-            'user_id',
-            \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-          )
+          // ->addForeignKey(
+          //   $setup->getFkName(self::VENDOR_INVOICE_TABLE, 'invoice_id', self::VENDOR_INVOICE_TABLE, 'entity_id'),
+          //   'invoice_id',
+          //   self::SALES_ORDER_TABLE,
+          //   'entity_id',
+          //   \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+          // )
+          // ->addForeignKey(
+          //   $setup->getFkName(self::VENDOR_INVOICE_TABLE, 'user_id', self::USER_TABLE, 'user_id'),
+          //   'user_id',
+          //   self::USER_TABLE,
+          //   'user_id',
+          //   \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+          // )
           ->setComment('Marketplace Vendor Invoice Table');
 
         $setup->getConnection()->createTable($vendorInvoiceTable);
@@ -201,20 +201,20 @@
             ['shipment_id', 'user_id'],
             ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
           )
-          ->addForeignKey(
-            $setup->getFkName(self::VENDOR_SHIPMENT_TABLE, 'shipment_id', self::VENDOR_SHIPMENT_TABLE, 'entity_id'),
-            'shipment_id',
-            self::SALES_ORDER_TABLE,
-            'entity_id',
-            \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-          )
-          ->addForeignKey(
-            $setup->getFkName(self::VENDOR_SHIPMENT_TABLE, 'user_id', self::USER_TABLE, 'user_id'),
-            'user_id',
-            self::USER_TABLE,
-            'user_id',
-            \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-          )
+          // ->addForeignKey(
+          //   $setup->getFkName(self::VENDOR_SHIPMENT_TABLE, 'shipment_id', self::VENDOR_SHIPMENT_TABLE, 'entity_id'),
+          //   'shipment_id',
+          //   self::SALES_ORDER_TABLE,
+          //   'entity_id',
+          //   \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+          // )
+          // ->addForeignKey(
+          //   $setup->getFkName(self::VENDOR_SHIPMENT_TABLE, 'user_id', self::USER_TABLE, 'user_id'),
+          //   'user_id',
+          //   self::USER_TABLE,
+          //   'user_id',
+          //   \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+          // )
           ->setComment('Marketplace Vendor Shipment Table');
 
         $setup->getConnection()->createTable($vendorShipmentTable);
