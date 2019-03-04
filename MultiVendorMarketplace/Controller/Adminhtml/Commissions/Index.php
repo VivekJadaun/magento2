@@ -1,29 +1,40 @@
 <?php
   namespace Vinsol\MultiVendorMarketplace\Controller\Adminhtml\Commissions;
-  ini_set('display_errors', 1);
-  ini_set('display_startup_errors', 1);
-  error_reporting(E_ALL);
 
   class Index extends \Magento\Backend\App\Action
   {
     protected $resultPageFactory;
     protected $vendor;
+    protected $commissionCollection;
 
     function __construct(
       \Magento\Backend\App\Action\Context $context,
       \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-      \Vinsol\MultiVendorMarketplace\Model\VendorFactory $vendorFactory
+      \Vinsol\MultiVendorMarketplace\Model\VendorFactory $vendorFactory,
+      \Vinsol\MultiVendorMarketplace\Model\ResourceModel\Commission\CollectionFactory $commissionCollectionFactory
     )
     {
       $this->resultPageFactory = $resultPageFactory;
       $this->vendor = $vendorFactory->create();
+      $this->commissionCollection = $commissionCollectionFactory->create();
       parent::__construct($context); 
     }
 
     public function execute()
     {
+
+      $from = $this->getRequest()->getParam('from');
+      $to = $this->getRequest()->getParam('to');
       // $this->_setPageData();
       // return $this->resultPageFactory->create();
+      if ($from && $to) {
+        $this->commissionCollection->setFrom($from);
+        $this->commissionCollection->setTo($to);
+      }
+
+      var_dump($this->getRequest()->getPostValue());
+      var_dump($_REQUEST);
+      var_dump($from, $to);
       return $this->getResultPage();
     }
 

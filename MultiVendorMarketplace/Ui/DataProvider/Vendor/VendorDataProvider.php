@@ -88,8 +88,6 @@ class VendorDataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         }
         $items = $this->getCollection()->toArray();
         
-        var_dump($items);
-
         return [
             'totalRecords' => $this->getCollection()->getSize(),
             'items' => array_values($items),

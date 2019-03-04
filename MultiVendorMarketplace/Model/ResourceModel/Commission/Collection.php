@@ -19,6 +19,9 @@ class Collection extends UserCollection
 
     protected $productAttribute;
 
+    protected $from;
+    protected $to;
+
     public function __construct(
         \Magento\Framework\Data\Collection\EntityFactoryInterface $entityFactory,
         \Psr\Log\LoggerInterface $logger,
@@ -45,6 +48,9 @@ class Collection extends UserCollection
     {
         parent::_initSelect();
         
+        $from = $this->getFrom();
+        $to = $this->getTo();
+
         $attributeId = $this->productAttribute->loadByCode(self::CATALOG_PRODUCT, self::ATTRIBUTE_CODE)->getId();
 
         $this->getSelect()
@@ -64,16 +70,42 @@ class Collection extends UserCollection
                 ['fifthTable' => $this->getTable(self::SALES_ORDER_ITEM)],
                 'fifthTable.product_id = fourthTable.entity_id',
                 ['']
-            )->columns('COUNT(item_id) AS items_sold'
-            )->columns('SUM(price) AS total_sales'
-            )->columns('(SUM(price) * commission / 100) AS commission_amount'
+            )->columns('SUM(qty_shipped) AS items_sold'
+            )->columns('SUM(price * qty_shipped) AS total_sales'
+            )->columns('(SUM(price * qty_shipped) * commission / 100) AS commission_amount'
             )->where(
                 "thirdTable.attribute_id = ?", $attributeId
+            )->where(
+                "fifthTable.created_at BETWEEN '$from' AND '$to'"
             )->group('secondTable.entity_id');
 
         // var_dump($this->getSelect()->__toString());
 
         return $this;
 
+    }
+
+    public function setFrom($from)
+    {
+        $this->from = $from || $this->from;
+
+        return $this;
+    }
+
+    public function setTo($to)
+    {
+        $this->to = $to || $this->to;
+
+        return $this;
+    }
+
+    public function getFrom()
+    {
+        return $this->from || date('Y-m-d', 0);
+    }
+
+    public function getTo()
+    {
+        return $this->to || date('Y-m-d');
     }
 }

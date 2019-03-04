@@ -7,56 +7,155 @@
       <item name="deps" xsi:type="string">commissions_report.commissions_report_listing_data_source</item>
     </item>
       <item name="spinner" xsi:type="string">spinner_columns</item>
-      <item name="buttons" xsi:type="array">
+      <!-- <item name="buttons" xsi:type="array">
           <item name="add" xsi:type="array">
               <item name="name" xsi:type="string">add</item>
               <item name="label" xsi:type="string" translate="true">Show Report</item>
               <item name="class" xsi:type="string">primary</item>
               <item name="url" xsi:type="string">*/*/*</item>
           </item>
-      </item>
+      </item> -->
   </argument>
   <dataSource name="commissions_report_listing_data_source">
       <argument name="dataProvider" xsi:type="configurableObject">
           <argument name="class" xsi:type="string">Vinsol\MultiVendorMarketplace\Ui\DataProvider\Commission\ReportDataProvider</argument>
           <!-- <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument> -->
           <argument name="name" xsi:type="string">commissions_report_listing_data_source</argument>
-          <!-- <argument name="primaryFieldName" xsi:type="string">entity_id</argument> -->
-          <!-- <argument name="requestFieldName" xsi:type="string">id</argument> -->
+          <argument name="primaryFieldName" xsi:type="string">user_id</argument>
+          <argument name="requestFieldName" xsi:type="string">id</argument>
           <argument name="data" xsi:type="array">
               <item name="config" xsi:type="array">
                   <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
                   <item name="update_url" xsi:type="url" path="mui/index/render"/>
                   <item name="storageConfig" xsi:type="array">
-                      <item name="indexField" xsi:type="string">entity_id</item>
+                      <item name="indexField" xsi:type="string">user_id</item>
                   </item>
               </item>
           </argument>
       </argument>
   </dataSource>
-  <listingToolbar name="listing_top">
+
+  <form>
+    <argument name="data" xsi:type="array">
+        <item name="label" xsi:type="string" translate="true"></item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+          <item name="showreport" xsi:type="string">Vinsol\MultiVendorMarketplace\Block\Adminhtml\Commission\Button\ShowReport</item>
+        </item>
+        <!-- <item name="layout" xsi:type="array">
+            <item name="type" xsi:type="string">tabs</item>
+        </item> -->
+    </argument>
+    <settings>
+        <!-- <buttons>
+            <button name="saveAndContinueEdit">
+                <url path="*/*/*"/>
+                <class>primary</class>
+                <label translate="true">Show Report</label>
+            </button>
+        </buttons> -->
+    </settings>
+    <fieldset name="sales_date_range">
+      <settings>
+        <label translate="true"></label>
+      </settings>
+      <field name="from">
         <argument name="data" xsi:type="array">
+              <item name="config" xsi:type="array">
+                  <item name="dataType" xsi:type="string">string</item>
+                  <item name="label" xsi:type="string" translate="true">From</item>
+                  <item name="formElement" xsi:type="string">date</item>
+                  <!-- <item name="source" xsi:type="string">page</item> -->
+                  <item name="sortOrder" xsi:type="number">10</item>
+                  <!-- <item name="dataScope" xsi:type="string">from</item> -->
+                  <item name="validation" xsi:type="array">
+                      <item name="required-entry" xsi:type="boolean">true</item>
+                  </item>
+                  <item name="options" xsi:type="array">
+                      <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                      <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                      <item name="showsTime" xsi:type="boolean">false</item>
+                  </item>
+              </item>
+          </argument>
+      </field>
+      <field name="to">
+        <argument name="data" xsi:type="array">
+              <item name="config" xsi:type="array">
+                  <item name="dataType" xsi:type="string">string</item>
+                  <item name="label" xsi:type="string" translate="true">To</item>
+                  <item name="formElement" xsi:type="string">date</item>
+                  <!-- <item name="source" xsi:type="string">page</item> -->
+                  <item name="sortOrder" xsi:type="number">20</item>
+                  <!-- <item name="dataScope" xsi:type="string">to</item> -->
+                  <item name="validation" xsi:type="array">
+                      <item name="required-entry" xsi:type="boolean">true</item>
+                  </item>
+                  <item name="options" xsi:type="array">
+                      <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                      <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                      <item name="showsTime" xsi:type="boolean">false</item>
+                  </item>
+              </item>
+          </argument>
+      </field> 
+    </fieldset>
+  </form>
+  
+  <listingToolbar name="listing_top">
+        <!-- <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="sticky" xsi:type="boolean">true</item>
             </item>
-        </argument>
-        <bookmark name="bookmarks"/>
-        <columnsControls name="columns_controls"/>
-        <filterSearch name="fulltext"/>
-        <filters name="listing_filters"/>
+        </argument> -->
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <!-- <insertForm class="Magento\Ui\Component\Container" component="Magento_Ui/js/form/components/insert-form">
+            <settings>
+                <updateUrl path="mui/index/render"/>
+                <renderUrl path="mui/index/render"/>
+                <autoRender>true</autoRender>
+                <dataLinks>
+                    <imports>false</imports>
+                    <exports>false</exports>
+                </dataLinks>
+                <realTimeLink>false</realTimeLink>
+            </settings>
+        </insertForm> -->
+        <!-- <bookmark name="bookmarks"/> -->
+        <!-- <columnsControls name="columns_controls"/> -->
+        <!-- <filterSearch name="fulltext"/> -->
+        <!-- <filters name="listing_filters"> -->
+            <!-- <filterSelect name="store_id" provider="${ $.parentName }">
+                <settings>
+                    <options class="Magento\Store\Ui\Component\Listing\Column\Store\Options"/>
+                    <caption translate="true">All Store Views</caption>
+                    <label translate="true">Store View</label>
+                    <dataScope>store_id</dataScope>
+                </settings>
+            </filterSelect> -->
+        <!-- </filters>         -->
+        <exportButton name="export_button">
+<!--           <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">commissions_report.commissions_report_listing_data_source.commissions_report_columns.ids</item>
+                    <item name="namespace" xsi:type="string">current</item>
+                </item>
+            </argument> -->
+        </exportButton>
         <paging name="listing_paging"/>
-        <exportButton name="export_button"/>
     </listingToolbar>
   <columns name="spinner_columns">
-<!--       <selectionsColumn name="ids">
+      <selectionsColumn name="ids">
           <argument name="data" xsi:type="array">
               <item name="config" xsi:type="array">
                   <item name="resizeEnabled" xsi:type="boolean">false</item>
                   <item name="resizeDefaultWidth" xsi:type="string">55</item>
-                  <item name="indexField" xsi:type="string">entity_id</item>
+                  <item name="indexField" xsi:type="string">user_id</item>
               </item>
           </argument>
-      </selectionsColumn> -->
+      </selectionsColumn>
 <!--       <column name="interval" class="Magento\Ui\Component\Listing\Columns\Date">
         <argument name="data" xsi:type="array">
           <item name="config" xsi:type="array">
@@ -67,7 +166,7 @@
           </item>
         </argument>
       </column> -->
-      <column name="user_id">
+      <column name="user_id" sortOrder="10">
           <argument name="data" xsi:type="array">
               <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
@@ -79,7 +178,7 @@
               </item>
           </argument>
       </column>
-      <column name="entity_id">
+      <column name="entity_id" sortOrder="20">
           <argument name="data" xsi:type="array">
               <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/column</item>
@@ -92,7 +191,7 @@
           </argument>
       </column>
       <!-- <column name="user_id" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\VendorName"> -->
-      <column name="username">
+      <column name="username" sortOrder="30">
           <argument name="data" xsi:type="array">
               <item name="config" xsi:type="array">
                   <item name="filter" xsi:type="string">text</item>
@@ -107,7 +206,7 @@
           </argument>
       </column>
       <!-- <column name="items_sold" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\ItemsSold"> -->
-      <column name="items_sold">
+      <column name="items_sold" sortOrder="40">
         <argument name="data" xsi:type="array">
           <item name="config" xsi:type="array">
             <item name="filter" xsi:type="string">text</item>
@@ -117,16 +216,16 @@
         </argument>
       </column>
       <!-- <column name="total_sale" class="Vinsol\MultiVendorMarketplace\Ui\Component\Listing\Column\TotalSale"> -->
-      <column name="total_sales">
+      <column name="total_sales" sortOrder="50">
         <argument name="data" xsi:type="array">
           <item name="config" xsi:type="array">
             <item name="filter" xsi:type="string">text</item>
             <item name="dataType" xsi:type="string">text</item>
-            <item name="label" xsi:type="string" translate="true">Total Sales</item>
+            <item name="label" xsi:type="string" translate="true">Total Sales Amount</item>
           </item>
         </argument>
       </column>
-      <column name="commission">
+      <column name="commission" sortOrder="60">
         <argument name="data" xsi:type="array">
           <item name="config" xsi:type="array">
             <item name="filter" xsi:type="string">text</item>
@@ -135,7 +234,7 @@
           </item>
         </argument>
       </column>
-      <column name="commission_amount">
+      <column name="commission_amount" sortOrder="70">
         <argument name="data" xsi:type="array">
           <item name="config" xsi:type="array">
             <item name="filter" xsi:type="string">text</item>
@@ -146,7 +245,7 @@
       </column>
 <!--       <actionsColumn name="actions" class="Magento\Catalog\Ui\Component\Listing\Columns\ProductActions" sortOrder="200">
         <settings>
-            <indexField>entity_id</indexField>
+            <indexField>user_id</indexField>
         </settings>
     </actionsColumn> -->
   </columns>
